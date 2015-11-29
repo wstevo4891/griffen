@@ -1,0 +1,33 @@
+<div class="profile">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <p id="notice"><%= notice %></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h1><%= @user.name %></h1>
+      <p>
+        <strong>Email:</strong>
+        <%= @user.email %>	
+      </p>
+    </div>
+  </div>
+
+  <div class="row register-button">
+    <div class="col-md-12 text-center">
+        <% if @user.document %>
+          <%= link_to "Edit Application", edit_document_path(@user.document), 
+          class: "btn btn-lg btn-primary" %>
+        <% else %>
+          <%= link_to "Start Application", new_document_path, class: "btn btn-lg btn-primary" %>
+        <% end %>  
+    </div>
+  </div>
+
+  <div class="col-md-12 text-center back-buttons">
+    <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-lg btn-default" %> 
+    <%= link_to 'Back', users_path, class: "btn btn-lg btn-default" %>
+  </div>
+</div>

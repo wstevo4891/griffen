@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Dropbox Send Forms</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div class="navbar navbar-inverse navbar-static-top">
+  	<div class="container">
+  	  <div class="navbar-header">
+        <a href="#" class='navbar-brand'>
+  	      Vectron X-17 Wrist Computer
+        </a>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      	  <span class="sr-only">Toggle Navigation</span>
+      	  <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+        </button>
+      </div>
+      <ul class="nav navbar-nav navbar-right collapse navbar-collapse">
+  	    <li><a href="#">Home</a></li>
+  	    <li><a href="#">Products</a></li>
+  	    <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class= "container">
+    <%= yield %>
+  </div>
+
+  <footer class="row">
+  	<div class="container">
+      <h4>Links</h4>
+      <ul class="list-unstyled">
+  	    <li><a href="#">Home</a></li>
+  	    <li><a href="#">Products</a></li>
+  	    <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

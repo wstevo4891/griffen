@@ -1,0 +1,57 @@
+<div class='jumbotron col-md-10 col-md-offset-1'>
+
+    <%= form_for(@document) do |f| %>
+      
+      <% if @document.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@document.errors.count, "error") %> prohibited this document from being saved:</h2>
+          <ul>
+            <% @document.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>  
+      <% end %>
+      
+      <fieldset>
+        <legend>Applicant Information</legend>
+  
+		<div class="form-group col-md-8 col-md-offset-2">
+		  <%= f.label :name, "Applicant Name" %><br/>
+	      <%= f.text_field :name, class: "form-control" %>
+	    </div>  
+  
+	    <div class="form-group col-md-8 col-md-offset-2">
+	      <%= f.label :business, "Name of Business" %><br/>
+	      <%= f.text_field :business, class: "form-control" %>
+	    </div>  
+  
+	    <div class="form-group col-md-8 col-md-offset-2">
+	      <%= f.label :email, "Email" %><br/>
+	      <%= f.email_field :email, class: "form-control" %>
+	    </div>    
+		     
+	    <div class="form-group col-md-8 col-md-offset-2">
+	      <%= f.label :phone, "Phone" %><br/>
+	      <%= f.telephone_field :phone, class: "form-control" %>
+	    </div>
+	    
+	    <div class="form-group col-md-2 col-md-offset-2">
+	      <%= f.label :product, "Product" %><br/>
+	      <%= f.select :product, Document::PRODUCT_TYPES, prompt: "Select a product type" %>
+	    </div>
+	    
+	    <div class="form-group col-md-3 col-md-offset-2">
+	      <%= f.label :payment, "Payment Method" %><br/>
+	      <%= f.select :payment, Document::PAYMENT_TYPES, prompt: "Select a payment method"  %>
+	    </div>    
+	  </fieldset>
+
+      <div class=" col-md-5 col-md-offset-4 actions">
+        <%= f.submit "Submit Application", class: "btn btn-lg btn-primary" %>
+      </div>
+      
+    <% end %>
+    
+</div>
+

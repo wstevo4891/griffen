@@ -1,0 +1,77 @@
+/* IMAGES */
+
+.page-img {
+  background-repeat: repeat-y;
+  height: 25em;
+  margin-bottom: 3em;
+  color: #fff;
+  font-family: 'Calibri';
+  h1 {
+    font-size: 5.5em;
+    font-weight: 100;
+    position: relative;
+    top: 1.5em;
+  }
+  div {
+    position: relative;
+    top: 8em;
+    width: 4em;
+    height: 1em;
+    border-top: 2px solid #fff;
+    margin: 0 auto;
+  }
+  @media only screen and (max-width: 480px) {
+    height: 20em;
+  }
+}
+
+.home-img {
+  background-image: url(image_path("sails.jpeg"));
+    @media only screen and (max-width: 480px) {
+    h1 {
+      top: 1.2em;
+    }
+    div {
+      top: 6em;
+    }
+  }
+}
+
+.about-img {
+  background-image: image-url("wheat.jpeg");
+  @media only screen and (max-width: 480px) {
+    h1 {
+      margin-top: 1.2em;
+    }
+    div {
+      top: 6em;
+    }
+  }
+}
+
+.get-img {
+  background-image: image-url("keyboard.jpg");
+  @media only screen and (max-width: 480px) {
+    h1 {
+      font-size: 4.5em;
+    }
+  }
+}
+
+.contact-img {
+  background-image: image-url("phone.jpeg");
+  @media only screen and (max-width: 480px) {
+    h1 {
+      font-size: 4em;
+    }
+  }  
+}
+
+.account-img {
+  background-image: image-url("droplet.jpeg");
+  @media only screen and (max-width: 480px) {
+    h1 {
+      font-size: 4em;
+    }
+  }  
+}
