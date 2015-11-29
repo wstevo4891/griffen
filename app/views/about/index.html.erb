@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="page-img about-img col-md-10 col-md-offset-1">
+    <h1>ABOUT</h1>
+    <div></div>
+  </div>
+</div>
+
+<div class="row">
+  <article>
+    <p class="text-justify lead">
+		Merchant Payment Solutions LLC will handle application reviews, and then notify 
+		the customers and us (Griffen) with approval. Approval will take 2-5 days 
+		depending on the applicant. MPS will handle the background checks, it is important 
+		that applicants submit the following documents:
+    </p>
+	
+	<ol id="aboutlist" class="text-left lead">
+		<li>Articles of organization or corporation</li>
+		<li>Business license</li>
+		<li>City license to operate a dispensary</li>
+		<li>City tax license</li>
+		<li>EIN certificate</li>
+		<li>Letter of good standing</li>
+		<li>Operating agreement</li>
+		<li>Bank account</li>
+		<li>Federal ID</li>
+	</ol>
+	
+	<p class="text-justify lead">
+		The solution that Griffen offers is fully transparent and approved by Merchant 
+		Payment Solutions, IPS and World Data Systems, which serve as the aggregate 
+		processor of the transactions.
+	</p>	
+	
+	<p class="text-justify lead">
+		While other solutions claim to be able to process credit cards, with only a little 
+		effort, you will find that they are cashless ATM systems, supported by offshore 
+		banks, or not transparent and trackable in terms of the movement of money. All of 
+		these violate the terms established by the Cole Memoranda. With the Griffen, each 
+		transaction is encrypted and time stamped, and each transaction is processed by a 
+		verified processor of the Card Association, not through an offshore bank or private 
+		processor which puts the merchant at greater risk.
+	</p>
+
+	<p class="text-justify lead">
+		Because the Griffen requires PIN verification regardless of debit or credit card 
+		transactions, customers must call their credit card companies to obtain their credit 
+		PIN. The reason is to ensure both the client and the dispensary that said transaction 
+		has been approved.   This serves a double benefit in that we can verify the age of the 
+		cardholder making the purchase, and also further secures the transaction. 
+	</p>
+
+	<p class="text-justify lead">
+		As the U.S. moves increasingly towards chip and PIN credit cards, the Verifone units 
+		do not have to be upgraded because they already handle those types of card transactions. 
+		In the unlikely event they do not, they will be changed at no cost to the dispensary.  
+		Each transaction is kept with each dispensary and our back end.  
+	</p>
+
+	<p class="text-justify lead">
+		Dispensaries and retail businesses will receive deposits into their personal or 
+		business bank accounts through ACH transfers. Funds will be deposited into the 
+		dispensary specified account. The payment will be made by IPS the processing arm 
+		as an ACH transfer, however dispensaries will also be supplied with a transaction 
+		record for their own bookkeeping needs.   
+	</p>
+
+	<p class="text-justify lead">
+		This is the path for marijuana businesses to achieve financial legitimacy by 2015. 
+	</p>	
+  </article>
+</div>
+
+<div class="row sign-up-button">
+  <% if logged_in? %>
+    <%= link_to "SIGN UP NOW", current_user, method: :get, class: "btn btn-lg" %>
+  <% else%>
+    <%= link_to "SIGN UP NOW", new_user_path, method: :get, class: "btn btn-lg" %>
+  <% end %>
+</div>
+
