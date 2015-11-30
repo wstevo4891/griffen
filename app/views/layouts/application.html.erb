@@ -10,6 +10,15 @@
 </head>
 <body>
 
+  <%= render 'layouts/mobile_menu' %>
+  
+  <div id="wrapper">
+    <div id="mobile-head" class="navbar-inverse hidden-md hidden-lg">
+      <button type="button" class="btn btn-default" id="toggle-menu">
+        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+      </button>
+    </div>  	
+
     <div class="container">
       <div class="row">
         <div id="logo">
@@ -36,15 +45,15 @@
       </div>
     </div>
 
-  <div class="container">
-    <%= yield %>
-  </div>
+    <div class="container">
+      <%= yield %>
+    </div>
 
-  <div class="container">
-  	<div class="row">
-  	  <%=  render 'layouts/footer' %>
-  	</div>
+    <div class="container">
+  	  <div class="row">
+  	    <%=  render 'layouts/footer' %>
+  	  </div>
+    </div>
   </div>
-
 </body>
 </html>
