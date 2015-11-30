@@ -17,59 +17,47 @@ $v610Move = ->
     $('.p610').hide 'slow'
     $('.v510').show 'slow'
     $('.v610').animate { left: '-=5em' }, 'slow'
-  return
 
 $v510Move = ->
   if $v5dcs != 1
     $v5dcs = 1
     $('.v610').hide 'slow'
-    $('.v510').animate { left: '-=10em' }, 'slow'
+    $('.v510').animate { left: '-=5em' }, 'slow'
     $('.p510').show 'slow'
   else if $v5dcs == 1
     $v5dcs = 0
     $('.p510').hide 'slow'
     $('.v610').show 'slow'
-    $('.v510').animate { left: '+=10em' }, 'slow'
-  return
- 
-$mv6dcs = $('.mobile-v610').attr('data-click-state', 0)
-
-$mv5dcs = $('.mobile-v510').attr('data-click-state', 0)
+    $('.v510').animate { left: '+=5em' }, 'slow'
 
 $mobilev610Move = ->
-  if $mv6dcs != 1
-    $mv6dcs = 1
-    $('.mobile-p610').show 'slow'
-  else if $mv6dcs == 1
-    $mv6dcs = 0
-    $('.mobile-p610').hide 'slow'
-  return
+  if $v6dcs != 1
+    $v6dcs = 1
+    $('.p610').show 'slow'
+  else if $v6dcs == 1
+    $v6dcs = 0
+    $('.p610').hide 'slow'
 
 $mobilev510Move = ->
-  if $mv5dcs != 1
-    $mv5dcs = 1
-    $('.mobile-p510').show 'slow'
-  else if $mv5dcs == 1
-    $mv5dcs = 0
-    $('.mobile-p510').hide 'slow'
-  return
+  if $v5dcs != 1
+    $v5dcs = 1
+    $('.p510').show 'slow'
+  else if $v5dcs == 1
+    $v5dcs = 0
+    $('.p510').hide 'slow'
 
 main = ->
   $('.v610').on 'click', ->
-    $v610Move()
-    return
+    if $('.demo-2').css("display") == "inline-block"
+      $v610Move()
+    else if $('.demo-2').css("display") == "block"
+      $mobilev610Move()
     
   $('.v510').on 'click', ->
-    $v510Move()
-    return
-    
-  $('.mobile-v610').on 'click', ->
-    $mobilev610Move()
-    return
-    
-  $('.mobile-v510').on 'click', ->
-    $mobilev510Move()
-    return
-  return
+    if $('.demo-2').css("display") == "inline-block"
+      $v510Move()
+    else if $('.demo-2').css("display") == "block"
+      $mobilev510Move()
+
 
 $(document).ready main

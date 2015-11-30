@@ -80,6 +80,7 @@
 /* PRODUCTS PAGE */
 
 .break {
+  clear: both;
   width: 50%;
   margin: 0 auto;
   padding-top: 2em;
@@ -92,12 +93,9 @@
   }
 }
 
-.verifone {
-  width: 80%;
-  margin: 0 auto;
-}
-
 .demo-2 {
+    position: relative;
+    display: inline-block;
     width:25em;
     height:25em;
     margin: 3em;
@@ -105,59 +103,59 @@
     background-color: #444;
     border: solid 4px #444;
     list-style: none;
-    @media only screen and (max-width: 1200px) {
-      position: relative;
-      left: 4em;
-    }
     @media only screen and (max-width: 990px) {
       width: 20em;
       height: 20em;
     }
     @media only screen and (max-width: 767px) {
-      margin: 0 auto;
-      position: relative;
-      top: 3em;
-      bottom: 3em;
+      display: block;
+      margin: 3em auto;
     }
 }
+
 .demo-2 p,.demo-2 h2 {
-    color:#fff;
+    color: #fff;
     text-align: center;
 }
+
 .demo-2 p {
-    font-size:12px;
-    line-height:18px;
-    margin:0
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0;
 }
+
 .demo-2 h2 {
-    font-size:20px;
-    line-height:24px;
-    margin:0;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0;
     padding-top: 1em;
 }
+
 .effect img {
-    position:absolute;
-    left:0;
-    bottom:0;
-    cursor:pointer;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    cursor: pointer;
     width: 25em;
     height: 25em;
     @media only screen and (max-width: 990px) {
       width: 20em;
       height: 20em;
     }  
-    -webkit-transition:bottom .3s ease-in-out;
-       -moz-transition:bottom .3s ease-in-out;
-         -o-transition:bottom .3s ease-in-out;
-        -ms-transition:bottom .3s ease-in-out;
-            transition:bottom .3s ease-in-out;
+    -webkit-transition: bottom .3s ease-in-out;
+       -moz-transition: bottom .3s ease-in-out;
+         -o-transition: bottom .3s ease-in-out;
+        -ms-transition: bottom .3s ease-in-out;
+            transition: bottom .3s ease-in-out;
 }
+
 .effect img.top:hover {
-    bottom:-6em;
+    bottom: -6em;
 }
+
 h2.zero,p.zero {
-    margin:0;
-    padding:0
+    margin: 0;
+    padding: 0;
 }
 
 .product-spec {
@@ -172,4 +170,8 @@ h2.zero,p.zero {
     margin: 1em;
     font-size: 1em;
   }
+}
+
+.p510 {
+  float: right;
 }
