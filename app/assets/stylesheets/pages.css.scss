@@ -92,15 +92,23 @@
   }
 }
 
+.verifone {
+  width: 80%;
+  margin: 0 auto;
+}
+
 .demo-2 {
     width:25em;
     height:25em;
-    margin-top: 3em;
-    margin-bottom: 3em;
+    margin: 3em;
     overflow:hidden;
     background-color: #444;
     border: solid 4px #444;
     list-style: none;
+    @media only screen and (max-width: 1200px) {
+      position: relative;
+      left: 4em;
+    }
     @media only screen and (max-width: 990px) {
       width: 20em;
       height: 20em;

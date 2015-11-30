@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="page-img contact-img col-md-10 col-md-offset-1">
+  	<h1>CONTACT</h1>
+  	<div></div>
+  </div>
+</div>  
+
+<div class="row">
+  <div class="jumbotron col-md-10 col-md-offset-1" id="email">
+    <h3 style="margin-bottom: 2em">Got Questions? Send us an email!</h3>
+    <p>info@griffenfinancial.com</p>
+
+    <div class="sign-up-button"> 
+      <% if logged_in? %>
+        <%= link_to "MY ACCOUNT", current_user, method: :get, class: "btn btn-lg" %>
+      <% else%>
+        <%= link_to "SIGN UP NOW", new_user_path, method: :get, class: "btn btn-lg" %>
+      <% end %>
+    </div>
+  </div>
+</div>
