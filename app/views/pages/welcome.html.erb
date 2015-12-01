@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="page-img home-img col-md-10 col-md-offset-1">
+    <h1>HOME</h1>
+    <div></div>
+  </div> 	
+</div>
+
+<div class="row">
+  <article>
+    <p class="text-justify lead">
+		Griffen is the first of its kind: a Credit Card POS System developed exclusively for the 
+		legal marijuana industry. Pairing our double encrypted software with reliable Verifone 
+		hardware, Griffen transactions are date stamped and transparently verified as a retail 
+		exchange of product for  a dollar payment, and securely processed through the Credit 
+		Card Processing System with ACH Deposits to bank accounts in the same manner as any 
+		other retailer in the USA. Marijuana transactions made on the Griffen are transparent 
+		and trackable in line with the Cole Memo guidelines. 
+    </p>
+	
+    <p class="text-justify lead">
+		Griffen meets the financial needs  of the growing legalized marijuana industry  by providing 
+		a way for legally licensed Dispensaries  to  process Visa, MasterCard and Debit Card 
+		transactions.  The Griffen Credit Card Solution functions on the current banking network. 
+		With the Griffen, marijuana businesses can achieve financial transparency in line with the 
+		Cole Memo, thereby making it possible to work with banks and financial institutions without 
+		fear of legal reprisal.
+    </p>
+  </article>
+</div>
+
+<div class="row sign-up-button">
+  <% if logged_in? %>
+    <%= link_to "MY ACCOUNT", current_user, method: :get, class: "btn btn-lg" %>
+  <% else%>
+    <%= link_to "SIGN UP NOW", new_user_path, method: :get, class: "btn btn-lg" %>
+  <% end %>
+</div>
+

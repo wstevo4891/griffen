@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
   
-  get 'welcome/index'
-  get 'about/index'
-  get 'products/index'
-  get 'contact/index'
-  get 'account/index'
-  get 'admin' => 'admin#index'
-  
+  get 'pages/welcome'
+  get 'pages/about'
+  get 'pages/products'
+  get 'pages/contact'
+  get 'pages/account'
+  get 'admin' => 'pages#admin'
+
+  resources :applications
+  resources :aches
   resources :users
   resources :orders
-  resources :aches
   resources :documents
   resources :line_items
   resources :members
@@ -24,7 +25,7 @@ Rails.application.routes.draw do
   get 'sessions/create'
   get 'sessions/destroy'  
   
-  root 'welcome#index'
+  root 'pages#welcome'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

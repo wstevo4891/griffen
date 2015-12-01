@@ -11,7 +11,160 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016172847) do
+ActiveRecord::Schema.define(version: 20151201005957) do
+
+  create_table "aches", force: :cascade do |t|
+    t.string   "bmn"
+    t.string   "iso"
+    t.string   "isoid"
+    t.string   "agentname"
+    t.string   "legalname"
+    t.string   "taxid"
+    t.string   "dba"
+    t.string   "dbaddress"
+    t.string   "maddress"
+    t.string   "dbacity"
+    t.string   "mcity"
+    t.string   "dbastate"
+    t.string   "dbazip"
+    t.string   "mstate"
+    t.string   "mzip"
+    t.string   "bphone"
+    t.string   "bfax"
+    t.string   "contact"
+    t.string   "title"
+    t.string   "ownertype"
+    t.string   "goodstype"
+    t.string   "totalbustime"
+    t.string   "locbustime"
+    t.string   "webaddress"
+    t.string   "email"
+    t.string   "pname"
+    t.string   "pphone"
+    t.string   "ptitle"
+    t.string   "pequity"
+    t.string   "paddress"
+    t.string   "pdob"
+    t.string   "pcity"
+    t.string   "pssn"
+    t.string   "pstate"
+    t.string   "pzip"
+    t.string   "pdlicense"
+    t.string   "drate"
+    t.string   "tfee"
+    t.string   "msfee"
+    t.string   "mminfee"
+    t.string   "termtype"
+    t.string   "msig"
+    t.string   "mdate"
+    t.string   "csig"
+    t.string   "cdate"
+    t.string   "appby"
+    t.string   "apptitle"
+    t.string   "appdate"
+    t.integer  "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "aches", ["user_id"], name: "index_aches_on_user_id"
+
+  create_table "applications", force: :cascade do |t|
+    t.string   "legalname"
+    t.string   "dba"
+    t.string   "address"
+    t.string   "baddress"
+    t.string   "city"
+    t.string   "state"
+    t.string   "bcity"
+    t.string   "bstate"
+    t.string   "zip"
+    t.string   "bzip"
+    t.string   "phone"
+    t.string   "fax"
+    t.string   "bphone"
+    t.string   "bfax"
+    t.string   "ftin"
+    t.string   "email"
+    t.string   "contact"
+    t.string   "oname"
+    t.string   "dob"
+    t.string   "ssn"
+    t.string   "ophone"
+    t.string   "oaddress"
+    t.string   "ocity"
+    t.string   "ostate"
+    t.string   "ozip"
+    t.string   "avgt"
+    t.string   "monv"
+    t.string   "maxta"
+    t.string   "qc"
+    t.string   "tz"
+    t.string   "pref"
+    t.string   "prefn"
+    t.string   "cw"
+    t.string   "pl"
+    t.string   "osig"
+    t.string   "date"
+    t.string   "opn"
+    t.string   "sasig"
+    t.string   "agentid"
+    t.string   "iso"
+    t.string   "dialup"
+    t.string   "dumi"
+    t.string   "dualcom"
+    t.string   "dcmi"
+    t.string   "msf12mi"
+    t.string   "mi610"
+    t.string   "mcfmi"
+    t.string   "msf8mi"
+    t.string   "carch"
+    t.string   "carchmi"
+    t.string   "confmi"
+    t.string   "incrmi"
+    t.string   "billmail"
+    t.string   "billosig"
+    t.string   "billdate"
+    t.string   "billpn"
+    t.string   "bankname"
+    t.string   "bankaccount"
+    t.string   "bankphone"
+    t.string   "mtosig"
+    t.string   "mtot"
+    t.string   "mtdate"
+    t.string   "mtpn"
+    t.string   "mtsasig"
+    t.string   "mtagentid"
+    t.string   "mtiso"
+    t.string   "yname"
+    t.string   "fname"
+    t.string   "faddress"
+    t.string   "fcity"
+    t.string   "fstate"
+    t.string   "fzip"
+    t.string   "fphone"
+    t.string   "facc"
+    t.string   "frn"
+    t.string   "fan"
+    t.string   "atype"
+    t.string   "coname"
+    t.string   "coatt"
+    t.string   "coaddress"
+    t.string   "cocity"
+    t.string   "costate"
+    t.string   "cozip"
+    t.string   "cophone"
+    t.string   "comail"
+    t.string   "cosig"
+    t.string   "codate"
+    t.string   "verby"
+    t.string   "appby"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "applications", ["user_id"], name: "index_applications_on_user_id"
 
   create_table "documents", force: :cascade do |t|
     t.string   "name"
@@ -24,6 +177,38 @@ ActiveRecord::Schema.define(version: 20151016172847) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "line_items", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.string   "mname"
+    t.string   "memid"
+    t.string   "memid_cache"
+    t.integer  "document_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "members", ["document_id"], name: "index_members_on_document_id"
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shareholders", force: :cascade do |t|
+    t.string   "sname"
+    t.string   "shid"
+    t.string   "shid_cache"
+    t.integer  "document_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "shareholders", ["document_id"], name: "index_shareholders_on_document_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
