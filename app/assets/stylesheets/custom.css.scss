@@ -58,19 +58,6 @@ fieldset {
 
 /* buttons */
 
-.blk {
-  border: none;
-  background-color: #000;
-  padding: 5em;
-  font-weight: 300;
-  max-width: 14em;
-  margin: 0 auto;
-  a {
-    color: #fff;
-    font-weight: 300;
-  }
-}
-
 .btn {
   border-radius: 0;
   background-color: #000;
@@ -82,30 +69,6 @@ fieldset {
   color: #fff;
   background-color: #4d4d4d;
   text-decoration: none;
-}
-
-#blk {
-  a {
-    color: #fff;
-    border-radius: 0;
-  }
-  a:hover {
-    text-decoration: none;
-    background-color: #4d4d4d;
-  }
-  button {
-    color: #fff;
-    border-radius: 0;
-  }
-  button:hover {
-    background-color: #4d4d4d;
-  }
-  input {
-    color: #fff;
-  }
-  input:hover {
-    background-color: #4d4d4d;
-  }
 }
 
 .button-row {

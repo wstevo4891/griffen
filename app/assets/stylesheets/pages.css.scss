@@ -93,17 +93,42 @@
   }
 }
 
+.v610 {
+  float: left;
+  margin: 3em 3em 3em 6%;
+  @media only screen and (min-width: 992px) {
+    margin: 3em 3em 3em 9%;
+  }
+  @media only screen and (min-width: 1200px) {
+    margin: 3em 3em 3em 16%;
+  }
+}
+
+.v510 {
+  float: left;
+  margin: 3em;
+}
+
+.v610, .v510 {
+  @media only screen and (max-width: 767px) {
+    float: none;
+  }
+}
+
+.p510 {
+  float: right;
+}
+
 .demo-2 {
     position: relative;
-    display: inline-block;
     width:25em;
     height:25em;
-    margin: 3em;
+    padding: 0;
     overflow:hidden;
     background-color: #444;
     border: solid 4px #444;
     list-style: none;
-    @media only screen and (max-width: 992px) {
+    @media only screen and (max-width: 991px) {
       width: 20em;
       height: 20em;
     }
@@ -115,20 +140,22 @@
 
 .demo-2 p,.demo-2 h2 {
     color: #fff;
-    text-align: center;
 }
 
 .demo-2 p {
-    font-size: 12px;
+    font-size: 16px;
     line-height: 18px;
-    margin: 0;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 5px;
 }
 
 .demo-2 h2 {
-    font-size: 20px;
+    font-size: 28px;
     line-height: 24px;
-    margin: 0;
-    padding-top: 1em;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 5px;
 }
 
 .effect img {
@@ -138,7 +165,7 @@
     cursor: pointer;
     width: 25em;
     height: 25em;
-    @media only screen and (max-width: 992px) {
+    @media only screen and (max-width: 991px) {
       width: 20em;
       height: 20em;
     }  
@@ -153,11 +180,6 @@
     bottom: -6em;
 }
 
-h2.zero,p.zero {
-    margin: 0;
-    padding: 0;
-}
-
 .product-spec {
   padding: 2em 1em;
   margin: 1em;
@@ -170,8 +192,4 @@ h2.zero,p.zero {
     margin: 1em;
     font-size: 1em;
   }
-}
-
-.p510 {
-  float: right;
 }
