@@ -1,33 +1,104 @@
-<div class="profile">
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <p id="notice"><%= notice %></p>
+<div class="row">
+  <h1><%= @user.firstname %> <%= @user.lastname %></h1>
+</div>
+
+<div class="row">
+<div class='jumbotron col-md-10 col-md-offset-1' >
+  <div class="text-left">
+    <p>
+      <strong>Business:</strong>
+      <%= @user.business %>	
+    </p>
+  
+    <p>
+      <strong>Email:</strong>
+      <%= @user.email %>	
+    </p>
+  
+    <p>
+      <strong>Phone:</strong>
+      <%= @user.phone %>	
+    </p>
+
+    <div class="button-row">
+      <%= link_to 'EDIT', edit_user_path(@user), class: "btn-black btn-lg" %>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <h1><%= @user.name %></h1>
-      <p>
-        <strong>Email:</strong>
-        <%= @user.email %>	
-      </p>
-    </div>
+	
+  <h1>Griffen Application</h1>
+
+<div id="appinst" class="text-left" style="margin-bottom: 3em">
+  
+  
+  <p class="lead">To order a Griffen and legally process Visa and MasterCard 
+  	              transactions for your business, please do the following:</p>
+  
+  <ol class="lead">
+    <li>Complete the Merchant Application</li><br>
+  
+    <li>Complete the ACH agreement</li><br>  
+  
+    <li>Make sure you have all of your support documentation listed in the Merchant Documentation Requirements</li><br>
+  
+    <li>Submit your application for approval</li>
+  </ol>
+  
+</div>
+
+
+<h1 style="font-size: 2.5em">Application Checklist</h1>
+
+<div class='checklist row'>
+	
+  <div>
+    <p>Step 1: Merchant Application</p>
   </div>
 
-  <div class="row register-button">
-    <div class="col-md-12 text-center">
-        <% if @user.document %>
-          <%= link_to "Edit Application", edit_document_path(@user.document), 
-          class: "btn btn-lg btn-primary" %>
-        <% else %>
-          <%= link_to "Start Application", new_document_path, class: "btn btn-lg btn-primary" %>
-        <% end %>  
-    </div>
+  <div class="button-row">
+    <% if @user %>
+      <%= link_to "START", new_order_path, class: "btn-black btn-lg" %>
+    <% else %>
+      <%= link_to "EDIT", edit_order_path(@user.order), class: "btn-black btn-lg" %>
+    <% end %>  
+  </div>
+</div>
+
+<div class='checklist row'>
+
+  <div>
+    <p>Step 2: ACH Agreement</p>
   </div>
 
-  <div class="col-md-12 text-center back-buttons">
-    <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-lg btn-default" %> 
-    <%= link_to 'Back', users_path, class: "btn btn-lg btn-default" %>
+  <div class="button-row">
+  	<% if @user.ach %>
+  	  <%= link_to "EDIT ACH", edit_ach_path(@user.ach), class: "btn-black btn-lg" %>
+  	<% else %>  	
+      <%= link_to "START", new_ach_path, class: "btn-black btn-lg" %>
+    <% end %>
   </div>
+
+</div>
+
+<div class='checklist row'>
+	
+  <div>
+    <p>Step 3: Upload Documents</p>
+  </div>
+
+  <div class="button-row">
+  	<% if @user.document %>
+  	  <%= link_to "EDIT DOCUMENTS", edit_document_path(@user.document), class: "btn-black btn-lg" %>
+  	<% else %>
+      <%= link_to "START", new_document_path, class: "btn-black btn-lg" %>
+    <% end %>
+  </div>
+
+</div>
+
+<div class='button-row'>
+  <%= link_to "SUBMIT APPLICATION", root_path, class: "btn-black btn-lg" %>
+</div>
+
+</div>
 </div>

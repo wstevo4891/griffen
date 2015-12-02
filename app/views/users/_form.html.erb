@@ -16,24 +16,42 @@
 	  
       <form class="text-left">
 		  <div class="form-group">
-		    <%= f.label :name, "Name" %>
-		    <%= f.text_field :name, class: "form-control" %>
+		    <%= f.label :firstname, "First Name" %>
+		    <%= f.text_field :firstname, class: "form-control" %>
+		  </div>
+		  
+		  <div class="form-group">
+		    <%= f.label :lastname, "Last Name" %>
+		    <%= f.text_field :lastname, class: "form-control" %>
 		  </div> 
+		  
 		  <div class="form-group">
 		    <%= f.label :email %>
 		    <%= f.text_field :email, class: "form-control" %>
 		  </div>
+		  
+		  <div class="form-group">
+		    <%= f.label :business %>
+		    <%= f.text_field :business, class: "form-control" %>
+		  </div>
+		  
+		  <div class="form-group">
+		    <%= f.label :phone %>
+		    <%= f.text_field :phone, class: "form-control" %>
+		  </div>
+		  
 		  <div class="form-group">
 		    <%= f.label :password %>
 		    <%= f.password_field :password, class: "form-control" %>
 		  </div>
+		  
 		  <div class="form-group">
 		    <%= f.label :password_confirmation %>
 		    <%= f.password_field :password_confirmation, class: "form-control" %>
 		  </div>	  
 	
-	      <div class="actions">
-	        <%= f.submit %>
+	      <div class="actions sign-up-button">
+	        <%= f.submit class: "btn-black btn-lg" %>
 	      </div>
 	  </form>
 	  

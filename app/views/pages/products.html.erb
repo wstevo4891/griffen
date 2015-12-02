@@ -36,21 +36,23 @@
     <%= render 'pages/p610' %>
   </div>
   
-  <ul class="demo-2 effect v610">
-    <li>
-      <h2>Verifone 610</h2>
-      <p>Click to learn more</p>
-    </li>
-    <li><%= image_tag("card_swipe.jpg", class: "top") %></li>
-  </ul>      
+  <div class="hardware">
+    <ul class="demo-2 effect v610">
+      <li>
+        <h2>Verifone 610</h2>
+        <p>Click to learn more</p>
+      </li>
+      <li><%= image_tag("card_swipe.jpg", class: "top") %></li>
+    </ul>      
 
-  <ul class="demo-2 effect v510">
-    <li>
-      <h2>Verifone 510</h2>
-      <p>Click to learn more</p>
-    </li>
-    <li><%= image_tag("verifone_reader.jpg", class: "top") %></li>
-  </ul>
+    <ul class="demo-2 effect v510">
+      <li>
+        <h2>Verifone 510</h2>
+        <p>Click to learn more</p>
+      </li>
+      <li><%= image_tag("verifone_reader.jpg", class: "top") %></li>
+    </ul>
+  </div>
   
   <div class="product-spec col-sm-5 col-sm-offset-1 text-left p510">
     <%= render 'pages/p510' %>
@@ -92,8 +94,8 @@
 
 <div class="row sign-up-button">
   <% if logged_in? %>
-    <%= link_to "MY ACCOUNT", current_user, method: :get, class: "btn btn-lg" %>
+    <%= link_to "MY ACCOUNT", current_user, method: :get, class: "btn-black btn-lg" %>
   <% else%>
-    <%= link_to "SIGN UP NOW", new_user_path, method: :get, class: "btn btn-lg" %>
+    <%= link_to "SIGN UP NOW", new_user_path, method: :get, class: "btn-black btn-lg" %>
   <% end %>
 </div>

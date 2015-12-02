@@ -1,25 +1,135 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <p id="notice"><%= notice %></p>
+</div>
 
-<h1>Listing Aches</h1>
+<div class="row">
+<h1>Listing ACH Forms</h1>
+</br>
 
+<div class="jumbotron col-md-10 col-md-offset-1 hidden-xs">
+<% @aches.each do |ach| %>
 <table>
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>Name</th>
+      <th>Business</th>
+      <th>Email</th>
+      <th>Phone</th>
     </tr>
   </thead>
-
   <tbody>
-    <% @aches.each do |ach| %>
-      <tr>
-        <td><%= link_to 'Show', ach %></td>
-        <td><%= link_to 'Edit', edit_ach_path(ach) %></td>
-        <td><%= link_to 'Destroy', ach, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+    <tr>
+      <td><%= ach.oname %></td>
+      <td><%= ach.legalname %></td>
+      <td><%= ach.email %></td>
+      <td><%= ach.phone %></td>
+    </tr>
   </tbody>
 </table>
 
+<div class="index-buttons">
+  <%= link_to 'Show', ach, class: "btn btn-primary" %>
+  <%= link_to 'Edit', edit_ach_path(ach), class: "btn btn-warning" %>
+  <%= link_to 'Destroy', ach, method: :delete, 
+  data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+</div>
+<% end %>
 <br>
+<%= link_to 'New ACH', new_ach_path, class: "btn-black btn-lg" %>
+</br>
+</div>
 
-<%= link_to 'New Ach', new_ach_path %>
+<div class="jumbotron visible-xs">
+<% @aches.each do |ach| %>
+	
+<table class="table-bordered table-mobile-large">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Business</th>
+    </tr>
+   </thead>
+   
+   <tbody>
+   	 <tr>
+   	   <td><%= ach.oname %></td>
+   	   <td><%= ach.legalname %></td>
+   	 </tr>
+   </tbody>
+   
+   <thead>
+    <tr>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+  	<tr>
+  	  <td><%= ach.email %></td>
+  	  <td><%= ach.phone %></td>
+  	</tr>
+  </tbody>
+</table>
+
+<table class="table-bordered table-mobile-small">
+  <thead>
+     <tr>
+       <th>Name</th>
+     </tr>
+  </thead>
+  
+  <tbody>
+  	<tr>
+  	  <td><%= ach.oname %></td>
+  	</tr>
+  </tbody>
+  
+  <thead>
+     <tr>
+       <th>Business</th>
+     </tr>
+   </thead>
+   
+   <tbody>
+   	 <tr>
+   	   <td><%= ach.legalname %></td>
+   	 </tr>
+   </tbody>
+   
+   <thead>
+     <tr>
+       <th>Email</th>
+     </tr>
+   </thead>
+   
+   <tbody>
+     <tr>
+       <td><%= ach.email %></td>
+     </tr>
+   </tbody>
+   
+   <thead>
+     <tr>
+       <th>Phone</th>
+     </tr>
+  </thead>
+  
+  <tbody>
+  	<tr>
+  	  <td><%= ach.phone %></td>
+  	</tr>
+  </tbody>
+</table>
+
+<div id="blk" class="index-buttons">
+  <%= link_to 'SHOW', ach, class: "btn btn-primary" %>
+  <%= link_to 'EDIT', edit_ach_path(ach), class: "btn btn-warning" %>
+  <%= link_to 'DELETE', ach, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+</div>
+<br>
+<%= link_to 'New ACH', new_ach_path, class: "btn-black btn-lg" %>
+</br>
+</div>
+</div>
+

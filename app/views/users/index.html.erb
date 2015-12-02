@@ -1,25 +1,212 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <% if notice %>
+    <p id="notice"><%= notice %></p>
+  <% end %>
+</div>
 
-<h1>Listing Users</h1>
+<div class="row">
+  <h1>Listing Users</h1>
+  </br>
+  <div class='jumbotron col-md-10 col-md-offset-1 hidden-xs'>
+  	<h2>Administrators</h2>
+    </br>
+    <table class="table">	
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+      <tbody>
+        <% @users.each do |user| %>
+          <% if user.admin %>
+            <tr>
+              <td><%= user.firstname %> <%= user.lastname %></td>
+	          <td><%= user.email %></td>
+	          <td><%= link_to 'Show', user, class: "btn btn-primary" %></td>
+	          <td><%= link_to 'Edit', edit_user_path(user), class: "btn btn-warning" %></td>
+	          <td><%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class='jumbotron visible-xs'>
+  	<h2>Administrators</h2>
+    </br>
     <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% if user.admin %>
+        <table class="table table-mobile-large">	
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>   
+            <tr>
+              <td><%= user.firstname %> <%= user.lastname %></td>
+	          <td><%= user.email %></td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <table class="table table-mobile-small">
+          <thead>
+          	<tr>
+          	  <th>Name</th>
+          	</tr>
+          </thead>
+          <tbody>
+          	<tr>
+          	  <td><%= user.firstname %> <%= user.lastname %></td>
+          	</tr>
+          </tbody>
+          <thead>
+          	<tr>
+          	  <th>Email</th>
+          	</tr>
+          </thead>
+          <tbody>
+          	<tr>
+          	  <td><%= user.email %></td>
+          	</tr>
+          </tbody>
+        </table>
+        
+        <div class="index-buttons">
+	      <%= link_to 'Show', user, class: "btn btn-primary" %>
+	      <%= link_to 'Edit', edit_user_path(user), class: "btn btn-warning" %>
+	      <%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        </div>
+      <% end %>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
 
+<div class="row">
+  <div class='jumbotron col-md-10 col-md-offset-1 hidden-xs'>
+  	<h2>Customers</h2>
+  	</br>
+  	<% @users.each do |user| %>
+  	  <% if !user.admin %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Business</th>
+              <th>Email</th>
+              <th>Phone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= user.firstname %> <%= user.lastname %></td>
+              <td><%= user.business %></td>
+              <td><%= user.email %></td>
+              <td><%= user.phone %></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="index-buttons">
+          <%= link_to 'Show', user, class: "btn btn-primary" %>
+          <%= link_to 'Edit', edit_user_path(user), class: "btn btn-warning" %>
+          <%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div class='jumbotron visible-xs table-mobile'>
+  	<h2>Customers</h2>
+  	</br>
+  	<% @users.each do |user| %>
+  	  <% if !user.admin %>
+        <table class="table-bordered table-mobile-large">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Business</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= user.firstname %> <%= user.lastname %></td>
+              <td><%= user.business %></td>
+            </tr>
+          </tbody>
+          <thead>
+          	<tr>
+              <th>Email</th>
+              <th>Phone</th>
+          	</tr>
+          </thead>
+          <tbody>
+          	<tr>
+              <td><%= user.email %></td>
+              <td><%= user.phone %></td>
+          	</tr>
+          </tbody>
+        </table>
+        
+        <table class="table-bordered table-mobile-small">
+          <thead>
+          	<tr>
+          	  <th>Name</th>
+          	</tr>
+          </thead>
+          <tbody>
+          	<tr>
+          	  <td><%= user.firstname %> <%= user.lastname %></td>
+          	</tr>
+          </tbody>
+          <thead>
+          	<tr>
+          	  <th>Business</th>
+          	</tr>
+          </thead>
+          <tbody>
+          	<tr>
+              <td><%= user.business %></td>
+          	</tr>
+          </tbody>
+          <thead>
+          	<tr>
+          	  <th>Email</th>
+          	</tr>
+          </thead>
+          <tbody>
+          	<tr>
+              <td><%= user.email %></td>
+          	</tr>
+          </tbody>
+          <thead>
+          	<tr>
+          	  <th>Phone</th>
+          	</tr>
+          </thead>
+          <tbody>
+          	<tr>
+              <td><%= user.phone %></td>
+          	</tr>
+          </tbody>
+        </table>
+        
+        <div class="index-buttons">
+          <%= link_to 'Show', user, class: "btn btn-primary" %>
+          <%= link_to 'Edit', edit_user_path(user), class: "btn btn-warning" %>
+          <%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>  
+</div>
 <br>
 
-<%= link_to 'New User', new_user_path %>
+<div class="row button-row">
+  <%= link_to "NEW USER", new_user_path, method: :get, class: "btn-black btn-lg" %>
+</div>
+	

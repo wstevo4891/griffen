@@ -1,25 +1,135 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <p id="notice"><%= notice %></p>
+</div>
 
-<h1>Listing Documents</h1>
+<div class="row">
+<h1>Listing Documentss</h1>
+</br>
 
+<div class="jumbotron col-md-10 col-md-offset-1 hidden-xs">
+<% @documents.each do |document| %>
 <table>
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>Name</th>
+      <th>Business</th>
+      <th>Email</th>
+      <th>Phone</th>
     </tr>
   </thead>
-
   <tbody>
-    <% @documents.each do |document| %>
-      <tr>
-        <td><%= link_to 'Show', document %></td>
-        <td><%= link_to 'Edit', edit_document_path(document) %></td>
-        <td><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+    <tr>
+      <td><%= document.oname %></td>
+      <td><%= document.legalname %></td>
+      <td><%= document.email %></td>
+      <td><%= document.phone %></td>
+    </tr>
   </tbody>
 </table>
 
+<div class="index-buttons">
+  <%= link_to 'Show', document, class: "btn btn-primary" %>
+  <%= link_to 'Edit', edit_document_path(document), class: "btn btn-warning" %>
+  <%= link_to 'Destroy', document, method: :delete, 
+  data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+</div>
+<% end %>
 <br>
+<%= link_to 'New Document', new_document_path, class: "btn-black btn-lg" %>
+</br>
+</div>
 
-<%= link_to 'New Document', new_document_path %>
+<div class="jumbotron visible-xs">
+<% @documents.each do |document| %>
+	
+<table class="table-bordered table-mobile-large">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Business</th>
+    </tr>
+   </thead>
+   
+   <tbody>
+   	 <tr>
+   	   <td><%= document.oname %></td>
+   	   <td><%= document.legalname %></td>
+   	 </tr>
+   </tbody>
+   
+   <thead>
+    <tr>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+  	<tr>
+  	  <td><%= document.email %></td>
+  	  <td><%= document.phone %></td>
+  	</tr>
+  </tbody>
+</table>
+
+<table class="table-bordered table-mobile-small">
+  <thead>
+     <tr>
+       <th>Name</th>
+     </tr>
+  </thead>
+  
+  <tbody>
+  	<tr>
+  	  <td><%= document.oname %></td>
+  	</tr>
+  </tbody>
+  
+  <thead>
+     <tr>
+       <th>Business</th>
+     </tr>
+   </thead>
+   
+   <tbody>
+   	 <tr>
+   	   <td><%= document.legalname %></td>
+   	 </tr>
+   </tbody>
+   
+   <thead>
+     <tr>
+       <th>Email</th>
+     </tr>
+   </thead>
+   
+   <tbody>
+     <tr>
+       <td><%= document.email %></td>
+     </tr>
+   </tbody>
+   
+   <thead>
+     <tr>
+       <th>Phone</th>
+     </tr>
+  </thead>
+  
+  <tbody>
+  	<tr>
+  	  <td><%= document.phone %></td>
+  	</tr>
+  </tbody>
+</table>
+
+<div id="blk" class="index-buttons">
+  <%= link_to 'SHOW', document, class: "btn btn-primary" %>
+  <%= link_to 'EDIT', edit_document_path(document), class: "btn btn-warning" %>
+  <%= link_to 'DELETE', document, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+</div>
+<br>
+<%= link_to 'New Document', new_document_path, class: "btn-black btn-lg" %>
+</br>
+</div>
+</div>
+

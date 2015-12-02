@@ -74,9 +74,9 @@
 
 <div class="row sign-up-button">
   <% if logged_in? %>
-    <%= link_to "MY ACCOUNT", current_user, method: :get, class: "btn btn-lg" %>
+    <%= link_to "MY ACCOUNT", current_user, method: :get, class: "btn-black btn-lg" %>
   <% else%>
-    <%= link_to "SIGN UP NOW", new_user_path, method: :get, class: "btn btn-lg" %>
+    <%= link_to "SIGN UP NOW", new_user_path, method: :get, class: "btn-black btn-lg" %>
   <% end %>
 </div>
 

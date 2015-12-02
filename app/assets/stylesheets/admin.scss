@@ -1,3 +1,29 @@
 // Place all the styles related to the Admin controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.index-buttons {
+  margin-bottom: 2em;
+  a {
+    margin-right: 1em;
+  }
+}
+
+.table-mobile {
+  table {
+    width: 100%;
+    margin-bottom: 1em;
+  }
+}
+
+.table-mobile-large {
+  @media only screen and (max-width: 480px) {
+    display: none;
+  }
+}
+
+.table-mobile-small {
+  @media only screen and (min-width: 481px) {
+    display: none;
+  }
+}

@@ -93,20 +93,25 @@
   }
 }
 
-.v610 {
-  float: left;
-  margin: 3em 3em 3em 6%;
+.hardware {
+  width: 100%;
+  margin: 0 auto;
   @media only screen and (min-width: 992px) {
-    margin: 3em 3em 3em 9%;
+    width: 92%;
   }
   @media only screen and (min-width: 1200px) {
-    margin: 3em 3em 3em 16%;
+    width: 76%;
   }
+}
+
+.v610 {
+  float: left;
+  margin: 3em 3.5em 3em 3em;
 }
 
 .v510 {
   float: left;
-  margin: 3em;
+  margin: 3em 3em 3em 3.5em;
 }
 
 .v610, .v510 {

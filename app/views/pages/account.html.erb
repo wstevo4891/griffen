@@ -15,14 +15,10 @@
   </div>
 </div>
 
-<div class="row button-row text-center"> 
-  <% if logged_in? %>     
-    <%= link_to "MY ACCOUNT", current_user, method: :get, class: "btn btn-lg" %>
-  <% else%>    
-    <%= link_to "CREATE ACCOUNT", new_user_path, method: :get, class: "btn btn-lg" %> 
-  <% end %>
+<div class="row button-row text-center">    
+  <%= link_to "CREATE ACCOUNT", new_user_path, method: :get, class: "btn-black btn-lg" %> 
 </div>
   
 <div class="row button-row text-center">
-  <%= link_to "LOGIN", login_path, class: "btn btn-lg" %>
+  <%= link_to "LOGIN", login_path, class: "btn-black btn-lg" %>
 </div> 

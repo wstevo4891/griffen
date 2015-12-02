@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151201005957) do
+ActiveRecord::Schema.define(version: 20151202003429) do
 
   create_table "aches", force: :cascade do |t|
     t.string   "bmn"
@@ -211,11 +211,15 @@ ActiveRecord::Schema.define(version: 20151201005957) do
   add_index "shareholders", ["document_id"], name: "index_shareholders_on_document_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
+    t.string   "firstname"
+    t.string   "lastname"
     t.string   "email"
+    t.string   "business"
+    t.string   "phone"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "admin",           default: false
   end
 
 end
