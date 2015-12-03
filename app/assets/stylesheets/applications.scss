@@ -1,3 +1,27 @@
 // Place all the styles related to the Applications controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.radio-row {
+	margin-bottom: 2em;
+	label {
+	  width: 6em;
+	}
+	p {
+	  font-size: 1em;
+	  font-weight: bold;
+	}
+}
+
+.phone-line {
+	@extend .radio-row;
+	label {
+	  width: auto;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.radio-inline {
+	  width: 100%;
+	}
+}
