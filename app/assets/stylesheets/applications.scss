@@ -7,9 +7,12 @@
 	label {
 	  width: 6em;
 	}
-	p {
-	  font-size: 1em;
-	  font-weight: bold;
+	@media only screen and (max-width: 480px) {
+	  label {
+	    width: auto;
+	    position: relative;
+	    left: 2em;
+	  }
 	}
 }
 
@@ -17,11 +20,5 @@
 	@extend .radio-row;
 	label {
 	  width: auto;
-	}
-}
-
-@media only screen and (max-width: 480px) {
-	.radio-inline {
-	  width: 100%;
 	}
 }
