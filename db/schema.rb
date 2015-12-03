@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202003429) do
+ActiveRecord::Schema.define(version: 20151203221615) do
 
   create_table "aches", force: :cascade do |t|
     t.string   "bmn"
@@ -174,8 +174,18 @@ ActiveRecord::Schema.define(version: 20151202003429) do
     t.string   "product"
     t.string   "payment"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "buslicense"
+    t.string   "bpra"
+    t.string   "artinc"
+    t.string   "certform"
+    t.string   "opagree"
+    t.string   "stockcert"
+    t.string   "llclist"
+    t.string   "shlist"
+    t.string   "combuslicense"
+    t.string   "combpra"
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -197,6 +207,8 @@ ActiveRecord::Schema.define(version: 20151202003429) do
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "voidcheck"
+    t.string   "dlicense"
   end
 
   create_table "shareholders", force: :cascade do |t|

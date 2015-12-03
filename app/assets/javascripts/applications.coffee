@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).ready ->
+$mobileRadio = ->
   $radioLabel = $('label.radio-inline')
   $radioRow = $('div.radio-row')
   $phoneLine = $('div.phone-line')
@@ -18,3 +18,27 @@ $(document).ready ->
       $phoneLine.removeClass('mobile-radio-row').addClass 'phone-line'
       return
   return
+
+$imagePreview = (image, upload) ->
+  preview = $(image)
+  $(upload).change (event) ->
+    input = $(event.currentTarget)
+    file = input[0].files[0]
+    reader = new FileReader
+
+    reader.onload = (e) ->
+      image_base64 = e.target.result
+      preview.attr 'src', image_base64
+      return
+
+    reader.readAsDataURL file
+    return
+  return
+
+main = ->
+  $mobileRadio()
+  $imagePreview '.check-preview img', '.check'
+  $imagePreview '.license-preview img', '.license'
+  return
+
+$(document).ready(main)

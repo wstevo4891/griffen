@@ -437,18 +437,18 @@
   <article class="text-justify">
   <p><strong>*The appropriate cost of equipment will be debited from the merchant checking account.</strong></p>
   
-  <p class="lead"><strong>BPOB merchant accounts are automatically approved. If there is some unforeseen reason
+  <p><strong>BPOB merchant accounts are automatically approved. If there is some unforeseen reason
      that the account is not approved all equipment cost will be refunded within 7 business days.</strong></p>
   
-  <p class="lead">**Monthly Statement Fee: merchant statement fee is $12.00 per month, includes up to 5 rolls 
+  <p>**Monthly Statement Fee: merchant statement fee is $12.00 per month, includes up to 5 rolls 
      of paper per month and insurance on equipment purchased from BPOB billed on the 1st of each month.</p>
   
-  <p class="lead">***Monthly statement fee of $8.00 per month includes up to 5 rolls of paper per month.</p>
+  <p>***Monthly statement fee of $8.00 per month includes up to 5 rolls of paper per month.</p>
   
-  <p class="lead">****Cellular Statement Fee: merchant statement fee is $34.95 per month, billed on the 1st 
+  <p>****Cellular Statement Fee: merchant statement fee is $34.95 per month, billed on the 1st 
      or 15th of each month depending on your start date. First & Last month is billed upfront: $69.90.</p>
   
-  <p class="lead"><strong>Billing:</strong> Merchant will be notified by email of all billing. <strong> Merchant is responsible for supplying email that this information is to be sent to:</strong></p>
+  <p ><strong>Billing:</strong> Merchant will be notified by email of all billing. <strong> Merchant is responsible for supplying email that this information is to be sent to:</strong></p>
   </article>
   
   <div class="form-group col-sm-12">
@@ -470,6 +470,278 @@
     <%= f.label :billpn, "Print Name of Owner/Officer" %><br>
     <%= f.text_field :billpn, class: "form-control" %>
   </div>       
+</fieldset>
+
+<fieldset class="row">
+  <legend> <%= "Bank Information" %></legend>
+  
+  <div class="form-group col-sm-12">
+    <%= f.label :bankname, "Name of Bank" %><br>
+    <%= f.text_field :bankname, class: "form-control" %>
+  </div> 
+  
+  <div class="form-group col-sm-12">
+    <%= f.label :bankaccount, "Account Number" %><br>
+    <%= f.password_field :bankaccount, class: "form-control" %>
+  </div>   
+  
+  <div class="form-group col-sm-12">
+    <%= f.label :bankphone, "Phone Number" %><br>
+    <%= f.text_field :bankphone, class: "form-control" %>
+  </div>   
+  
+
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 text-left upload">
+    <%= f.label :voidcheck, "Voided Check" %><br>
+    <p>Please upload a scanned copy of a voided check.</p>
+    <%= f.file_field(:voidcheck, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: "check") %></br>
+    <%= f.hidden_field :voidcheck_cache %>
+  </div>  
+  
+  <div class="check-preview col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <% if @application.voidcheck? %>
+      <%= image_tag(@application.voidcheck_url, class: "img-responsive") %>
+    <% else %>  
+      <img/> 
+    <% end %>       
+  </div>
+
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 text-left upload">
+    <%= f.label :dlicense, "Copy of Driver's License" %><br>
+    <p class="help-block">Please upload a scanned copy of your Driver's License or Passport.</p>
+    <%= f.file_field(:dlicense, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: "license") %></br>
+    <%= f.hidden_field :dlicense_cache %>
+  </div>
+  
+  <div class="license-preview col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 upload-preview">
+    <% if @application.dlicense? %>
+      <%= image_tag(@application.dlicense_url, class: "img-responsive") %>
+    <% else %>  
+      <img/> 
+    <% end %>   
+  </div>       
+</fieldset>
+
+<fieldset class="row">
+  <legend><%= "Merchant Terms and Agreement" %></legend>
+  
+  <article class="text-justify">
+  <p><strong>Merchant</strong> agrees that all information provided on this form is accurate. If this information 
+     proves to be otherwise merchant agrees to absorb all associated costs incurred to make any 
+     necessary changes or adaptations in installation, etc.</p><br>
+  
+  <p><strong>When Phone Line or Internet Connection is Required</strong> the Merchant is responsible for ordering 
+     the phone line installation unless Merchant signs authorization to order phone line and incurs all costs involved. 
+     This authority extends to the selection or change of any telecommunications processing, switching or any 
+     transaction authorization service.</p><br>
+  
+  <p><strong>BPOB Settlement</strong><br> The Merchant shall accept approved voucher receipts for payment of goods and 
+     services and the approved amount will be deposited via ACH into the Merchant’s checking or savings account 
+     typically within 3 to 4 business days from withdrawal.</p><br>
+  
+  <p><strong>Service Provider</strong><br> BPOB agrees to provide technical support and training needed for Merchant to 
+     provide BPOB Services to his/her customers through use of our BPOB terminal.</p><br>
+  
+  <p><strong>Merchant Responsibilities</strong><br> The Merchant agrees to administer certain basic duties that maintain the equipment, 
+     to include changing the paper, correcting paper jams, and keeping the unit clean. <strong>It is the Merchant’s 
+     responsibility to settle the batch once a day.</strong> The Merchant will be responsible for providing a 110 AC line to 
+     each unit, and the supply of a dial-up telephone connection. Long distance telephone service is not required. 
+     The Merchant is responsible for contacting POB a minimum of 3-business days in advance of their need for thermal 
+     paper. If paper is needed immediately, it is readily available at local office supply stores. The Merchant is 
+     required to notify BPOB concerning any changes in ownership of the business and/ or any changes that affects 
+     bank accounts</p><br>
+  
+  <p><strong>Term of the Processing Agreement</strong><br> The term of this processing agreement is three (3) years 
+     and is automatically renewed each year thereafter, unless Agent or ISO is notified in writing of the intent to 
+     cancel said contract. At time of renewal, a minimum 30-days’ notice from the anniversary date of signing said 
+     contract is required. If Merchant closes the business, the contract will remain effective and will end three (3) 
+     years from the day the contract was signed. The Merchant may reopen their business and continue to use said service 
+     for the remainder of the processing agreement. BPOB, along with their agents, ISOs and partners cannot be held liable, 
+     due to not being able to process merchant’s transactions for any reason. This includes, but not limited to, 
+     problems with equipment, problems with phone or internet. BPOB has the right to cancel said contract for any 
+     reason at the sole discretion of BPOB.</p><br>
+  
+  <p><strong>Cellular Service</strong><br> If you are using a wireless terminal that uses a SIM Card (ATT AS THE CARRIER). The SIM Card 
+     must be received by BPOB with 10 days of canceling your Processing Agreement. If SIM Card is not received your 
+     cellular service will continue to be billed on a monthly bases until the SIM Card is received.</p><br>
+  
+  <p><strong>The BPOB Terminal</strong><br> This equipment is similar in function to a cash ATM machine and offers most of the same 
+    advantages. How it works . . . the cardholder “swipes” his card, indicates the amount of cash he wishes to 
+    withdraw, and enters his confidential PIN number into the terminal or attached PIN pad. The terminal presents 
+    the cardholder with a voucher which reports the cash withdrawal requested. The voucher is then presented to 
+    the cashier for payment. The terminal will accept most all ATM cards that are linked to a PIN number. The 
+    cardholder may have additional fees for this service, based on the cardholder’s bank.</p><br>
+  
+  <p><strong>By signing this agreement you indicate that you have read and agree to the terms of said contract.</strong></p>
+  </article>
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :mtosig, "Signature of Owner/Officer" %><br>
+    <%= f.text_field :mtosig, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-2">
+    <%= f.label :mtot, "Title" %><br>
+    <%= f.text_field :mtot, class: "form-control" %>
+  </div>   
+  
+  <div class="form-group col-sm-4">
+    <%= f.label :mtdate, "Date" %><br>
+    <%= f.text_field :mtdate, class: "form-control" %>
+  </div> 
+  
+  <div class="form-group col-sm-8">
+    <%= f.label :mtpn, "Print Name of Owner/Officer" %><br>
+    <%= f.text_field :mtpn, class: "form-control" %>
+  </div>
+
+  <div class="form-group col-sm-6">
+    <%= f.label :mtsasig, "Sales Agent Signature" %><br>
+    <%= f.text_field :mtsasig, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :mtagentid, "Agent ID Number" %><br>
+    <%= f.text_field :mtagentid, class: "form-control" %>
+  </div>  
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :mtiso, "ISO Name" %><br>
+    <%= f.text_field :mtiso, class: "form-control" %>
+  </div>             
+</fieldset>
+
+<fieldset class="row">
+  <legend>ACH Authorization Release</legend>
+  
+  <div class="form-group col-md-12">
+    <%= f.label :yname, "Your Name" %>
+    <%= f.text_field :yname, class: "form-control" %>
+    <p class="lead">hereby authorizes EFT Management to initiate ACH transfer entries for all of the following:</p>
+    <ul class="lead text-left">
+      <li>Credit</li>
+      <li>Debit</li>
+      <li>Transaction Settlement</li>
+      <li>Adjustments</li>
+      <li>Surcharge</li>
+    </ul>
+  </div>
+  
+  <p class="lead col-md-12" style="margin-bottom: 1em">These entries will be made through the account at:</p>
+  
+  <div class="form-group col-md-12">
+    <%= f.label :fname, "Financial Institution Name" %><br>
+    <%= f.text_field :fname, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-md-12">
+    <%= f.label :faddress, "Street Address" %><br>
+    <%= f.text_field :faddress, class: "form-control" %>
+  </div>  
+  
+  <div class="form-group col-md-6">
+    <%= f.label :fcity, "City" %><br>
+    <%= f.text_field :fcity, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-md-2">
+    <%= f.label :fstate, "State" %><br>
+    <%= f.text_field :fstate, class: "form-control" %>
+  </div> 
+  
+  <div class="form-group col-md-4">
+    <%= f.label :fzip, "Zip" %><br>
+    <%= f.text_field :fzip, class: "form-control" %>
+  </div> 
+  
+  <div class="form-group col-md-6">
+    <%= f.label :fphone, "Phone" %><br>
+    <%= f.text_field :fphone, class: "form-control" %>
+  </div>             
+
+  <div class="form-group col-md-12">
+    <%= f.label :facc, "Account Title/Name" %><br>
+    <%= f.text_field :facc, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-md-6">
+    <%= f.label :frn, "Routing Number" %><br>
+    <%= f.text_field :frn, class: "form-control" %>
+  </div>  
+  
+  <div class="form-group col-md-6">
+    <%= f.label :fan, "Account Number" %><br>
+    <%= f.text_field :fan, class: "form-control" %>
+  </div>
+  
+  <p class="col-md-12" style="font-size: 1.2em; margin-left: 0.3em; margin-top: 1em; margin-bottom: 3em">
+    <small><%= f.label "Type of Account:" %></small>
+    <%= f.check_box :atype %>
+    <small style="margin-right: 1.5em"><%= f.label :atype, "Checking" %></small>
+    <%= f.check_box :atype %>
+    <small style="margin-right: 1.5em"><%= f.label :atype, "Saving" %></small>
+    <%= f.check_box :atype %>   
+    <small style="margin-right: 1.5em"><%= f.label :atype, "Money Market" %></small>
+    <%= f.check_box :atype %>
+    <small style="margin-right: 1.5em"><%= f.label :atype, "Credit Union" %></small>    
+  </p>  
+  
+  <p class="lead col-md-12" style="margin-bottom: 1em">Adjustment Notifications will be sent to you at the business 
+    address or by email as listed below:</p>      
+  
+  <div class="form-group col-md-8">
+    <%= f.label :coname, "Company Name" %><br>
+    <%= f.text_field :coname, class: "form-control" %>
+  </div> 
+  
+  <div class="form-group col-md-4">
+    <%= f.label :coatt, "Attention" %><br>
+    <%= f.text_field :coatt, class: "form-control" %>
+  </div>   
+
+  <div class="form-group col-md-12">
+    <%= f.label :coaddress, "Street Address" %><br>
+    <%= f.text_field :coaddress, class: "form-control" %>
+  </div>  
+  
+  <div class="form-group col-md-6">
+    <%= f.label :cocity, "City" %><br>
+    <%= f.text_field :cocity, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-md-2">
+    <%= f.label :costate, "State" %><br>
+    <%= f.text_field :costate, class: "form-control" %>
+  </div> 
+  
+  <div class="form-group col-md-4">
+    <%= f.label :cozip, "Zip" %><br>
+    <%= f.text_field :cozip, class: "form-control" %>
+  </div> 
+  
+  <div class="form-group col-md-6">
+    <%= f.label :cophone, "Phone" %><br>
+    <%= f.telephone_field :cophone, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-md-6">
+    <%= f.label :comail, "Email" %><br>
+    <%= f.email_field :comail, class: "form-control" %>
+  </div>  
+  
+  <div class="form-group col-md-8">
+    <%= f.label :cosig, "Signature" %><br>
+    <%= f.text_field :cosig, class: "form-control" %>
+  </div>  
+  
+  <div class="form-group col-md-4">
+    <%= f.label :codate, "Date" %><br>
+    <%= f.text_field :codate, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-md-12">
+    <%= f.label "PLEASE ATTACH A PRE-PRINTED VOIDED CHECK. BANK DRAFTS AND DEPOSIT SLIPS ARE NOT VALID. IF NO PRE-PRINT CHECK IS AVAILABLE, ATTACH A BANK LETTER IN PLACE OF PRE-PRINTED CHECK." %><br>
+  </div>  
 </fieldset>
 
 <div class="actions">

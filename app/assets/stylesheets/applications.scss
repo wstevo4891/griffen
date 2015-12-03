@@ -34,6 +34,39 @@ form {
 	}
 }
 
+.check-preview, .license-preview {
+  img {
+    width: 45em;
+    height: 25em;
+  }
+  @media only screen and (max-width: 768px) {
+    img {
+      width: 35em;
+      height: 20em;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    img {
+      width: 25em;
+      height: 15em;
+    }
+  }
+  @media only screen and (max-width: 440px) {
+    img {
+      width: 80%;
+      height: 10em;
+    }
+  }
+}
+
+.upload {
+	margin-top: 4em;
+}
+
+.upload-preview {
+	margin-bottom: 2em;
+}
+
 
 
 

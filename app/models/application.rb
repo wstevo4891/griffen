@@ -1,2 +1,6 @@
 class Application < ActiveRecord::Base
+  belongs_to :user
+  validates :oname, :legalname, :email, :phone, presence: true
+  mount_uploader :voidcheck, ImageUploader
+  mount_uploader :dlicense, ImageUploader	
 end
