@@ -17,96 +17,104 @@
 <div class="row">
 <div class="jumbotron col-md-10 col-md-offset-1">
 
-  <fieldset class="row"> 
-    <legend> <%="Business Information"%> </legend>
+<fieldset class="row"> 
+  <legend> <%="Business Information"%> </legend>
     
-    <div class="form-group col-sm-6">
-      <%= f.label :legalname, "Legal Name of Business" %><br>
-      <%= f.text_field :legalname, class: "form-control" %>
-    </div>
-  
-    <div class="form-group col-sm-6">
-      <%= f.label :dba, "Doing Business As" %><br>
-      <%= f.text_field :dba, class: "form-control" %>
-    </div>
-  
-    <div class="form-group col-sm-6">
-      <%= f.label :address, "Address" %><br>
-      <%= f.text_field :address, class: "form-control" %>
-    </div>
-  
-    <div class="form-group col-sm-6">
-      <%= f.label :baddress, "Address" %><br>
-      <%= f.text_field :baddress, class: "form-control" %>
-    </div>
-  
-    <div class="form-group col-sm-4">
-      <%= f.label :city, "City" %><br>
-      <%= f.text_field :city, class: "form-control" %>
-    </div>
-  
-    <div class="form-group col-sm-2">
-      <%= f.label :state, "State" %><br>
-      <%= f.text_field :state, class: "form-control" %>
-    </div>  
-  
-    <div class="form-group col-sm-4">
-      <%= f.label :bcity, "City" %><br>
-      <%= f.text_field :bcity, class: "form-control" %>
-    </div>
+  <div class="col-sm-6">
+    <div class="row">
+      <div class="form-group col-sm-12">
+        <%= f.label :legalname, "Legal Name of Business" %><br>
+        <%= f.text_field :legalname, class: "form-control" %>
+      </div>
 
-    <div class="form-group col-sm-2">
-      <%= f.label :bstate, "State" %><br>
-      <%= f.text_field :bstate, class: "form-control" %>
-    </div>
-  
-    <div class="form-group col-sm-6">
-      <%= f.label :zip, "Zip Code" %><br>
-      <%= f.text_field :zip, class: "form-control" %>
-    </div>
-  
-    <div class="form-group col-sm-6">
-      <%= f.label :bzip, "Zip Code" %><br>
-      <%= f.text_field :bzip, class: "form-control" %>
-    </div>
-  
-    <div class="form-group col-sm-3">
-      <%= f.label :phone, "Phone Number" %><br>
-      <%= f.telephone_field :phone, class: "form-control" %>
-    </div>
-  
-    <div class="form-group col-sm-3">
-      <%= f.label :fax, "Fax Number" %><br>
-      <%= f.telephone_field :fax, class: "form-control" %>
-    </div>  
-  
-    <div class="form-group col-sm-3">
-      <%= f.label :bphone, "Phone Number" %><br>
-      <%= f.telephone_field :bphone, class: "form-control" %>
-    </div>
-  
-    <div class="form-group col-sm-3">
-      <%= f.label :bfax, "Fax Number" %><br>
-      <%= f.telephone_field :bfax, class: "form-control" %>
-    </div>
-  
-    <div class="form-group col-sm-6">
-      <%= f.label :ftin, "Federal Tax ID # (FTIN)" %><br>
-      <%= f.password_field :ftin, class: "form-control" %>
-    </div>
-  
-    <div class="form-group col-sm-6">
-      <%= f.label :email, "Email" %><br>
-      <%= f.email_field :email, class: "form-control" %>
-    </div>
-  
-    <div class="form-group col-sm-6">
-      <%= f.label :contact, "Contact" %><br>
-      <%= f.text_field :contact, class: "form-control" %>
-    </div>   
-  </fieldset>
+      <div class="form-group col-sm-12">
+        <%= f.label :address, "Address" %><br>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
 
-  <fieldset class="row">
+      <div class="form-group col-sm-8">
+        <%= f.label :city, "City" %><br>
+        <%= f.text_field :city, class: "form-control" %>
+      </div>
+  
+      <div class="form-group col-sm-4">
+        <%= f.label :state, "State" %><br>
+        <%= f.text_field :state, class: "form-control" %>
+      </div>
+
+      <div class="form-group col-sm-12">
+        <%= f.label :zip, "Zip Code" %><br>
+        <%= f.text_field :zip, class: "form-control" %>
+      </div> 
+
+      <div class="form-group col-sm-6">
+        <%= f.label :phone, "Phone Number" %><br>
+        <%= f.telephone_field :phone, class: "form-control" %>
+      </div>
+    
+      <div class="form-group col-sm-6">
+        <%= f.label :fax, "Fax Number" %><br>
+        <%= f.telephone_field :fax, class: "form-control" %>
+      </div>               
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="row">       
+      <div class="form-group col-sm-12">
+        <%= f.label :dba, "Doing Business As" %><br>
+        <%= f.text_field :dba, class: "form-control" %>
+      </div>
+
+      <div class="form-group col-sm-12">
+        <%= f.label :baddress, "DBA Address" %><br>
+        <%= f.text_field :baddress, class: "form-control" %>
+      </div>
+
+      <div class="form-group col-sm-8">
+        <%= f.label :bcity, "DBA City" %><br>
+        <%= f.text_field :bcity, class: "form-control" %>
+      </div>
+
+      <div class="form-group col-sm-4">
+        <%= f.label :bstate, "DBA State" %><br>
+        <%= f.text_field :bstate, class: "form-control" %>
+      </div>
+    
+      <div class="form-group col-sm-12">
+        <%= f.label :bzip, "DBA Zip Code" %><br>
+        <%= f.text_field :bzip, class: "form-control" %>
+      </div> 
+    
+      <div class="form-group col-sm-6">
+        <%= f.label :bphone, "DBA Phone Number" %><br>
+        <%= f.telephone_field :bphone, class: "form-control" %>
+      </div>
+    
+      <div class="form-group col-sm-6">
+        <%= f.label :bfax, "DBA Fax Number" %><br>
+        <%= f.telephone_field :bfax, class: "form-control" %>
+      </div>        
+    </div>
+  </div>
+
+  <div class="form-group col-sm-6">
+    <%= f.label :ftin, "Federal Tax ID # (FTIN)" %><br>
+    <%= f.password_field :ftin, class: "form-control" %>
+  </div>
+
+  <div class="form-group col-sm-6">
+    <%= f.label :email, "Email" %><br>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
+
+  <div class="form-group col-sm-6">
+    <%= f.label :contact, "Contact" %><br>
+    <%= f.text_field :contact, class: "form-control" %>
+  </div>   
+</fieldset>
+
+<fieldset class="row">
   <legend> <%="Owner or Officer Information"%> </legend>
   
   <div class="form-group col-sm-6">
@@ -253,9 +261,11 @@
   </div>
 </fieldset>
 
-<fieldset class="row text-justify">
+<fieldset class="row">
   <legend> <%= "Payment Authorization" %></legend>
-  <p class="lead">
+  
+  <article class="text-justify">
+  <p>
     I hereby authorize BPOB and/or its authorized financial institution to initiate credit entries and any necessary 
     adjustments to my bank account at the financial institution indicated above on my voided check as it applies to this 
     contract only. This authority is to remain in full force and effect until BPOB has received a written notice from me of 
@@ -263,7 +273,7 @@
     in advance of the occasion of change in any of my financial information contained above (Minimum 30 days).
   </p>   
   
-  <p class="lead">  
+  <p>  
     I understand that if the total amount owed to the Service Provider is increased, I authorize this plan to continue as long as the 
     payment amount remains unchanged until the amount owed the Service Provider is paid off, or unless the plan is terminated 
     earlier by me as above. I understand any added amounts can be applied for with a new ACH Debit Authorization Form. All 
@@ -271,49 +281,201 @@
     Authorization Form to be filled out and submitted to Merchant 15 days prior to any change being implemented.
   </p>   
     
-  <p class="lead">  
+  <p>  
     I understand that this payment plan may be cancelled by the Service Provider or Merchant due to NSF (Non-sufficient Funds). I will be 
     liable to pay an NSF fee of $25.00 (or the amount allowable by law), which may be automatically debited for each NSF. 
     I represent and warrant that I am authorized to execute this payment authorization for the purpose of implementing this 
     payment plan. I indemnify and hold the Service Provider, the bank, harmless from damage, loss or claim resulting from all 
     authorized actions hereunder. 
   </p>
+  </article>
   
-  <div class="form-group col-md-6">
+  <div class="form-group col-sm-6">
     <%= f.label :osig, "Signature of Owner/Officer" %><br>
     <%= f.text_field :osig, class: "form-control" %>
   </div>
   
-  <div class="form-group col-md-6">
+  <div class="form-group col-sm-6">
     <%= f.label :date, "Date" %><br>
     <%= f.text_field :date, class: "form-control" %>
   </div>
   
-  <div class="form-group col-md-6">
+  <div class="form-group col-sm-6">
     <%= f.label :opn, "Print Name of Owner/Officer" %><br>
     <%= f.text_field :opn, class: "form-control" %>
   </div>
   
-  <div class="form-group col-md-6">
+  <div class="form-group col-sm-6">
     <%= f.label :sasig, "Sales Agent Signature" %><br>
     <%= f.text_field :sasig, class: "form-control" %>
   </div>
   
-  <div class="form-group col-md-6">
+  <div class="form-group col-sm-6">
     <%= f.label :agentid, "Agent ID Number" %><br>
     <%= f.text_field :agentid, class: "form-control" %>
   </div>
   
-  <div class="form-group col-md-6">
+  <div class="form-group col-sm-6">
     <%= f.label :iso, "ISO Name" %><br>
     <%= f.text_field :iso, class: "form-control" %>
   </div>
     
 </fieldset>
 
-  <div class="actions">
-    <%= f.submit "SUBMIT", class: "btn-black btn-lg" %>
+<fieldset class="row text-left">
+  <legend> <%= "Counter Top Units and Fees" %></legend>
+  
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <%= f.label :dialup, "*Equipment Cost" %>
+    <%= f.check_box :dialup %>
+    <%= f.label :dialup, "VX510 Dial up Terminal & Pin Pad: $N/A" %>
   </div>
+  
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <%= f.label :dumi, "Merchant's Initials" %>
+    <%= f.text_field :dumi, size: 5 %>
+  </div>
+  
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <%= f.label :dualcom, "*Equipment Cost" %>
+    <%= f.check_box :dualcom %>
+    <%= f.label :dualcom, "VX510 Dual Com Terminal & Pin Pad: $650.00" %>
+  </div>
+  
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <%= f.label :dcmi, "Merchant's Initials" %>
+    <%= f.text_field :dcmi, size: 5 %>
+  </div> 
+  
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <%= f.label :msf12mi, "**Monthly statement fee of $12.00 per month. Online statements only." %>
+  </div>  
+  
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <%= f.label :msf12mi, "Merchant's Initials" %>
+    <%= f.text_field :msf12mi, size: 5 %>
+  </div>  
+</fieldset>
+
+<fieldset class="row text-left">
+  <legend> <%= "Wireless Unit and Fees" %></legend>
+
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <%= f.label :mi610, "*Equipment Cost for VX610 Wireless Terminal: $750.00 (Introductory Offer)" %>
+  </div>  
+  
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <%= f.label :mi610, "Merchant's Initials" %>
+    <%= f.text_field :mi610, size: 5 %>
+  </div>
+  
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <%= f.label :mcfmi, "****Monthly Cellular Fee: $34.95. Billed by BPOB (First & Last upfront: $69.90)" %>
+  </div>  
+  
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <%= f.label :mcfmi, "Merchant's Initials" %>
+    <%= f.text_field :mcfmi, size: 5 %>
+  </div>     
+  
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <%= f.label :msf8mi, "***Monthly statement fee of $8.00 per month (online statements only)." %>
+  </div>  
+  
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <%= f.label :msf8mi, "Merchant's Initials" %>
+    <%= f.text_field :msf8mi, size: 5 %>
+  </div>
+  
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <%= f.label :carch, "Car charger for VX610 Wireless Terminal: $125.00" %>
+  </div>
+
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <label class="checkbox-inline">
+      <%= f.check_box :carch %>
+      <%= f.label :carch, "Yes" %>
+    </label>
+
+    <label class="checkbox-inline">
+      <%= f.check_box :carch %>
+      <%= f.label :carch, "No" %>
+    </label>
+  </div>         
+
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <%= f.label :carchmi, "Merchant's Initials" %>
+    <%= f.text_field :carchmi, size: 5 %>
+  </div>      
+</fieldset>
+
+<fieldset class="row text-left">
+  <legend> <%= "Convenience Fee and Transaction Increments" %></legend>
+  
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <%= f.label :confmi, "A convenience fee of $3.75 will be charged to the customer per transactions. Merchant share: N/A." %>
+  </div>  
+  
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <%= f.label :confmi, "Merchant's Initials" %>
+    <%= f.text_field :confmi, size: 5 %>
+  </div>   
+ 
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <%= f.label :incrmi, "All transactions are in $5.00 INCREMENTS ($5, $10, $15, $20, etc). Change will be given when needed." %>
+  </div> 
+  
+  <div class="form-group col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <%= f.label :incrmi, "Merchant's Initials" %>
+    <%= f.text_field :incrmi, size: 5 %>
+  </div>     
+</fieldset>
+
+<fieldset class="row">
+  <legend> <%= "Bill and Recurring Billing" %></legend>
+  
+  <article class="text-justify">
+  <p><strong>*The appropriate cost of equipment will be debited from the merchant checking account.</strong></p>
+  
+  <p class="lead"><strong>BPOB merchant accounts are automatically approved. If there is some unforeseen reason
+     that the account is not approved all equipment cost will be refunded within 7 business days.</strong></p>
+  
+  <p class="lead">**Monthly Statement Fee: merchant statement fee is $12.00 per month, includes up to 5 rolls 
+     of paper per month and insurance on equipment purchased from BPOB billed on the 1st of each month.</p>
+  
+  <p class="lead">***Monthly statement fee of $8.00 per month includes up to 5 rolls of paper per month.</p>
+  
+  <p class="lead">****Cellular Statement Fee: merchant statement fee is $34.95 per month, billed on the 1st 
+     or 15th of each month depending on your start date. First & Last month is billed upfront: $69.90.</p>
+  
+  <p class="lead"><strong>Billing:</strong> Merchant will be notified by email of all billing. <strong> Merchant is responsible for supplying email that this information is to be sent to:</strong></p>
+  </article>
+  
+  <div class="form-group col-sm-12">
+    <%= f.label :billmail, "E-mail" %><br>
+    <%= f.text_field :billmail, class: "form-control" %>
+  </div>  
+  
+  <div class="form-group col-sm-8">
+    <%= f.label :billosig, "Signature of Owner/Officer" %><br>
+    <%= f.text_field :billosig, class: "form-control" %>
+  </div>  
+  
+  <div class="form-group col-sm-4">
+    <%= f.label :billdate, "Date" %><br>
+    <%= f.text_field :billdate, class: "form-control" %>
+  </div>    
+     
+  <div class="form-group col-sm-8">
+    <%= f.label :billpn, "Print Name of Owner/Officer" %><br>
+    <%= f.text_field :billpn, class: "form-control" %>
+  </div>       
+</fieldset>
+
+<div class="actions">
+  <%= f.submit "SUBMIT", class: "btn-black btn-lg" %>
+</div>
+
 </div>
 </div>
 <% end %>

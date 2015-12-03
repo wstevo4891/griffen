@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
+ruby '2.2.2'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', group: :development
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Bootstrap Sass
@@ -13,8 +14,6 @@ gem 'bootstrap-sass', '3.3.4.1'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -34,18 +33,25 @@ gem 'wkhtmltopdf-binary'
 gem 'dropbox-sdk'
 gem 'remotipart'
 
+# User carrierwave for image uploads
+gem 'carrierwave'
+gem 'rmagick'
+
+# Use Zoho for CRM
+gem 'rubyzoho'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+# Heroku armor
+gem 'exception_handler', '~> 0.4'
+gem 'responders', '~> 2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+
+  gem 'dotenv-rails'
   
   gem 'rspec-rails', '>= 2.0.1'
   gem 'factory_girl_rails'
@@ -64,3 +70,8 @@ group :test do
   gem 'launchy'
 end
 
+group :production do
+# Use PostGreSQL as the production database
+  gem 'pg'
+  gem 'rails_12factor'
+end

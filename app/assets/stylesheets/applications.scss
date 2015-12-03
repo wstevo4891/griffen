@@ -7,12 +7,14 @@
 	label {
 	  width: 6em;
 	}
-	@media only screen and (max-width: 480px) {
-	  label {
-	    width: auto;
-	    position: relative;
-	    left: 2em;
-	  }
+}
+
+.mobile-radio-row {
+	@extend .radio-row;
+	label {
+	  width: auto;
+	  position: relative;
+	  left: 2em;
 	}
 }
 
@@ -22,3 +24,19 @@
 	  width: auto;
 	}
 }
+
+form {
+	p {
+	  color: #333;
+	}
+	input[type='checkbox'] {
+	  font-size: 2em;
+	}
+}
+
+
+
+
+
+
+
