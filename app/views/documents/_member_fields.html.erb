@@ -12,8 +12,8 @@
   </div>  
     
   <div class="image-preview field memid col-sm-12">
-  	<% if f.object.memid.present? %> 
-      <%= image_tag(f.object.memid) %>
+  	<% if f.object.memid.url.present? %> 
+      <%= image_tag(f.object.memid.url) %>
     <% else %>
       <img/> 
     <% end %>     	 

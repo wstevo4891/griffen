@@ -12,8 +12,8 @@
   </div>  
     
   <div class="image-preview shid col-md-12">
-    <% if f.object.shid.present? %> 
-      <%= image_tag(f.object.shid) %>
+    <% if f.object.shid.url.present? %> 
+      <%= image_tag(f.object.shid.url) %>
     <% else %>
       <img/>
     <% end %>     
