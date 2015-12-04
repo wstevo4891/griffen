@@ -1,6 +1,6 @@
 <%= form_for(@application) do |f| %>
 
-<div class="row">
+<div class="col-xs-10 col-xs-offset-1">
   <% if @application.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@application.errors.count, "error") %> prohibited this application from being saved:</h2>
@@ -14,7 +14,6 @@
   <% end %>
 </div>
 
-<div class="row">
 <div class="jumbotron col-md-10 col-md-offset-1">
 
 <fieldset class="row"> 
@@ -771,6 +770,5 @@
   <%= f.submit "SUBMIT", class: "btn-black btn-lg" %>
 </div>
 
-</div>
 </div>
 <% end %>

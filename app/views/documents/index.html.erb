@@ -3,7 +3,7 @@
 </div>
 
 <div class="row">
-<h1>Listing Documentss</h1>
+<h1>Listing Documents</h1>
 </br>
 
 <div class="jumbotron col-md-10 col-md-offset-1 hidden-xs">
@@ -127,6 +127,7 @@
   <%= link_to 'EDIT', edit_document_path(document), class: "btn btn-warning" %>
   <%= link_to 'DELETE', document, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
 </div>
+<% end %>
 <br>
 <%= link_to 'New Document', new_document_path, class: "btn-black btn-lg" %>
 </br>

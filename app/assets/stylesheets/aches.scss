@@ -1,3 +1,20 @@
 // Place all the styles related to the Aches controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.sfees {
+  width: 21.3em;
+  float: left;
+  th {
+    color: #fff;
+    background-color: #000;
+    height: 3.3em;
+  }
+  tr {
+    background-color: #fff;
+    height: 3.2em;
+  }
+  td {
+    text-align: left;
+  }
+}

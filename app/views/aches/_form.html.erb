@@ -1,4 +1,6 @@
 <%= form_for(@ach) do |f| %>
+
+<div class="col-xs-10 col-xs-offset-1">
   <% if @ach.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@ach.errors.count, "error") %> prohibited this ach from being saved:</h2>
@@ -10,8 +12,406 @@
       </ul>
     </div>
   <% end %>
+</div>
 
-  <div class="actions">
-    <%= f.submit %>
+<div class="jumbotron col-md-10 col-md-offset-1">
+
+<div class="row">  
+  <div class="form-group col-sm-6">
+    <%= f.label :bmn, "Bankcard Merchant #" %><br>
+    <%= f.text_field :bmn, class: "form-control" %>
   </div>
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :iso, "ISO Name" %><br>
+    <%= f.text_field :iso, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :isoid, "ISO ID#" %><br>
+    <%= f.text_field :isoid, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :agentname, "Agent Name" %><br>
+    <%= f.text_field :agentname, class: "form-control" %>
+  </div>  
+</div>
+<br>
+
+<fieldset class="row"> 
+  <legend> <%="Merchant Information"%> </legend>
+    
+  <div class="form-group col-sm-6">
+     <%= f.label :legalname, "Legal Name" %><br>
+    <%= f.text_field :legalname, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :taxid, "Tax ID#" %><br>
+    <%= f.text_field :taxid, class: "form-control" %>
+  </div> 
+  
+  <div class="form-group col-sm-8">
+    <%= f.label :dba, "Doing Business As" %><br>
+    <%= f.text_field :dba, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-6">
+     <%= f.label :dbaddress, "DBA Address" %><br>
+    <%= f.text_field :dbaddress, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :maddress, "Mailing Address" %><br>
+    <%= f.text_field :maddress, class: "form-control" %>
+  </div> 
+  
+  <div class="form-group col-sm-6">
+     <%= f.label :dbacity, "City" %><br>
+    <%= f.text_field :dbacity, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :mcity, "City" %><br>
+    <%= f.text_field :mcity, class: "form-control" %>
+  </div> 
+  
+  <div class="form-group col-sm-2">
+     <%= f.label :dbastate, "State" %><br>
+    <%= f.text_field :dbastate, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-4">
+    <%= f.label :dbazip, "Zip Code" %><br>
+    <%= f.text_field :dbazip, class: "form-control" %> 
+  </div>     
+  
+  <div class="form-group col-sm-2">
+     <%= f.label :mstate, "State" %><br>
+    <%= f.text_field :mstate, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-4">
+    <%= f.label :mzip, "Zip Code" %><br>
+    <%= f.text_field :mzip, class: "form-control" %> 
+  </div>
+  
+  <div class="form-group col-sm-6">
+     <%= f.label :bphone, "Business Phone #" %><br>
+    <%= f.telephone_field :bphone, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :bfax, "Business Fax #" %><br>
+    <%= f.telephone_field :bfax, class: "form-control" %>
+  </div>  
+  
+  <div class="form-group col-sm-6">
+     <%= f.label :contact, "Contact Person" %><br>
+    <%= f.text_field :contact, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :title, "Title" %><br>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>   
+  
+  <%= f.label "Type of Ownership", class: "account-type text-left col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0" %>
+  <div class="phone-line text-left col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+    <label class="radio-inline">
+      <%= f.radio_button :ownertype, "Sole Proprietor", id: "first" %>
+      <%= f.label :ownertype, "Sole Proprietor" %>
+    </label>
+    <label class="radio-inline">
+      <%= f.radio_button :ownertype, "Partnership", id: "second" %>
+      <%= f.label :ownertype, "Partnership" %>
+    </label>
+    <label class="radio-inline">
+      <%= f.radio_button :ownertype, "Corporation", id: "third" %>
+      <%= f.label :ownertype, "Corporation" %>
+    </label>
+  </div>
+  
+  <div class="form-group col-sm-12">
+    <%= f.label :goodstype, "Type of Goods Sold" %><br>
+    <%= f.text_field :goodstype, class: "form-control" %>
+  </div>   
+  
+  <div class="form-group col-sm-6">
+     <%= f.label :totalbustime, "Total Time in Business" %><br>
+    <%= f.text_field :totalbustime, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :locbustime, "Time in Business at this Location" %><br>
+    <%= f.text_field :locbustime, class: "form-control" %> 
+  </div>  
+  
+  <div class="form-group col-sm-6">
+     <%= f.label :webaddress, "Website Address" %><br>
+    <%= f.text_field :webaddress, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :email, "Email Address" %><br>
+    <%= f.text_field :email, class: "form-control" %> 
+  </div>   
+</fieldset>
+
+<fieldset class="row">
+  <legend>Principal Information</legend>
+    
+  <div class="form-group col-sm-6">
+    <%= f.label :pname, "Name" %><br>
+    <%= f.text_field :pname, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :pphone, "Phone #" %><br>
+    <%= f.telephone_field :pphone, class: "form-control" %> 
+  </div>   
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :ptitle, "Title" %><br>
+    <%= f.text_field :ptitle, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :pequity, "% Equity Ownership" %><br>
+    <%= f.text_field :pequity, class: "form-control" %>
+  </div>    
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :paddress, "Principal's Address" %><br>
+    <%= f.text_field :paddress, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :pdob, "Date of Birth" %><br>
+    <%= f.text_field :pdob, class: "form-control" %>
+  </div> 
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :pcity, "City" %><br>
+    <%= f.text_field :pcity, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :pssn, "Social Security #" %><br>
+    <%= f.password_field :pssn, class: "form-control" %>
+  </div>   
+  
+  <div class="form-group col-sm-2">
+    <%= f.label :pstate, "State" %><br>
+    <%= f.text_field :pstate, class: "form-control" %>
+  </div>
+  
+  <div class="form-group col-sm-4">
+    <%= f.label :pzip, "Zip Code" %><br>
+    <%= f.text_field :pzip, class: "form-control" %>
+  </div>  
+  
+  <div class="form-group col-sm-6">
+    <%= f.label :pdlicense, "Driver's License #" %><br>
+    <%= f.text_field :pdlicense, class: "form-control" %>
+  </div>      
+</fieldset>
+
+<fieldset class="row">
+  <legend>Schedule of Fees/Charges</legend>
+  
+  <div class="col-sm-12">
+  <table class="table table-bordered sfees">
+    <tr>
+      <th colspan="2" class="text-center">Servicing Fees</th>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+    </tr>
+    <tr>
+      <td>Discount Rate:</td>
+      <td>2.3%</td>
+    </tr>
+    <tr>
+      <td>Transaction Fee:</td>
+      <td>$ 0</td>
+    </tr>
+    <tr>
+      <td>Monthly Service Fee:</td>
+      <td>$ 85.00</td>
+    </tr>
+    <tr>
+      <td>Monthly Minimum Fee:</td>
+      <td>$ 0</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>                             
+  </table>
+  
+  <table class="table table-bordered sfees">
+    <tr>
+      <th colspan="2"></th>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+    </tr>
+    <tr>
+      <td><input type="text" size="10"></td>
+      <td><input type="text" size="8"></td>
+    </tr>
+    <tr>
+      <td><input type="text" size="10"></td>
+      <td><input type="text" size="8"></td>
+    </tr>
+    <tr>
+      <td><input type="text" size="10"></td>
+      <td><input type="text" size="8"></td>
+    </tr>
+    <tr>
+      <td><input type="text" size="10"></td>
+      <td><input type="text" size="8"></td>
+    </tr>
+    <tr>
+      <td><input type="text" size="10"></td>
+      <td><input type="text" size="8"></td>
+    </tr>                             
+  </table> 
+  
+  <table class="table table-bordered sfees">
+    <tr>
+      <th colspan="2"></th>
+    </tr>
+    <tr>
+      <td style="height: 4.2em" colspan="2"></td>
+    </tr>
+    <tr>
+      <td><input type="text" size="10"></td>
+      <td><input type="text" size="8"></td>
+    </tr>
+    <tr>
+      <td><input type="text" size="10"></td>
+      <td><input type="text" size="8"></td>
+    </tr>
+    <tr>
+      <td><input type="text" size="10"></td>
+      <td><input type="text" size="8"></td>
+    </tr>
+    <tr>
+      <td><input type="text" size="10"></td>
+      <td><input type="text" size="8"></td>
+    </tr>
+    <tr>
+      <td style="height: 4.2em" colspan="2"></td>
+    </tr>                             
+  </table>   
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Equipment</legend>
+  
+  <div class="form-group col-md-12">
+    <%= f.label :termtype, "Terminal Type" %><br>
+    <%= f.text_field :termtype, class: "form-control" %>
+  </div>   
+  
+</fieldset>
+
+<fieldset class="row">
+  <legend>Merchant Acceptance</legend>
+  
+  <article class="text-justify">
+  <p>This agreement includes all of the terms and conditions contained on the front and attached recitals 
+  of this agreement. This agreement has been executed on behalf of and by the authorized management of 
+  each party as of the date below. Merchant authorizes IPS-EFT or any credit reporting agency by IPS-EFT 
+  or agent of IPS-EFT, to make whatever inquiries that IPSEFT deems appropriate to investigate, verify or 
+  research references, statements or data obtained from merchant for the purpose of this application for 
+  accompanying POS terminal(s) or equipment financing.</p>
+  
+  <p><strong>Personal Guarantee</strong><br> To induce and in consideration of IPS-EFT acceptance of the 
+  electronic check transfer portion of this agreement, the undersigned (herein referred to as “guarantor”)
+  unconditionally, personally, individually, jointly and severally guarantees performance of the merchant’s 
+  obligations under this agreement and payment of all sums due thereunder and hereby continues to personally 
+  indemnify IPS-EFT for any and all funds due from merchants under the terms of this agreement.</p>
+  
+  <p><strong>ACH Debit/Credit Authorization:</strong><br> The merchant hereby authorizes bank in accordance 
+  with this check service agreement to initiate debit/credit entries to merchant’s checking account, as 
+  indicatedper the attached copy of a voided check from same. The authority is to remain in full force 
+  and effect until (a) bank has received written notification from merchant of its termination in such 
+  a manner as to afford bank reasonable opportunity to act on it, and (b) all obligations of merchant 
+  to bank/IPS-EFT that have arisen under this agreement have been paid in full.</p>
+  </article>
+</fieldset>
+
+<fieldset class="row">
+  <legend>Notice</legend>
+  
+  <article class="text-justify">
+  <p>All information contained on this application was completed by owners and/or officers of merchant 
+  and they warrant that all check information and sales volume indicated throughout this application are 
+  accurate and acknowledge that any variance to this information could result in delayed and/or withheld 
+  settlement of funds as well as the loss of all guarantee privileges of all checks. No blank spaces were 
+  left incomplete. N/A or NONE has been filled in any spaces where applicable. This agreement shall not be 
+  binding or take effect until merchant has been approved by a IPS-EFT officer and a merchant number has 
+  been issued with check limit and guarantee limit.</p>
+  </article>
+  
+  <p class="lead text-center" style="margin-bottom: 3em">
+    <strong>Merchant must submit a voided check with this agreement.</strong>
+  </p>
+  
+  <p>MERCHANT AGREED AND ACCEPTED:</p>
+  <p>I have read and agree to the terms of this agreement</p>
+  
+  <div class="form-group col-sm-8">
+    <%= f.label :msig, "Authorized Merchant Signature" %><br>
+    <%= f.text_field :msig, class: "form-control" %>
+  </div> 
+  
+  <div class="form-group col-sm-4" style="margin-bottom: 4em">
+    <%= f.label :smate, "Date" %><br>
+    <%= f.text_field :mdate, class: "form-control" %>
+  </div>    
+  
+  <p>CORPORATE RESOLUTION FOR CORPORATIONS AND LLC’S:</p>
+  <p>I have read and agree to the terms of this agreement</p>
+  
+  <div class="form-group col-sm-8">
+    <%= f.label :csig, "Authorized Merchant Signature" %><br>
+    <%= f.text_field :csig, class: "form-control" %>
+  </div> 
+  
+  <div class="form-group col-sm-4">
+    <%= f.label :cdate, "Date" %><br>
+    <%= f.text_field :cdate, class: "form-control" %>
+  </div>     
+</fieldset>
+
+<fieldset class="row">
+  <legend>Official IPS-EFT Use Only</legend>
+  
+  <div class="form-group col-sm-4">
+    <%= f.label :appby, "Application Approved by:" %><br>
+    <%= f.text_field :appby, class: "form-control" %>
+  </div> 
+  
+  <div class="form-group col-sm-4">
+    <%= f.label :apptitle, "Title" %><br>
+    <%= f.text_field :apptitle, class: "form-control" %>
+  </div>    
+  
+  <div class="form-group col-sm-4">
+    <%= f.label :appdate, "Date" %><br>
+    <%= f.text_field :appdate, class: "form-control" %>
+  </div>   
+</fieldset>
+
+<div class="row actions">
+  <%= f.submit "SUBMIT", class: "btn-black btn-lg" %>
+</div>
+
+</div>
 <% end %>

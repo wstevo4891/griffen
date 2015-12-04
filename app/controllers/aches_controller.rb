@@ -24,7 +24,7 @@ class AchesController < ApplicationController
 
   # GET /aches/new
   def new
-    @ach = @user.ach.new
+    @ach = Ach.new
   end
 
   # GET /aches/1/edit
@@ -46,7 +46,7 @@ class AchesController < ApplicationController
   # POST /aches
   # POST /aches.json
   def create
-    @ach = @user.ach.new(ach_params)
+    @ach = Ach.new(ach_params)
 
     respond_to do |format|
       if @ach.save

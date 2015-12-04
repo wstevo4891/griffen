@@ -1,6 +1,10 @@
-<h1>Editing Document</h1>
+<div class="row">
+  <h1>Editing Document</h1>
+  <br>
+  <%= render 'form' %>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @document %> |
-<%= link_to 'Back', documents_path %>
+<div class="row">
+  <%= link_to 'Show', @document, class: "btn-black btn-lg" %> |
+  <%= link_to 'Back', documents_path, class: "btn-black btn-lg" %>
+</div>

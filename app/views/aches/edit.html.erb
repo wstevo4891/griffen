@@ -1,6 +1,10 @@
-<h1>Editing Ach</h1>
+<div class="row">
+  <h1>Editing ACH</h1>
+  <br>
+  <%= render 'form' %>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @ach %> |
-<%= link_to 'Back', aches_path %>
+<div class="row sign-up-button">
+<%= link_to 'Show', @ach, class: "btn-black btn-lg" %>
+<%= link_to 'Back', aches_path, class: "btn-black btn-lg" %>
+</div>
