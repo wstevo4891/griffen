@@ -497,7 +497,7 @@
     <%= f.hidden_field :voidcheck_cache %>
   </div>  
   
-  <div class="check-preview col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
+  <div class="image-preview check-preview col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
     <% if @application.voidcheck? %>
       <%= image_tag(@application.voidcheck_url, class: "img-responsive") %>
     <% else %>  
@@ -512,7 +512,7 @@
     <%= f.hidden_field :dlicense_cache %>
   </div>
   
-  <div class="license-preview col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 upload-preview">
+  <div class="image-preview license-preview col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 upload-preview">
     <% if @application.dlicense? %>
       <%= image_tag(@application.dlicense_url, class: "img-responsive") %>
     <% else %>  

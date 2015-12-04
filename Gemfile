@@ -37,6 +37,9 @@ gem 'remotipart'
 gem 'carrierwave'
 gem 'rmagick'
 
+# Use Cocoon for building nested forms
+gem 'cocoon'
+
 # Use Zoho for CRM
 gem 'rubyzoho'
 

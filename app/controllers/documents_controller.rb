@@ -28,7 +28,7 @@ class DocumentsController < ApplicationController
 
   # GET /documents/new
   def new
-    @document = @user.document.new
+    @document = Document.new
   end
   
 
@@ -51,7 +51,7 @@ class DocumentsController < ApplicationController
   # POST /documents
   # POST /documents.json
   def create
-    @document = @user.document.new(document_params)   
+    @document = Document.new(document_params)   
 
     respond_to do |format|
       if @document.save

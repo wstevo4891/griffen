@@ -39,6 +39,8 @@ main = ->
   $mobileRadio()
   $imagePreview '.check-preview img', '.check'
   $imagePreview '.license-preview img', '.license'
+  $imagePreview '.iblicense-preview img', '.iblicense'
+  $imagePreview '.bpra-preview img', '.bpra'
   return
 
 $(document).ready(main)

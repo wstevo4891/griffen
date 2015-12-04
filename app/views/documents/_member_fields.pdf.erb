@@ -1,0 +1,24 @@
+<div class="nested-fields" style="clear: left">
+	
+  <div class="field form-group col-md-8">
+    <%= f.label "Name" %><br>
+    <%= f.text_field :mname, class: "form-control" %>
+  </div>
+  
+  <div class="field form-group text-left col-md-8" style="margin-top: 2em;">
+    <%= f.label :memid, "Member ID" %><br>
+    <%= f.file_field :memid %>
+    <%= f.hidden_field :memid_cache, :value => f.object.memid_cache %>
+  </div>  
+    
+  <div class="field memid col-md-12" style="margin-bottom: 2em">
+  	<% if f.object.memid.url.present? %> 
+      <%= wicked_pdf_image_tag(f.object.memid.url) %>  
+    <% end %>     	 
+  </div> 	    
+  
+  <div id="blk">  
+    <%= link_to_remove_association "Remove Member", f, class: "blk btn btn-sm" %>
+  </div>   
+  
+</div>

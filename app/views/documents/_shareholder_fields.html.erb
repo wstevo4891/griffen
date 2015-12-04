@@ -1,0 +1,24 @@
+<div class="nested-fields" style="clear: left">
+	
+  <div class="form-group col-md-8">
+    <%= f.label "Name" %><br>
+    <%= f.text_field :sname, class: "form-control" %>
+  </div>
+  
+  <div class="form-group text-left col-md-8" style="margin-top: 2em;">
+    <%= f.label :shid, "Shareholder ID" %><br>
+    <%= f.file_field :shid, class: "shid" %>
+    <%= f.hidden_field :shid_cache, :value => f.object.shid_cache %>    
+  </div>  
+    
+  <div class="shid col-md-12" style="margin-bottom: 2em">
+    <% if f.object.shid.url.present? %> 
+      <%= image_tag(f.object.shid.url) %>  
+    <% end %>     
+  </div>  
+    
+  <div id="blk">  
+    <%= link_to_remove_association "Remove Shareholder", f, class: "blk btn btn-sm" %>
+  </div>
+    
+</div> 
