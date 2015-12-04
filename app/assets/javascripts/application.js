@@ -17,4 +17,5 @@
 //= require cocoon
 //= require turbolinks
 //= require jquery.turbolinks
+//= require jquery.remotipart
 //= require_tree .

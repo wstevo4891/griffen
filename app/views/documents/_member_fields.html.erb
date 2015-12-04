@@ -1,24 +1,26 @@
-<div class="nested-fields" style="clear: left">
+<div class="nested-fields">
 	
   <div class="field form-group col-sm-8">
     <%= f.label "Name" %><br>
     <%= f.text_field :mname, class: "form-control" %>
   </div>
   
-  <div class="field form-group text-left col-sm-8" style="margin-top: 2em;">
+  <div class="field form-group text-left col-sm-8">
     <%= f.label :memid, "Member ID" %><br>
     <%= f.file_field :memid %>
     <%= f.hidden_field :memid_cache, :value => f.object.memid_cache %>
   </div>  
     
-  <div class="image-preview field memid col-sm-12" style="margin-bottom: 2em">
+  <div class="image-preview field memid col-sm-12">
   	<% if f.object.memid.present? %> 
-      <%= image_tag(f.object.memid.url) %>  
+      <%= image_tag(f.object.memid) %>
+    <% else %>
+      <img/> 
     <% end %>     	 
   </div> 	    
   
-  <div>  
-    <%= link_to_remove_association "Remove Member", f, class: "btn btn-danger" %>
+  <div class="links">  
+    <%= link_to_remove_association "Remove Member", f, class: "btn btn-danger btn-lg" %>
   </div>   
   
 </div>

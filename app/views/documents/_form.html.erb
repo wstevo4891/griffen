@@ -1,16 +1,7 @@
 <%= form_for(@document) do |f| %>
 
 <div class="col-xs-10 col-xs-offset-1">      
-  <% if @document.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@document.errors.count, "error") %> prohibited this document from being saved:</h2>
-      <ul>
-        <% @document.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>  
-  <% end %>
+  <%= render 'documents/document_errors' %>
 </div>
 
 <div class='jumbotron col-md-10 col-md-offset-1'>
@@ -39,7 +30,7 @@
   </div>    
 </fieldset>
 
-<fieldset class="row">
+<fieldset class="row documents-fields">
   <legend>Documents for Individual Proprietors</legend>
   
   <p class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 text-justify">
@@ -57,29 +48,29 @@
   
   <div class="image-preview iblicense-preview col-sm-12">
     <% if @document.buslicense? %>
-  	  <%= image_tag(@document.buslicense_url, style: "width: 45em; height: 25em") %>
+  	  <%= image_tag(@document.buslicense_url) %>
     <% else %>  
   	  <img/> 
     <% end %>   
   </div>
 
-  <div class="form-group col-sm-12 text-left upload-preview" style="margin-top: 4em">
+  <div class="form-group col-sm-12 text-left">
     <%= f.label :bpra, "Business Premises Rental Agreement" %><br>
     <p class="help-block">Please upload a scanned copy of your Business Premises Rental Agreement.</p>
     <%= f.file_field(:bpra, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: "bpra") %>
     <%= f.hidden_field :bpra_cache %>
   </div>
 
-  <div class="image-preview bpra-preview col-sm-12" style="margin-bottom: 2em">
+  <div class="image-preview bpra-preview col-sm-12">
     <% if @document.bpra? %>
-  	  <%= image_tag(@document.bpra_url, style: "width: 45em; height: 25em") %>
+  	  <%= image_tag(@document.bpra_url) %>
     <% else %>  
   	  <img/> 
     <% end %>     
   </div>
 </fieldset>
 
-<fieldset class="row">
+<fieldset class="row documents-fields">
   <legend>Documents for Commerical Businesses</legend>
   
   <p>This section is for organizations with multiple partners and/or stockholders doing business as 
@@ -94,7 +85,7 @@
 
   <div class="image-preview artinc-preview col-sm-12">
     <% if @document.artinc? %>
-  	  <%= image_tag(@document.artinc_url, style: "width: 45em; height: 25em") %>
+  	  <%= image_tag(@document.artinc_url) %>
     <% else %>  
   	  <img/> 
     <% end %>   	
@@ -108,9 +99,9 @@
     <%= f.hidden_field :certform_cache %>
   </div>
 
-  <div class="image-preview certform-preview col-sm-12" style="margin-bottom: 2em">
+  <div class="image-preview certform-preview col-sm-12">
     <% if @document.certform? %>
-  	  <%= image_tag(@document.certform_url, style: "width: 45em; height: 25em") %>
+  	  <%= image_tag(@document.certform_url) %>
     <% else %>  
   	  <img/> 
     <% end %>    
@@ -124,54 +115,54 @@
     <%= f.hidden_field :opagree_cache %>
   </div>
 
-  <div class="image-preview opagree-preview col-sm-12" style="margin-bottom: 2em">
+  <div class="image-preview opagree-preview col-sm-12">
     <% if @document.opagree? %>
-  	  <%= image_tag(@document.opagree_url, style: "width: 45em; height: 25em") %>
+  	  <%= image_tag(@document.opagree_url) %>
     <% else %>  
   	  <img/> 
     <% end %>     
   </div>
   
-  <div class="form-group col-sm-12 text-left upload-preview" style="margin-top: 4em">
+  <div class="form-group col-sm-12 text-left upload-preview">
     <%= f.label :stockcert, "Copy of Stock Certificate" %><br>
     <p class="help-block">If you are a stock company, please upload a scanned copy of your Stock Certificate.</p>
     <%= f.file_field(:stockcert, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: "stockcert") %>
     <%= f.hidden_field :stockcert_cache %>
   </div>
 
-  <div class="image-preview stockcert-preview col-sm-12" style="margin-bottom: 2em">
+  <div class="image-preview stockcert-preview col-sm-12">
     <% if @document.stockcert? %>
-  	  <%= image_tag(@document.stockcert_url, style: "width: 45em; height: 25em") %>
+  	  <%= image_tag(@document.stockcert_url) %>
     <% else %>  
   	  <img/> 
     <% end %>     
   </div>    
 
-  <div class="form-group col-sm-12 text-left upload-preview" style="margin-top: 4em">
+  <div class="form-group col-sm-12 text-left upload-preview">
     <%= f.label :llclist, "List of LLC Members" %><br>
     <p class="help-block">If you are operating as an LLC, please upload a list of your LLC members.</p>
     <%= f.file_field(:llclist, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: "llclist") %>
     <%= f.hidden_field :llclist_cache %>
   </div>
   
-  <div class="image-preview llclist-preview col-sm-12" style="margin-bottom: 2em">
+  <div class="image-preview llclist-preview col-sm-12">
     <% if @document.llclist? %>
-  	  <%= image_tag(@document.llclist_url, style: "width: 45em; height: 25em") %>
+  	  <%= image_tag(@document.llclist_url) %>
     <% else %>  
   	  <img/> 
     <% end %>       
   </div>   
 
-  <div class="form-group col-sm-12 text-left upload-preview" style="margin-top: 4em">
+  <div class="form-group col-sm-12 text-left upload-preview">
     <%= f.label :shlist, "List of Shareholders" %><br>
     <p class="help-block">If you are a stock company, please upload a list of your shareholders.</p>
     <%= f.file_field(:shlist, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: "shlist") %>
     <%= f.hidden_field :shlist_cache %>
   </div>
   
-  <div class="image-preview shlist-preview col-sm-12" style="margin-bottom: 2em">
+  <div class="image-preview shlist-preview col-sm-12">
     <% if @document.shlist? %>
-  	  <%= image_tag(@document.shlist_url, style: "width: 45em; height: 25em") %>
+  	  <%= image_tag(@document.shlist_url) %>
     <% else %>  
   	  <img/> 
     <% end %>     
@@ -182,38 +173,38 @@
     <%= f.text_field :irsidn, class: "form-control" %>
   </div>  
   
-  <div class="form-group col-sm-12 text-left upload-preview" style="margin-top: 4em">
+  <div class="form-group col-sm-12 text-left upload-preview">
     <p><strong>Copy of ID for every LLC Member</strong></p>
     <p class="help-block">If you are operating as an LLC, please upload a copy of 
     the driver's license or passport of each LLC member.</p>
   </div>
   
-  <div id='members' style="margin-bottom: 3em">
+  <div id='members'>
     <%= f.fields_for :members do |member| %>
       <%= render 'member_fields', f: member %>
     <% end %>
-    <div class='links' style="clear: left; margin-top: 2em">
+    <div class='links'>
       <%= link_to_add_association 'Add Member', f, :members, class: "btn-black btn-lg" %>
     </div>
   </div>
 
-  <div class="form-group col-sm-12 text-left upload-preview" style="margin-top: 4em">
+  <div class="form-group col-sm-12 text-left upload-preview">
    <p><strong>Copy of ID for every Shareholder</strong></p>
    <p class="help-block">If you are a stock company, please upload a copy of 
    	the driver's license or passport of each shareholder.</p>
   </div>  
   
-  <div id='shareholders' style="margin-bottom: 3em">
+  <div id='shareholders'>
     <%= f.fields_for :shareholders do |shareholder| %>
       <%= render 'shareholder_fields', f: shareholder %>
     <% end %>
-    <div class='links' style="clear: left; margin-top: 2em">
+    <div class='links'>
       <%= link_to_add_association 'Add Shareholder', f, :shareholders, class: "btn-black btn-lg" %>
     </div>
   </div>
 
 
-  <div class="form-group col-sm-12 text-left" style="margin-top: 2em">
+  <div class="form-group col-sm-12 text-left">
     <%= f.label :combuslicense, "Business License" %><br>
     <p class="help-block">Please upload a scanned copy of your State Business License.</p>
     <%= f.file_field(:combuslicense, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: "combuslicense") %>
@@ -228,14 +219,14 @@
     <% end %>  	
   </div>
 
-  <div class="form-group col-sm-12 text-left upload-preview" style="margin-top: 4em">
+  <div class="form-group col-sm-12 text-left upload-preview">
     <%= f.label :combpra, "Business Premises Rental Agreement" %><br>
     <p class="help-block">Please upload a scanned copy of your Business Premises Rental Agreement.</p>
     <%= f.file_field(:combpra, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: "combpra") %>
     <%= f.hidden_field :combpra_cache %>
   </div>
   
-  <div class="image-preview combpra-preview col-sm-12" style="margin-bottom: 2em">
+  <div class="image-preview combpra-preview col-sm-12">
     <% if @document.combpra? %>
   	  <%= image_tag(@document.combpra_url) %>
     <% else %>  

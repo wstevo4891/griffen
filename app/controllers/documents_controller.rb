@@ -34,7 +34,7 @@ class DocumentsController < ApplicationController
 
   # GET /documents/1/edit
   def edit
-    @document = Document.find(params[:user_id])
+    @document = Document.find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do

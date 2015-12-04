@@ -8,7 +8,7 @@
 
 <div class="jumbotron col-md-10 col-md-offset-1 hidden-xs">
 <% @aches.each do |ach| %>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -19,10 +19,10 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= ach.oname %></td>
+      <td><%= ach.pname %></td>
       <td><%= ach.legalname %></td>
       <td><%= ach.email %></td>
-      <td><%= ach.phone %></td>
+      <td><%= ach.bphone %></td>
     </tr>
   </tbody>
 </table>
@@ -52,7 +52,7 @@
    
    <tbody>
    	 <tr>
-   	   <td><%= ach.oname %></td>
+   	   <td><%= ach.pname %></td>
    	   <td><%= ach.legalname %></td>
    	 </tr>
    </tbody>
@@ -67,7 +67,7 @@
   <tbody>
   	<tr>
   	  <td><%= ach.email %></td>
-  	  <td><%= ach.phone %></td>
+  	  <td><%= ach.bphone %></td>
   	</tr>
   </tbody>
 </table>
@@ -81,7 +81,7 @@
   
   <tbody>
   	<tr>
-  	  <td><%= ach.oname %></td>
+  	  <td><%= ach.pname %></td>
   	</tr>
   </tbody>
   
@@ -117,7 +117,7 @@
   
   <tbody>
   	<tr>
-  	  <td><%= ach.phone %></td>
+  	  <td><%= ach.bphone %></td>
   	</tr>
   </tbody>
 </table>

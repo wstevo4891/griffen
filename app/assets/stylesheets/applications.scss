@@ -73,6 +73,28 @@ form {
 	margin-bottom: 2em;
 }
 
+.documents-fields {
+	.form-group {
+	  margin-top: 4em;
+	}
+}
+
+.links {
+	clear: left;
+	margin-top: 2em;
+}
+
+.nested-fields {
+	clear: left;
+	margin-bottom: 2em;
+	.form-group {
+	  margin-top: 2em;
+	}
+	.image-preview {
+	  margin-bottom: 2em;
+	}
+}
+
 
 
 

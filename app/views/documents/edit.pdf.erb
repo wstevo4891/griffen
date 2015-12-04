@@ -1,21 +1,239 @@
 <%= form_for(@document) do |f| %>
 
-<div class="col-xs-10 col-xs-offset-1">      
-  <% if @document.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@document.errors.count, "error") %> prohibited this document from being saved:</h2>
-      <ul>
-        <% @document.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>  
-  <% end %>
-</div>
-
 <div class='jumbotron col-md-10 col-md-offset-1'>
       
+<fieldset class="row">
+  <legend>Applicant Information</legend>
 
+  <div class="form-group col-sm-6">
+    <%= f.label :name, "Applicant Name" %><br/>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>  
+
+  <div class="form-group col-sm-6">
+    <%= f.label :business, "Name of Business" %><br/>
+    <%= f.text_field :business, class: "form-control" %>
+  </div>  
+
+  <div class="form-group col-sm-6">
+    <%= f.label :email, "Email" %><br/>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>    
+     
+  <div class="form-group col-sm-6">
+    <%= f.label :phone, "Phone" %><br/>
+    <%= f.telephone_field :phone, class: "form-control" %>
+  </div>    
+</fieldset>
+
+<fieldset class="row documents-fields">
+  <legend>Documents for Individual Proprietors</legend>
+  
+  <p class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 text-justify">
+  If you are an individual proprietor doing business as a legally licensed marijuana dispensary, 
+  you are required to submit the following documents. You may ignore the Commercial Business 
+  section below. If you are operating as a commercial business with multiple partners and/or 
+  stockholders, please proceed to the Commercial Business section.</p><br>
+
+  <div class="form-group col-sm-12 text-left">
+    <%= f.label :buslicense, "Business License" %><br/>
+    <p class="help-block">Please upload a scanned copy of your State Business License.</p>
+    <%= f.file_field(:buslicense, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: "iblicense") %>
+    <%= f.hidden_field :buslicense_cache %>
+  </div>  
+  
+  <div class="image-preview iblicense-preview col-sm-12">
+    <% if @document.buslicense? %>
+  	  <%= image_tag(@document.buslicense_url, style: "width: 45em; height: 25em") %>
+    <% else %>  
+  	  <img/> 
+    <% end %>   
+  </div>
+
+  <div class="form-group col-sm-12 text-left">
+    <%= f.label :bpra, "Business Premises Rental Agreement" %><br>
+    <p class="help-block">Please upload a scanned copy of your Business Premises Rental Agreement.</p>
+    <%= f.file_field(:bpra, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: "bpra") %>
+    <%= f.hidden_field :bpra_cache %>
+  </div>
+
+  <div class="image-preview bpra-preview col-sm-12">
+    <% if @document.bpra? %>
+  	  <%= image_tag(@document.bpra_url) %>
+    <% else %>  
+  	  <img/> 
+    <% end %>     
+  </div>
+</fieldset>
+
+<fieldset class="row documents-fields">
+  <legend>Documents for Commerical Businesses</legend>
+  
+  <p>This section is for organizations with multiple partners and/or stockholders doing business as 
+     a legally licensed marijuana dispensary.</p><br>
+  
+  <div class="form-group col-sm-12 text-left">
+    <%= f.label :artinc, "Articles of Incorporation" %><br>
+    <p class="help-block">Please upload a scanned copy of your Articles of Incorporation.</p>
+    <%= f.file_field(:artinc, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: "artinc") %>
+    <%= f.hidden_field :artinc_cache %>
+  </div>  
+
+  <div class="image-preview artinc-preview col-sm-12">
+    <% if @document.artinc? %>
+  	  <%= image_tag(@document.artinc_url) %>
+    <% else %>  
+  	  <img/> 
+    <% end %>   	
+  </div>
+  <br>
+
+  <div class="form-group col-sm-12 text-left upload-preview">
+    <%= f.label :certform, "State Certificate of Formation" %><br>
+    <p class="help-block">Please upload a scanned copy of your State Certificate of Formation.</p>
+    <%= f.file_field(:certform, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: "certform") %>
+    <%= f.hidden_field :certform_cache %>
+  </div>
+
+  <div class="image-preview certform-preview col-sm-12">
+    <% if @document.certform? %>
+  	  <%= image_tag(@document.certform_url) %>
+    <% else %>  
+  	  <img/> 
+    <% end %>    
+  </div>
+  <br>
+  
+  <div class="form-group col-sm-12 text-left upload-preview">
+    <%= f.label :opagree, "Copy of Operating Agreement" %><br>
+    <p class="help-block">If you are operating as an LLC, please upload a scanned copy of your Operating Agreement.</p>
+    <%= f.file_field(:opagree, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: "opagree") %>
+    <%= f.hidden_field :opagree_cache %>
+  </div>
+
+  <div class="image-preview opagree-preview col-sm-12">
+    <% if @document.opagree? %>
+  	  <%= image_tag(@document.opagree_url) %>
+    <% else %>  
+  	  <img/> 
+    <% end %>     
+  </div>
+  
+  <div class="form-group col-sm-12 text-left upload-preview">
+    <%= f.label :stockcert, "Copy of Stock Certificate" %><br>
+    <p class="help-block">If you are a stock company, please upload a scanned copy of your Stock Certificate.</p>
+    <%= f.file_field(:stockcert, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: "stockcert") %>
+    <%= f.hidden_field :stockcert_cache %>
+  </div>
+
+  <div class="image-preview stockcert-preview col-sm-12">
+    <% if @document.stockcert? %>
+  	  <%= image_tag(@document.stockcert_url) %>
+    <% else %>  
+  	  <img/> 
+    <% end %>     
+  </div>    
+
+  <div class="form-group col-sm-12 text-left upload-preview">
+    <%= f.label :llclist, "List of LLC Members" %><br>
+    <p class="help-block">If you are operating as an LLC, please upload a list of your LLC members.</p>
+    <%= f.file_field(:llclist, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: "llclist") %>
+    <%= f.hidden_field :llclist_cache %>
+  </div>
+  
+  <div class="image-preview llclist-preview col-sm-12">
+    <% if @document.llclist? %>
+  	  <%= image_tag(@document.llclist_url) %>
+    <% else %>  
+  	  <img/> 
+    <% end %>       
+  </div>   
+
+  <div class="form-group col-sm-12 text-left upload-preview">
+    <%= f.label :shlist, "List of Shareholders" %><br>
+    <p class="help-block">If you are a stock company, please upload a list of your shareholders.</p>
+    <%= f.file_field(:shlist, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: "shlist") %>
+    <%= f.hidden_field :shlist_cache %>
+  </div>
+  
+  <div class="image-preview shlist-preview col-sm-12">
+    <% if @document.shlist? %>
+  	  <%= image_tag(@document.shlist_url) %>
+    <% else %>  
+  	  <img/> 
+    <% end %>     
+  </div>   
+
+  <div class="form-group col-sm-12">
+    <%= f.label :irsidn, "IRS Issued Employer Identification Number" %>
+    <%= f.text_field :irsidn, class: "form-control" %>
+  </div>  
+  
+  <div class="form-group col-sm-12 text-left upload-preview">
+    <p><strong>Copy of ID for every LLC Member</strong></p>
+    <p class="help-block">If you are operating as an LLC, please upload a copy of 
+    the driver's license or passport of each LLC member.</p>
+  </div>
+  
+  <div id='members'>
+    <%= f.fields_for :members do |member| %>
+      <%= render 'member_fields', f: member %>
+    <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'Add Member', f, :members, class: "btn-black btn-lg" %>
+    </div>
+  </div>
+
+  <div class="form-group col-sm-12 text-left upload-preview">
+   <p><strong>Copy of ID for every Shareholder</strong></p>
+   <p class="help-block">If you are a stock company, please upload a copy of 
+   	the driver's license or passport of each shareholder.</p>
+  </div>  
+  
+  <div id='shareholders'>
+    <%= f.fields_for :shareholders do |shareholder| %>
+      <%= render 'shareholder_fields', f: shareholder %>
+    <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'Add Shareholder', f, :shareholders, class: "btn-black btn-lg" %>
+    </div>
+  </div>
+
+
+  <div class="form-group col-sm-12 text-left">
+    <%= f.label :combuslicense, "Business License" %><br>
+    <p class="help-block">Please upload a scanned copy of your State Business License.</p>
+    <%= f.file_field(:combuslicense, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: "combuslicense") %>
+    <%= f.hidden_field :combuslicense_cache %>
+  </div>  
+  
+  <div class="image-preview combuslicense-preview col-sm-12">
+    <% if @document.combuslicense? %>
+  	  <%= image_tag(@document.combuslicense_url) %>
+    <% else %>  
+  	  <img/> 
+    <% end %>  	
+  </div>
+
+  <div class="form-group col-sm-12 text-left upload-preview">
+    <%= f.label :combpra, "Business Premises Rental Agreement" %><br>
+    <p class="help-block">Please upload a scanned copy of your Business Premises Rental Agreement.</p>
+    <%= f.file_field(:combpra, accept: 'image/png,image/gif,image/jpeg,image/jpg', class: "combpra") %>
+    <%= f.hidden_field :combpra_cache %>
+  </div>
+  
+  <div class="image-preview combpra-preview col-sm-12">
+    <% if @document.combpra? %>
+  	  <%= image_tag(@document.combpra_url) %>
+    <% else %>  
+  	  <img/> 
+    <% end %>    
+  </div>  
+</fieldset>  
+
+<div class="row actions">
+  <%= f.submit "Submit Documents", class: "btn-black btn-lg" %>
+</div>
 
 <div class="row actions">
   <%= f.submit "Submit Application", class: "btn-black btn-lg" %>

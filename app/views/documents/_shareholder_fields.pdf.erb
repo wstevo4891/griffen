@@ -12,8 +12,8 @@
   </div>  
     
   <div class="shid col-md-12" style="margin-bottom: 2em">
-    <% if f.object.shid.url.present? %> 
-      <%= wicked_pdf_image_tag(f.object.shid.url) %>  
+    <% if f.object.shid.present? %> 
+      <%= wicked_pdf_image_tag(f.object.shid) %>  
     <% end %>     
   </div>  
     

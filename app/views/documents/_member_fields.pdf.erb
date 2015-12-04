@@ -12,8 +12,8 @@
   </div>  
     
   <div class="field memid col-md-12" style="margin-bottom: 2em">
-  	<% if f.object.memid.url.present? %> 
-      <%= wicked_pdf_image_tag(f.object.memid.url) %>  
+  	<% if f.object.memid.present? %> 
+      <%= wicked_pdf_image_tag(f.object.memid) %>  
     <% end %>     	 
   </div> 	    
   
