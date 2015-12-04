@@ -25,9 +25,15 @@
 	}
 }
 
+.account-type {
+	margin-top: 2em;
+}
+
 form {
+    overflow-x: hidden;
 	p {
 	  color: #333;
+	  font-family: 'Arial';
 	}
 	input[type='checkbox'] {
 	  font-size: 2em;
