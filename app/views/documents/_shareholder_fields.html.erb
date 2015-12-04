@@ -11,14 +11,14 @@
     <%= f.hidden_field :shid_cache, :value => f.object.shid_cache %>    
   </div>  
     
-  <div class="shid col-md-12" style="margin-bottom: 2em">
-    <% if f.object.shid.url.present? %> 
+  <div class="image-preview shid col-md-12" style="margin-bottom: 2em">
+    <% if f.object.shid.present? %> 
       <%= image_tag(f.object.shid.url) %>  
     <% end %>     
   </div>  
     
   <div id="blk">  
-    <%= link_to_remove_association "Remove Shareholder", f, class: "blk btn btn-sm" %>
+    <%= link_to_remove_association "Remove Shareholder", f, class: "btn btn-danger" %>
   </div>
     
 </div> 

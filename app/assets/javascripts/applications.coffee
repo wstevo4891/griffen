@@ -41,6 +41,14 @@ main = ->
   $imagePreview '.license-preview img', '.license'
   $imagePreview '.iblicense-preview img', '.iblicense'
   $imagePreview '.bpra-preview img', '.bpra'
+  $imagePreview '.artinc-preview img', '.artinc'
+  $imagePreview '.certform-preview img', '.certform'
+  $imagePreview '.opagree-preview img', '.opagree'
+  $imagePreview '.stockcert-preview img', '.stockcert'
+  $imagePreview '.llclist-preview img', '.llclist'
+  $imagePreview '.shlist-preview img', '.shlist'
+  $imagePreview '.combuslicense-preview img', '.combuslicense'
+  $imagePreview '.combpra-preview img', '.combpra'
   return
 
 $(document).ready(main)
