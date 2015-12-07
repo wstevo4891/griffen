@@ -24,4 +24,5 @@ test:
 
 production:
   <<: *default
+  adapter: postresql
   database: db/production.sqlite3
