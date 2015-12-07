@@ -4,7 +4,7 @@ A demo-site for a local start-up and my largest project of 2015.
 
 The client wanted the site integrated with the Dropbox and Zoho API's and this project
 shows how to accomplish that functionality. When a user completes one of the three application forms, 
-a pdf copy is sent to the Dropbox account specified in the dropbox.rb initializer. Likewise, when a 
+a pdf copy is sent to the Dropbox account specified in the dropbox_config.rb initializer. Likewise, when a 
 user registers an account, the contact info is inserted as a "lead" in the initialized Zoho CRM account.
 
 #Installation
