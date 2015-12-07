@@ -1,16 +1,15 @@
-#Dropbox_Send_Forms
+#Griffen
 
-A rails app that uses 'dropbox-sdk', 'wicked_pdf', and 'wkhtmltopdf' to upload pdfs of forms to a Dropbox
-account.
+A demo-site for a local start-up and my largest project of 2015.
 
-I had a client who wanted a website integrated with Dropbox so that an application form submitted by a user
-would be uploaded to the client's Dropbox account. The dropbox-sdk gem enables this function, but there
-was the issue of what kind of file to send. I thought pdfs would be ideal, so I brought in 'wicked_pdf' and
-'wkhtmltopdf' to make pdf copies of the forms before sending them to Dropbox.
+The client wanted the site integrated with the Dropbox and Zoho API's and this project
+shows how to accomplish that functionality. When a user completes one of the three application forms, 
+a pdf copy is sent to the Dropbox account specified in the dropbox.rb initializer. Likewise, when a 
+user registers an account, the contact info is inserted as a "lead" in the initialized Zoho CRM account.
 
 #Installation
 
-1. git clone https://github.com/wstevo4891/Dropbox_Send_Forms.git
+1. git clone
 
 2. Run bundle install
 
@@ -39,9 +38,10 @@ Step 6. Below "App Key" and "App Secret" you will see the "Oauth2" row. At the b
 "Generated Access token" and a "Generate" button beneath. Click on "Generate", copy the key, and
 paste it between the quotes on the OAUTH2_ACCESS_TOKEN line in dropbox_config.rb
 
-You're all set!  Go to the app's home page, create a user account, and complete the application form. 
-You should see that a pdf of the form was uploaded to the Dropbox app you just created. A pdf file 
-will also appear in the 'pdfs' folder in the root directory.
+Step 7. Register a Zoho CRM account and paste your api key between the quotes in config/initializers/zoho.rb
+
+You're all set!  New users will appear as leads in your Zoho CRM account and completed application forms will 
+be saved as pdfs in the 'pdfs' directory before being uploaded to your Dropbox App.
 
 #More Info
 

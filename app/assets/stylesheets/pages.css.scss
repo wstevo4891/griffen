@@ -93,6 +93,11 @@
   }
 }
 
+.break-black {
+  @extend .break;
+  border-bottom: 0.2em solid #000;
+}
+
 .hardware {
   width: 100%;
   margin: 0 auto;
