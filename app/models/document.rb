@@ -1,5 +1,6 @@
 class Document < ActiveRecord::Base
   belongs_to :user
+  belongs_to :order
   
   has_many :members
   has_many :shareholders

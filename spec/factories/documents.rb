@@ -6,7 +6,5 @@ FactoryGirl.define do
     f.business { Faker::Company.name }
     f.email { Faker::Internet.email }
     f.phone { Faker::PhoneNumber.phone_number }
-    f.product { Faker::Commerce.product_name }
-    f.payment { Faker::Business.credit_card_type }
   end
 end
