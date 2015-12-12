@@ -1,12 +1,16 @@
-require 'faker'
-
 FactoryGirl.define do
-  factory :user do |f|
-    f.firstname { Faker::Name.firstname }
-    f.lastname { Faker::Name.lastname }
-    f.email { Faker::Internet.email }
-    f.business { Faker::Company.name}
-    f.phone { Faker::PhoneNumber.phone_number }    
-    f.password { Faker::Internet.password }
+
+  factory :user do
+    transient do
+      skip_confirmation true
+    end
+
+    sequence(:email) { |n| "user#{n}@example.tld" }
+    password  "test password"
+
+    before(:create) do |user, evaluator|
+      user.skip_confirmation! if evaluator.skip_confirmation
+    end
   end
+
 end

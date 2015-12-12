@@ -1,8 +1,15 @@
-require 'dropbox_sdk'
-
 class UsersController < ApplicationController
   skip_before_action :authorize  
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+
+  def log_in(user)
+    session[:user_id] = user.id
+  end
+
+  def current_user
+    return unless session[:user_id]
+    @current_user ||= User.find(session[:user_id])
+  end    
 
   # GET /users
   # GET /users.json
@@ -32,7 +39,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'Thank you for registering.' }
+        format.html { redirect_to @user, notice: 'Thank you for registering' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
