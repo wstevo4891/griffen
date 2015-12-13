@@ -14,6 +14,8 @@ gem 'bootstrap-sass', '3.3.4.1'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
+# Use Devise for authentication
+gem 'devise'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -43,6 +45,10 @@ gem 'cocoon'
 # Use Zoho for CRM
 gem 'rubyzoho'
 
+# Use mailchimp and mandrill for emails
+gem 'mandrill-api', require: "mandrill"
+gem 'mandrill_mailer'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
@@ -57,15 +63,20 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails', '~> 4.5'
   gem 'pry-rescue'
-  gem 'pry-stack_explorer'  
-  gem 'shoulda-matchers'
+  gem 'pry-stack_explorer'
+  gem 'puffing-billy'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'spring-commands-rspec'
 end
 
 group :test do
   gem 'faker'
+  gem 'vcr'
+  gem 'webmock'
   gem 'capybara'
+  gem 'shoulda-matchers'
+  gem 'email_spec'  
   gem 'guard-rspec'
   gem 'launchy'
   gem 'database_cleaner'

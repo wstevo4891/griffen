@@ -16,3 +16,12 @@
 !/log/.keep
 /tmp
 .DS_Store
+
+# Ignore environment variables
+.env.local
+.env.production
+
+# Ignore initializers with secret keys
+/config/initializers/zoho.rb
+/config/initializers/mail.rb
+/config/initializers/dropbox_config.rb

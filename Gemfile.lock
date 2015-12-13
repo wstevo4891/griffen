@@ -69,8 +69,18 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    cookiejar (0.3.2)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
     database_cleaner (1.5.1)
     debug_inspector (0.0.2)
+    devise (3.5.1)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      responders
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     dotenv (2.0.2)
     dotenv-rails (2.0.2)
@@ -78,8 +88,24 @@ GEM
       railties (~> 4.0)
     dropbox-sdk (1.6.4)
       json
+    em-http-request (1.1.2)
+      addressable (>= 2.3.4)
+      cookiejar
+      em-socksify (>= 0.3)
+      eventmachine (>= 1.0.3)
+      http_parser.rb (>= 0.6.0)
+    em-socksify (0.3.1)
+      eventmachine (>= 1.0.0.beta.4)
+    em-synchrony (1.0.4)
+      eventmachine (>= 1.0.0.beta.1)
+    email_spec (1.6.0)
+      launchy (~> 2.1)
+      mail (~> 2.2)
     erubis (2.7.0)
+    eventmachine (1.0.8)
+    eventmachine_httpserver (0.2.1)
     exception_handler (0.4.1)
+    excon (0.45.4)
     execjs (2.6.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -106,10 +132,12 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    hashdiff (0.2.3)
     httmultiparty (0.3.16)
       httparty (>= 0.7.3)
       mimemagic
       multipart-post
+    http_parser.rb (0.6.0)
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -136,6 +164,13 @@ GEM
     lumberjack (1.0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mandrill-api (1.0.53)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
+    mandrill_mailer (1.1.0)
+      actionpack
+      activesupport
+      mandrill-api (~> 1.0.9)
     method_source (0.8.2)
     mime-types (2.6.2)
     mimemagic (0.3.0)
@@ -150,6 +185,7 @@ GEM
     notiffany (0.0.8)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    orm_adapter (0.5.0)
     pg (0.18.4)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -161,6 +197,14 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
+    puffing-billy (0.6.2)
+      addressable
+      em-http-request (~> 1.1.0)
+      em-synchrony
+      eventmachine (~> 1.0.4)
+      eventmachine_httpserver
+      http_parser.rb (~> 0.6.0)
+      multi_json
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -231,6 +275,7 @@ GEM
       httmultiparty (>= 0.3)
       multipart-post (>= 1.0)
       roxml (>= 1.0)
+    safe_yaml (1.0.4)
     sass (3.4.19)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
@@ -246,6 +291,8 @@ GEM
       activesupport (>= 4.0.0)
     slop (3.6.0)
     spring (1.4.0)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     sprockets (3.4.0)
       rack (> 1, < 3)
     sprockets-rails (2.3.3)
@@ -263,11 +310,18 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    vcr (3.0.0)
+    warden (1.2.3)
+      rack (>= 1.0)
     web-console (2.2.1)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    webmock (1.22.3)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff
     wicked_pdf (0.11.0)
       rails
     wkhtmltopdf-binary (0.9.9.3)
@@ -286,8 +340,10 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.1.0)
   database_cleaner
+  devise
   dotenv-rails
   dropbox-sdk
+  email_spec
   exception_handler (~> 0.4)
   factory_girl_rails (~> 4.5)
   faker
@@ -296,9 +352,12 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   launchy
+  mandrill-api
+  mandrill_mailer
   pg
   pry-rescue
   pry-stack_explorer
+  puffing-billy
   rails (= 4.2.3)
   rails_12factor
   remotipart
@@ -310,9 +369,12 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   shoulda-matchers
   spring
+  spring-commands-rspec
   sqlite3
   turbolinks
   uglifier (>= 1.3.0)
+  vcr
   web-console (~> 2.0)
+  webmock
   wicked_pdf
   wkhtmltopdf-binary

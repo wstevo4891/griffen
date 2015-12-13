@@ -1,5 +1,5 @@
-module ValidatePresenceOf
-  class Matcher
+module Matchers
+  class ValidatePresenceOf
   	def initialize(attribute)
   	  @attribute = attribute
   	end
@@ -20,6 +20,6 @@ module ValidatePresenceOf
   end
 
   def validate_presence_of(attribute)
-  	Matcher.new
+  	ValidatePresenceOf.new
   end
 end
