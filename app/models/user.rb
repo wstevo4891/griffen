@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable
 
+  validates :firstname, :lastname, :email, :business, :phone, presence: true
+
   after_destroy :ensure_an_admin_remains
 
   has_many :orders, dependent: :destroy

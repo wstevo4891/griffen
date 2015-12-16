@@ -1,13 +1,10 @@
-require 'faker'
-
 FactoryGirl.define do
-  factory :order do |f|
-    f.name { Faker::Name.name }
-    f.business { Faker::Company.name }
-    f.email { Faker::Internet.email }
-    f.phone { Faker::PhoneNumber.phone_number }
-    f.product { Faker::Commerce.product_name }
-    f.payment { Faker::Business.credit_card_type }    
+  factory :order do
+  	name "John Doe"
+  	business { Faker::Company.name }
+  	sequence(:email) { |n| "user#{n}@example.tld" }
+  	phone { Faker::PhoneNumber.phone_number }
+  	product "Verifone 610"
+  	payment "Credit Card"
   end
-
 end

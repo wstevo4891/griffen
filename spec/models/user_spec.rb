@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe User do
+RSpec.describe User do
 
   context 'validations' do
     it { should validate_presence_of :firstname }
@@ -18,6 +18,7 @@ describe User do
     it { should have_one(:application).dependent(:destroy) }
     it { should have_one(:ach).dependent(:destroy) }
     it { should have_one(:document).dependent(:destroy) }
+    it { should have_many(:access_tokens).dependent(:destroy) }
   end
 
   context '#issue_access_token' do

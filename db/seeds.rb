@@ -13,5 +13,26 @@ User.create!(firstname:  "Eric",
              phone: "999-888-7777",
              password:              "Griffen2015!",
              password_confirmation: "Griffen2015!",
-             admin: true)
+             admin: true,
+             reset_password_token: "",
+             reset_password_sent_at: "",
+             remember_created_at: "",
+             sign_in_count: 0,
+             current_sign_in_at: "",
+             last_sign_in_at: "",
+             current_sign_in_ip: "",
+             last_sign_in_ip: "",
+             confirmation_token: "",
+             confirmed_at: "",
+             confirmation_sent_at: "",
+             unconfirmed_email: "",
+             failed_attempts: 0,
+             unlock_token: "",
+             locked_at: "")
              
+
+
+
+
+
+

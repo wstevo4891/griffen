@@ -1,10 +1,8 @@
-require 'faker'
-
 FactoryGirl.define do
-  factory :document do |f|
-    f.name { Faker::Name.name }
-    f.business { Faker::Company.name }
-    f.email { Faker::Internet.email }
-    f.phone { Faker::PhoneNumber.phone_number }
-  end
+  factory :document do
+  	name "John Doe"
+  	business { Faker::Company.name }
+  	sequence(:email) { |n| "user#{n}@example.tld" }
+  	phone { Faker::PhoneNumber.phone_number }
+  end  
 end

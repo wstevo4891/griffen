@@ -72,8 +72,6 @@ end
 
 group :test do
   gem 'faker'
-  gem 'vcr'
-  gem 'webmock'
   gem 'capybara'
   gem 'shoulda-matchers'
   gem 'email_spec'  

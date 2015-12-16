@@ -17,7 +17,7 @@ RSpec.feature "User registers" do
   	fill_in("Password confirmation", with: "test-password")  	
   	click_on "Register"
 
-  	expect(current_path).to eq(user_path)
+  	expect(current_path).to eq(current_user_path)
   	expect(page).to have_content("Thank you for registering")
   end
 

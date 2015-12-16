@@ -1,15 +1,9 @@
 class UsersController < ApplicationController
-  skip_before_action :authorize  
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def log_in(user)
     session[:user_id] = user.id
-  end
-
-  def current_user
-    return unless session[:user_id]
-    @current_user ||= User.find(session[:user_id])
-  end    
+  end   
 
   # GET /users
   # GET /users.json
@@ -21,6 +15,9 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to :back, alert: "Access Denied"
+    end
   end
 
   # GET /users/new
