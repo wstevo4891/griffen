@@ -21,7 +21,7 @@
     </p>
 
     <div class="button-row">
-      <%= link_to 'EDIT', edit_user_path(@user), class: "btn-black btn-lg" %>
+      <%= link_to 'EDIT', edit_user_registration_path, class: "btn-black btn-lg" %>
     </div>
   </div>
 
@@ -57,9 +57,9 @@
 
   <div class="button-row">
     <% if @user %>
-      <%= link_to "START", new_order_path, class: "btn-black btn-lg" %>
+      <%= link_to "START", new_application_path, class: "btn-black btn-lg" %>
     <% else %>
-      <%= link_to "EDIT", edit_order_path(@user.order), class: "btn-black btn-lg" %>
+      <%= link_to "EDIT", edit_application_path(@user.application), class: "btn-black btn-lg" %>
     <% end %>  
   </div>
 </div>
@@ -97,7 +97,7 @@
 <div class="break-black"></div>
 
 <div class='sign-up-button'>
-  <%= link_to "SUBMIT APPLICATION", root_path, class: "btn-black btn-lg" %>
+  <%= link_to "SUBMIT ORDER", new_order_path, class: "btn-black btn-lg" %>
 </div>
 
 </div>

@@ -208,11 +208,6 @@
 
 #notice {
   color: green;
-  border: 2px solid black;
-  padding: 1em;
-  margin-bottom: 2em;
-  background-color: #f0f0f0;
-  font: bold 16px sans-serif;
 }
 
 .field_with_errors {
@@ -226,7 +221,7 @@
   border: 2px solid red;
   padding: 7px;
   padding-bottom: 0;
-  margin-bottom: 20px;
+  margin: 1.5em auto;
   background-color: #f0f0f0;
   h2 {
     text-align: left;

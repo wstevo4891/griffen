@@ -3,5 +3,4 @@ class AccessToken < ActiveRecord::Base
   hardened_token
 
   belongs_to :user
-
 end

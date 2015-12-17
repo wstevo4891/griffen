@@ -1,5 +1,5 @@
 class ApplicationsController < ApplicationController
-  skip_before_action :authorize, only: [:new, :create]
+  skip_before_action :authenticate_user!, only: [:new, :create]
   before_action :set_application, only: [:show, :edit, :update, :destroy]
 
   # GET /applications
@@ -77,7 +77,7 @@ class ApplicationsController < ApplicationController
         client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
         response = client.put_file('Applications/' + filename + '.merchant_application.pdf', file)         
         applicationNotifier.received(@application).deliver_now
-        format.html { redirect_to current_user, notice: "Thank you for completing the merchant application" }
+        format.html { redirect_to current_user, flash[:notice] = "Thank you for completing the merchant application" }
         format.json { render :show, status: :created, location: @application }  
       else
         format.html { render :new }
@@ -105,7 +105,7 @@ class ApplicationsController < ApplicationController
         client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
         response = client.put_file('Applications/' + filename + '.merchant_application.pdf', file, overwrite=true)             
       if @application.update(application_params)
-        format.html { redirect_to current_user, notice: 'application was successfully updated.' }
+        format.html { redirect_to current_user, flash[:notice] = 'Application was successfully updated.' }
         format.json { render :show, status: :ok, location: @application }
       else
         format.html { render :edit }
@@ -119,7 +119,7 @@ class ApplicationsController < ApplicationController
   def destroy
     @application.destroy
     respond_to do |format|
-      format.html { redirect_to applications_url, notice: 'application was successfully destroyed.' }
+      format.html { redirect_to applications_url, flash[:notice] = 'Application was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -7,7 +7,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :business, null: false, default: ""
       t.string :phone, null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
-      t.boolean :admin, default: false
 
       ## Recoverable
       t.string   :reset_password_token

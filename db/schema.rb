@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214200258) do
+ActiveRecord::Schema.define(version: 20151216063454) do
 
   create_table "access_tokens", force: :cascade do |t|
     t.string   "locator",          null: false
@@ -79,6 +79,17 @@ ActiveRecord::Schema.define(version: 20151214200258) do
   end
 
   add_index "aches", ["user_id"], name: "index_aches_on_user_id"
+
+  create_table "admins", force: :cascade do |t|
+    t.string   "email",               default: "",    null: false
+    t.string   "encrypted_password",  default: "",    null: false
+    t.boolean  "god_mode",            default: false
+    t.datetime "remember_created_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "admins", ["email"], name: "index_admins_on_email", unique: true
 
   create_table "applications", force: :cascade do |t|
     t.string   "legalname"
@@ -242,17 +253,16 @@ ActiveRecord::Schema.define(version: 20151214200258) do
   add_index "shareholders", ["document_id"], name: "index_shareholders_on_document_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "firstname",              default: "",    null: false
-    t.string   "lastname",               default: "",    null: false
-    t.string   "email",                  default: "",    null: false
-    t.string   "business",               default: "",    null: false
-    t.string   "phone",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
-    t.boolean  "admin",                  default: false
+    t.string   "firstname",              default: "", null: false
+    t.string   "lastname",               default: "", null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "business",               default: "", null: false
+    t.string   "phone",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -261,11 +271,11 @@ ActiveRecord::Schema.define(version: 20151214200258) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",        default: 0,     null: false
+    t.integer  "failed_attempts",        default: 0,  null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

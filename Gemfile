@@ -16,6 +16,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # Use Devise for authentication
 gem 'devise'
+gem 'devise_zxcvbn'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -44,10 +46,6 @@ gem 'cocoon'
 
 # Use Zoho for CRM
 gem 'rubyzoho'
-
-# Use mailchimp and mandrill for emails
-gem 'mandrill-api', require: "mandrill"
-gem 'mandrill_mailer'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'

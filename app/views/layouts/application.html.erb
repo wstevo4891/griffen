@@ -47,12 +47,17 @@
 
     <div class="container">
       <div class="row">
-        <% if notice %>
-          <p class="alert alert-success"><%= notice %></p>
-        <% end %>
-        <% if alert %>
-          <p class="alert alert-danger"><%= alert %></p>
-        <% end %>
+        <div class="col-sm-6 col-sm-offset-3">
+          <% if admin_signed_in? %>
+            <%= "<p id=\"godModeNotice\">GOD MODE ACTIVE!</p>".html_safe if current_admin.god_mode? %>
+          <% end %>
+          <% if notice %>
+            <p class="alert alert-success"><%= notice %></p>
+          <% end %>
+          <% if alert %>
+            <p class="alert alert-danger"><%= alert %></p>
+          <% end %>
+        </div>
       </div>
       <%= yield %>
     </div>

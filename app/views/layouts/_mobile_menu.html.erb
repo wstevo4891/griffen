@@ -5,7 +5,7 @@
     <li><%= link_to "PRODUCTS", pages_products_path %></li>
     <li><%= link_to "CONTACT", pages_contact_path %></li>
     
-    <% if logged_in? and current_user.admin %>
+    <% if admin_signed_in? %>
       <li><%= link_to "DASHBOARD", admin_url %></li>
       <li><%= link_to "APPLICATIONS", applications_path %></li>
       <li><%= link_to "ACH", aches_path %></li>
@@ -14,15 +14,15 @@
       <li><%= link_to "USERS", users_path %></li>
       <li class="divider"></li>
       <li>
-        <%= link_to "LOG OUT", logout_path, method: "delete" %>
+        <%= link_to "LOG OUT", destroy_admin_session_path, method: "delete" %>
       </li> 
          
-    <% elsif logged_in? %>
+    <% elsif user_signed_in? %>
       <li><%= link_to "PROFILE", current_user %></li>
       <li><%= link_to "SETTINGS", edit_user_path(current_user) %></li>
       <li class="divider"></li>
       <li>
-        <%= link_to "LOG OUT", logout_path, method: "delete" %>
+        <%= link_to "LOG OUT", destroy_user_session_path, method: "delete" %>
       </li>
 
     <% else %>
