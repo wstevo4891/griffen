@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # Use Devise for authentication
 gem 'devise'
 gem 'devise_zxcvbn'
-
+gem 'symmetric-encryption'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
