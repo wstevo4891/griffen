@@ -42,8 +42,8 @@
             <a href="#" id="new-account-dropdown" class="dropdown-toggle" data-toggle="dropdown">ACCOUNT <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><%= link_to "NEW ACCOUNT", new_user_registration_path, method: :get %></li>
-                <li><%= link_to "LOGIN", new_user_session_path %></li>
-                <li><%= link_to "ADMIN", new_admin_session_path %></li>
+                <li><%= link_to "LOGIN", new_user_session_path, id: "user-login" %></li>
+                <li><%= link_to "ADMIN", new_admin_session_path, id: "admin-login" %></li>
               </ul>
           </li>
         <% end %>

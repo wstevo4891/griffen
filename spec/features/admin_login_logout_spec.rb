@@ -7,14 +7,11 @@ RSpec.feature "Admin logs in and logs out" do
 
     visit root_path
 
-    click_on "account-page-link"
+    click_on "new-account-dropdown"
+    click_link "admin-login"
 
-    expect(current_path).to eq(pages_account_path)
-
-    click_on "LOGIN"
-
+    expect(current_path).to eq(new_admin_session_path)
     expect(page).to have_css("h1", text: "Please Log in")
-    expect(current_path).to eq(new_user_session_path)
 
     login "someone@example.tld", "zx%-7$6yu23"
 
