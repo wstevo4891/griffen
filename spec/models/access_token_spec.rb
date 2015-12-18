@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe AccessToken do
+RSpec.describe AccessToken do
 
   context '.create!' do
     it 'generates locator and secret' do
