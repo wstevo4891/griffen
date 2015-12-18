@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get 'pages/about'
   get 'pages/products'
   get 'pages/contact'
-  get 'pages/account'
   get 'admin' => 'pages#admin'
 
   devise_for :admins

@@ -26,7 +26,9 @@
       </li>
 
     <% else %>
-      <li><%= link_to "ACCOUNT", pages_account_path %></li>
+      <li><%= link_to "NEW ACCOUNT", new_user_registration_path %></li>
+      <li><%= link_to "LOGIN", new_user_session_path %></li>
+      <li><%= link_to "ADMIN", new_admin_session_path %></li>
     <% end %>
   </ul> 
 </div>
