@@ -19,6 +19,7 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
+    @document = Document.find(params[:id])
   end
 
   # GET /documents/new
@@ -51,11 +52,12 @@ class DocumentsController < ApplicationController
     respond_to do |format|
       if @document.save
         pdf = render_to_string pdf: "Required_Documents.pdf", 
-        layout: 'pdf.html.erb', 
-        template: "documents/edit.pdf.erb", 
-        encoding: "UTF-8", 
-        wkhtmltopdf: 'bin/wkhtmltopdf', page_height: '75in', 
-        page_width: '10em'
+                               layout: 'pdf.html.erb', 
+                               template: "documents/edit.pdf.erb", 
+                               encoding: "UTF-8", 
+                               wkhtmltopdf: 'bin/wkhtmltopdf', 
+                               page_height: '75in', 
+                               page_width: '10em'
         save_path = Rails.root.join('pdfs',"#{filename}.Required_Documents.pdf")
         File.open(save_path, 'wb') do |file|
           file << pdf
@@ -63,7 +65,7 @@ class DocumentsController < ApplicationController
         file = open(save_path)  
         client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
         response = client.put_file('Applications/' + filename + '.Required_Documents.pdf', file)                
-        format.html { redirect_to current_user, notice: 'Documents were successfully uploaded.' }
+        format.html { redirect_to current_user, notice: 'Documents were successfully uploaded' }
         format.json { render :show, status: :created, location: @document }
       else
         format.html { render :new }
@@ -78,14 +80,14 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
     
     respond_to do |format|
-      if @document.update(document_params)
+      if @document.update_attributes(document_params)
         pdf = render_to_string pdf: "Required_Documents.pdf", 
-        layout: 'pdf.html.erb', 
-        template: "documents/edit.pdf.erb", 
-        encoding: "UTF-8", 
-        wkhtmltopdf: 'bin/wkhtmltopdf', 
-        page_height: '75in', 
-        page_width: '10em'
+                               layout: 'pdf.html.erb', 
+                               template: "documents/edit.pdf.erb", 
+                               encoding: "UTF-8", 
+                               wkhtmltopdf: 'bin/wkhtmltopdf', 
+                               page_height: '75in', 
+                               page_width: '10em'
         save_path = Rails.root.join('pdfs',"#{filename}.Required_Documents.pdf")
         File.open(save_path, 'wb') do |file|
           file << pdf
@@ -105,9 +107,13 @@ class DocumentsController < ApplicationController
   # DELETE /documents/1
   # DELETE /documents/1.json
   def destroy
-    @document.destroy
+    Document.find(params[:id]).destroy
     respond_to do |format|
-      format.html { redirect_to documents_url, notice: 'Documents were successfully destroyed.' }
+      if admin_signed_in?
+        format.html { redirect_to documents_url, notice: 'Documents were successfully destroyed.' }
+      else
+        format.html { redirect_to current_user, notice: 'Documents were successfully destroyed.' }
+      end
       format.json { head :no_content }
     end
   end

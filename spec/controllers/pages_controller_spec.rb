@@ -32,6 +32,8 @@ RSpec.describe PagesController, type: :controller do
 
   context "GET #admin" do
     it "returns http success" do
+      @admin = create(:admin)
+      sign_in @admin
       get :admin
       expect(response).to have_http_status(:success)
     end
