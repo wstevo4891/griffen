@@ -23,47 +23,76 @@ RSpec.describe ApplicationsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Application. As you add validations to Application, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) { @application = create(:application) }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) { @application = create(:application, traits: [:invalid]) }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # ApplicationsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) { @user = create(:user) }
 
   describe "GET #index" do
+    # Sign in an admin to see Applications Index page
+    before(:each) do
+      @admin = create(:admin)
+      sign_in @admin
+    end
+
     it "assigns all applications as @applications" do
-      application = Application.create! valid_attributes
-      get :index, {}, valid_session
+      application = create(:application)
+      get :index
       expect(assigns(:applications)).to eq([application])
+    end
+
+    it "renders the :index view" do
+      get :index
+      expect(response).to render_template :index
     end
   end
 
+  # Sign in a user for the rest of the tests
+  before (:each) do
+    @user = create(:user)
+    sign_in @user
+  end 
+
   describe "GET #show" do
     it "assigns the requested application as @application" do
-      application = Application.create! valid_attributes
-      get :show, {:id => application.to_param}, valid_session
+      application = create(:application)
+      get :show, id: application
       expect(assigns(:application)).to eq(application)
+    end
+
+    it "renders the :show view" do
+      get :show, id: create(:application)
+      expect(response).to render_template :show
     end
   end
 
   describe "GET #new" do
     it "assigns a new application as @application" do
-      get :new, {}, valid_session
+      get :new
       expect(assigns(:application)).to be_a_new(Application)
+    end
+
+    it "renders the :new view" do
+      get :new
+      expect(response).to render_template :new
     end
   end
 
   describe "GET #edit" do
     it "assigns the requested application as @application" do
-      application = Application.create! valid_attributes
-      get :edit, {:id => application.to_param}, valid_session
+      application = create(:application)
+      get :edit, id: application
       expect(assigns(:application)).to eq(application)
+    end
+
+    it "renders the :edit view" do
+      application = create(:application)
+      get :edit, id: application
+      expect(response).to render_template :edit
     end
   end
 
@@ -71,89 +100,121 @@ RSpec.describe ApplicationsController, type: :controller do
     context "with valid params" do
       it "creates a new Application" do
         expect {
-          post :create, {:application => valid_attributes}, valid_session
+          post :create, application: attributes_for(:application)
         }.to change(Application, :count).by(1)
       end
 
       it "assigns a newly created application as @application" do
-        post :create, {:application => valid_attributes}, valid_session
+        post :create, application: attributes_for(:application)
         expect(assigns(:application)).to be_a(Application)
         expect(assigns(:application)).to be_persisted
       end
 
-      it "redirects to the created application" do
-        post :create, {:application => valid_attributes}, valid_session
-        expect(response).to redirect_to(Application.last)
+      it "redirects to the user profile" do
+        post :create, application: attributes_for(:application)
+        expect(response).to redirect_to(@user)
       end
     end
 
     context "with invalid params" do
+      it "does not save the new application" do
+        expect {
+          post :create, application: attributes_for(:application, :invalid)
+        }.to_not change(Application, :count)
+      end
+
       it "assigns a newly created but unsaved application as @application" do
-        post :create, {:application => invalid_attributes}, valid_session
+        post :create, application: attributes_for(:application, :invalid)
         expect(assigns(:application)).to be_a_new(Application)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:application => invalid_attributes}, valid_session
+        post :create, application: attributes_for(:application, :invalid)
         expect(response).to render_template("new")
       end
     end
   end
 
   describe "PUT #update" do
+    before(:each) do
+      @application = create(:application, oname: "Larry Smith")
+    end
+
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      it "locates the requested @application" do
+        put :update, id: @application, application: attributes_for(:application)
+        expect(assigns(:application)).to eq(@application)
+      end
 
       it "updates the requested application" do
-        application = Application.create! valid_attributes
-        put :update, {:id => application.to_param, :application => new_attributes}, valid_session
-        application.reload
-        skip("Add assertions for updated state")
+        put :update, id: @application, application: attributes_for(:application, 
+          oname: "Jimmy Bones", legalname: "Bones' Bongs")
+        @application.reload
+        expect(@application.oname).to eq("Jimmy Bones")
+        expect(@application.legalname).to eq("Bones' Bongs")
       end
 
-      it "assigns the requested application as @application" do
-        application = Application.create! valid_attributes
-        put :update, {:id => application.to_param, :application => valid_attributes}, valid_session
-        expect(assigns(:application)).to eq(application)
-      end
-
-      it "redirects to the application" do
-        application = Application.create! valid_attributes
-        put :update, {:id => application.to_param, :application => valid_attributes}, valid_session
-        expect(response).to redirect_to(application)
+      it "redirects to the user profile" do
+        put :update, id: @application, application: attributes_for(:application)
+        expect(response).to redirect_to(@user)
       end
     end
 
     context "with invalid params" do
-      it "assigns the application as @application" do
-        application = Application.create! valid_attributes
-        put :update, {:id => application.to_param, :application => invalid_attributes}, valid_session
-        expect(assigns(:application)).to eq(application)
+      it "locates the requested @application" do
+        put :update, id: @application, application: attributes_for(:application, :invalid)
+        expect(assigns(:application)).to eq(@application)
+      end
+
+      it "does not change @application's attributes" do
+        put :update, id: @application, application: attributes_for(:application, :invalid)
+        @application.reload
+        expect(@application.oname).to_not eq("Jimmy Bones")
       end
 
       it "re-renders the 'edit' template" do
-        application = Application.create! valid_attributes
-        put :update, {:id => application.to_param, :application => invalid_attributes}, valid_session
+        put :update, id: @application, application: attributes_for(:application, :invalid )
         expect(response).to render_template("edit")
       end
     end
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested application" do
-      application = Application.create! valid_attributes
+    before(:each) do
+      @application = create(:application)
+    end
+
+    it "deletes the @application" do
       expect {
-        delete :destroy, {:id => application.to_param}, valid_session
+        delete :destroy, id: @application
       }.to change(Application, :count).by(-1)
     end
 
-    it "redirects to the applications list" do
-      application = Application.create! valid_attributes
-      delete :destroy, {:id => application.to_param}, valid_session
-      expect(response).to redirect_to(applications_url)
+    it "redirects to the user profile" do
+      delete :destroy, id: @application
+      expect(response).to redirect_to(@user)
+    end
+
+    it "redirects to the applications #index" do
+      @admin = create(:admin)
+      sign_in @admin
+      delete :destroy, id: @application
+      expect(response).to redirect_to applications_url
     end
   end
-
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

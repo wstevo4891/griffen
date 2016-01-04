@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
-  skip_before_action :authorize, only: [:new, :create]  
-  before_action :set_document, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!, only: [:index]
+  before_action :authenticate_user! || :authenticate_user!, except: [:index]
 
   # GET /documents
   # GET /documents.json
@@ -10,11 +10,6 @@ class DocumentsController < ApplicationController
   
   def filename
     @document.business
-  end  
-  
-  def current_user
-    return unless session[:user_id]
-    @current_user ||= User.find(session[:user_id])
   end  
   
   def current_document

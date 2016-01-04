@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!, only: [:index]
+  before_action :authenticate_user! || :authenticate_user!, except: [:index]
 
   # GET /orders
   # GET /orders.json

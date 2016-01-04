@@ -1,5 +1,11 @@
 module Matchers
 
+  def have_picture(picture)
+    has_css?("#picture_#{picture.id}") && within("#picture_#{picture.id}") do
+      page.has_css?("img") && page.has_content?(picture.caption)
+    end
+  end
+
   def have_error_messages(*args)
     HaveErrorMessages.new(*args)
   end

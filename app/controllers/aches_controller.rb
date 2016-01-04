@@ -1,6 +1,6 @@
 class AchesController < ApplicationController
-  skip_before_action :authorize, only: [:new, :create]
-  before_action :set_ach, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!, only: [:index]
+  before_action :authenticate_user! || :authenticate_user!, except: [:index]
 
   # GET /aches
   # GET /aches.json
@@ -11,15 +11,22 @@ class AchesController < ApplicationController
   def filename
     @ach.legalname
   end  
-  
-  def current_user
-    return unless session[:user_id]
-    @current_user ||= User.find(session[:user_id])
-  end  
 
   # GET /aches/1
   # GET /aches/1.json
   def show
+    @ach = Ach.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: 'ACH_agreement',   # Excluding ".pdf" extension.
+               layout: 'pdf.html.erb',
+               template: 'aches/edit.pdf.erb',
+               wkhtmltopdf: 'bin/wkhtmltopdf',
+               page_height: '47in',
+               page_width: '12in'
+      end
+    end
   end
 
   # GET /aches/new
@@ -29,7 +36,7 @@ class AchesController < ApplicationController
 
   # GET /aches/1/edit
   def edit
-    @ach = Ach.find(params[:user_id])
+    @ach = Ach.find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do
@@ -47,7 +54,6 @@ class AchesController < ApplicationController
   # POST /aches.json
   def create
     @ach = Ach.new(ach_params)
-
     respond_to do |format|
       if @ach.save
         pdf = render_to_string pdf: "ACH_agreement.pdf", 
@@ -76,8 +82,9 @@ class AchesController < ApplicationController
   # PATCH/PUT /aches/1
   # PATCH/PUT /aches/1.json
   def update
+    @ach = Ach.find(params[:id])
     respond_to do |format|
-      if @ach.update(ach_params)
+      if @ach.update_attributes(ach_params)
         pdf = render_to_string pdf: "ACH_agreement.pdf", 
         layout: 'pdf.html.erb', 
         template: "aches/edit.pdf.erb", 
@@ -104,9 +111,13 @@ class AchesController < ApplicationController
   # DELETE /aches/1
   # DELETE /aches/1.json
   def destroy
-    @ach.destroy
+    Ach.find(params[:id]).destroy
     respond_to do |format|
-      format.html { redirect_to aches_url, notice: 'ACH was successfully destroyed.' }
+      if admin_signed_in?
+        format.html { redirect_to aches_url, notice: 'ACH was successfully deleted' }
+      else
+        format.html { redirect_to current_user, notice: 'ACH was successfully deleted' }
+      end
       format.json { head :no_content }
     end
   end

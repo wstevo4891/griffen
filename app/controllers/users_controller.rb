@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_admin! || :authenticate_user!, only: [:show]
+  before_action :authenticate_admin!, only: [:index]
 
   def index
     @users = User.all
@@ -6,9 +8,17 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    unless @user == current_user
-      redirect_to :back, :alert => "Access denied."
-    end
   end
 
+  def application
+  	@application = @user.application
+  end
+
+  def ach
+  	@ach = @user.ach
+  end
+
+  def document
+  	@document = @user.document
+  end
 end

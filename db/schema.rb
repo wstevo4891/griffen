@@ -184,6 +184,8 @@ ActiveRecord::Schema.define(version: 20151216063454) do
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "voidcheck"
+    t.string   "dlicense"
   end
 
   add_index "applications", ["user_id"], name: "index_applications_on_user_id"
@@ -235,8 +237,6 @@ ActiveRecord::Schema.define(version: 20151216063454) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "voidcheck"
-    t.string   "dlicense"
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"

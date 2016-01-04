@@ -18,52 +18,81 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe AchesController, type: :controller do
+RSpec.describe AchesController, type: :controller do 
 
   # This should return the minimal set of attributes required to create a valid
   # Ach. As you add validations to Ach, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) { @ach = create(:ach) }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) { @ach = build(:ach, :invalid) }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # AchesController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) { @user = create(:user) }
 
   describe "GET #index" do
+    # Sign in an admin to see Aches Index page
+    before(:each) do
+      @admin = create(:admin)
+      sign_in @admin
+    end
+
     it "assigns all aches as @aches" do
-      ach = Ach.create! valid_attributes
-      get :index, {}, valid_session
+      ach = create(:ach)
+      get :index
       expect(assigns(:aches)).to eq([ach])
     end
+
+    it "renders the :index view" do
+      get :index
+      expect(response).to render_template :index
+    end
   end
+  
+  # Sign in a user for the rest of the tests
+  before (:each) do
+    @user = create(:user)
+    sign_in @user
+  end 
 
   describe "GET #show" do
     it "assigns the requested ach as @ach" do
-      ach = Ach.create! valid_attributes
-      get :show, {:id => ach.to_param}, valid_session
+      ach = create(:ach)
+      get :show, id: ach
       expect(assigns(:ach)).to eq(ach)
+    end
+
+    it "renders the :show view" do
+      get :show, id: create(:ach)
+      expect(response).to render_template :show
     end
   end
 
   describe "GET #new" do
     it "assigns a new ach as @ach" do
-      get :new, {}, valid_session
+      get :new
       expect(assigns(:ach)).to be_a_new(Ach)
+    end
+
+    it "renders the :new view" do
+      get :new
+      expect(response).to render_template :new
     end
   end
 
   describe "GET #edit" do
     it "assigns the requested ach as @ach" do
-      ach = Ach.create! valid_attributes
-      get :edit, {:id => ach.to_param}, valid_session
+      ach = create(:ach)
+      get :edit, id: ach
       expect(assigns(:ach)).to eq(ach)
+    end
+
+    it "renders the :edit view" do
+      ach = create(:ach)
+      get :edit, id: ach
+      expect(response).to render_template :edit
     end
   end
 
@@ -71,88 +100,104 @@ RSpec.describe AchesController, type: :controller do
     context "with valid params" do
       it "creates a new Ach" do
         expect {
-          post :create, {:ach => valid_attributes}, valid_session
+          post :create, ach: attributes_for(:ach)
         }.to change(Ach, :count).by(1)
       end
 
       it "assigns a newly created ach as @ach" do
-        post :create, {:ach => valid_attributes}, valid_session
+        post :create, ach: attributes_for(:ach)
         expect(assigns(:ach)).to be_a(Ach)
         expect(assigns(:ach)).to be_persisted
       end
 
-      it "redirects to the created ach" do
-        post :create, {:ach => valid_attributes}, valid_session
-        expect(response).to redirect_to(Ach.last)
+      it "redirects to the user profile" do
+        post :create, ach: attributes_for(:ach)
+        expect(response).to redirect_to(@user)
       end
     end
 
     context "with invalid params" do
+      it "does not save the new ach" do
+        expect {
+          post :create, ach: attributes_for(:ach, :invalid)
+          }.to_not change(Ach, :count)
+      end
+
       it "assigns a newly created but unsaved ach as @ach" do
-        post :create, {:ach => invalid_attributes}, valid_session
+        post :create, ach: attributes_for(:ach, :invalid)
         expect(assigns(:ach)).to be_a_new(Ach)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:ach => invalid_attributes}, valid_session
+        post :create, ach: attributes_for(:ach, :invalid)
         expect(response).to render_template("new")
       end
     end
   end
 
   describe "PUT #update" do
+    before(:each) do
+      @ach = create(:ach, legalname: "Smith's Bongs")
+    end
+
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
       it "updates the requested ach" do
-        ach = Ach.create! valid_attributes
-        put :update, {:id => ach.to_param, :ach => new_attributes}, valid_session
-        ach.reload
-        skip("Add assertions for updated state")
+        put :update, id: @ach, ach: attributes_for(:ach, legalname: "Bones' Bongs")
+        @ach.reload
+        expect(@ach.legalname).to eq("Bones' Bongs")
       end
 
-      it "assigns the requested ach as @ach" do
-        ach = Ach.create! valid_attributes
-        put :update, {:id => ach.to_param, :ach => valid_attributes}, valid_session
-        expect(assigns(:ach)).to eq(ach)
+      it "locates the requested @ach" do
+        put :update, id: @ach, ach: attributes_for(:ach)
+        expect(assigns(:ach)).to eq(@ach)
       end
 
-      it "redirects to the ach" do
-        ach = Ach.create! valid_attributes
-        put :update, {:id => ach.to_param, :ach => valid_attributes}, valid_session
-        expect(response).to redirect_to(ach)
+      it "redirects to the user profile" do
+        put :update, id: @ach.to_param, ach: attributes_for(:ach)
+        expect(response).to redirect_to(@user)
       end
     end
 
     context "with invalid params" do
-      it "assigns the ach as @ach" do
-        ach = Ach.create! valid_attributes
-        put :update, {:id => ach.to_param, :ach => invalid_attributes}, valid_session
-        expect(assigns(:ach)).to eq(ach)
+      it "locates the requested @ach" do
+        put :update, id: @ach, ach: attributes_for(:ach, :invalid)
+        expect(assigns(:ach)).to eq(@ach)
+      end
+
+      it "does not change @ach's attributes" do
+        put :update, id: @ach, ach: attributes_for(:ach, :invalid)
+        @ach.reload
+        expect(@ach.legalname).to_not eq("Bones' Bongs")
       end
 
       it "re-renders the 'edit' template" do
-        ach = Ach.create! valid_attributes
-        put :update, {:id => ach.to_param, :ach => invalid_attributes}, valid_session
+        put :update, id: @ach, ach: attributes_for(:ach, :invalid)
         expect(response).to render_template("edit")
       end
     end
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested ach" do
-      ach = Ach.create! valid_attributes
+    before(:each) do
+      @ach = create(:ach)
+    end
+
+    it "deletes the requested ach" do
       expect {
-        delete :destroy, {:id => ach.to_param}, valid_session
+        delete :destroy, id: @ach
       }.to change(Ach, :count).by(-1)
     end
 
-    it "redirects to the aches list" do
-      ach = Ach.create! valid_attributes
-      delete :destroy, {:id => ach.to_param}, valid_session
-      expect(response).to redirect_to(aches_url)
+    it "redirects to the user profile" do
+      delete :destroy, id: @ach
+      expect(response).to redirect_to(@user)
+    end
+
+    it "redirects to the aches #index" do
+      @admin = create(:admin)
+      sign_in @admin
+      delete :destroy, id: @ach
+      expect(response).to redirect_to aches_url
     end
   end
 

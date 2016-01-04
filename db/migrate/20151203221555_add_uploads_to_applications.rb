@@ -1,6 +1,6 @@
 class AddUploadsToApplications < ActiveRecord::Migration
   def change
-    add_column :orders, :voidcheck, :string
-    add_column :orders, :dlicense, :string  	
+    add_column :applications, :voidcheck, :string
+    add_column :applications, :dlicense, :string  	
   end
 end

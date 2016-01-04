@@ -4,5 +4,9 @@ FactoryGirl.define do
   	pname "John Doe"
   	pphone { Faker::PhoneNumber.phone_number }
   	paddress { Faker::Address.street_address }
-  end  
+
+  	trait :invalid do
+  	  legalname nil
+  	end
+  end
 end

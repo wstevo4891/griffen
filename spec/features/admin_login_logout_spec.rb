@@ -24,13 +24,5 @@ RSpec.feature "Admin logs in and logs out" do
 
     expect(current_path).to eq(root_path)
     expect(page).to have_content "Signed out successfully"    
-  end
-
-  private
-
-  def login(email, password)
-    fill_in "Email", with: email
-    fill_in "Password", with: password
-    click_button "Log in"
-  end   
+  end  
 end
