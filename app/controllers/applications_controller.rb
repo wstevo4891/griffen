@@ -12,6 +12,38 @@ class ApplicationsController < ApplicationController
     @application.oname
   end
 
+  def save_path
+    Rails.root.join('pdfs',"#{filename}.merchant_application.pdf")
+  end
+
+  def render_pdf
+    render pdf: 'merchant_application',   # Excluding ".pdf" extension.
+         layout: 'pdf.html.erb',
+         template: 'applications/edit.pdf.erb',
+         wkhtmltopdf: 'bin/wkhtmltopdf',
+         page_height: '105in',
+         page_width: '10em'
+  end
+
+  def save_as_pdf
+    pdf = render_to_string pdf: "merchant_application.pdf", 
+                         layout: 'pdf.html.erb', 
+                         template: "applications/edit.pdf.erb", 
+                         encoding: "UTF-8", 
+                         wkhtmltopdf: 'bin/wkhtmltopdf', 
+                         page_height: '105in', 
+                         page_width: '10em'
+    File.open(save_path, 'wb') do |file|
+      file << pdf
+    end
+  end
+
+  def dropbox_upload(bool)
+    file = open(save_path)  
+    client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
+    response = client.put_file('Applications/' + filename + '.merchant_application.pdf', file, overwrite=bool)
+  end
+
   # GET /applications/1
   # GET /applications/1.json
   def show
@@ -19,12 +51,7 @@ class ApplicationsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: 'merchant_application',   # Excluding ".pdf" extension.
-               layout: 'pdf.html.erb',
-               template: 'applications/show.pdf.erb',
-               wkhtmltopdf: 'bin/wkhtmltopdf',
-               page_height: '105in',
-               page_width: '10em'
+        render_pdf
       end         
     end  
   end
@@ -40,12 +67,7 @@ class ApplicationsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: 'merchant_application',   # Excluding ".pdf" extension.
-               layout: 'pdf.html.erb',
-               template: 'applications/edit.pdf.erb',
-               wkhtmltopdf: 'bin/wkhtmltopdf',
-               page_height: '105in',
-               page_width: '10em'
+        render_pdf
       end         
     end 
   end
@@ -57,20 +79,8 @@ class ApplicationsController < ApplicationController
 
     respond_to do |format|
       if @application.save
-        pdf = render_to_string pdf: "merchant_application.pdf", 
-                               layout: 'pdf.html.erb', 
-                               template: "applications/edit.pdf.erb", 
-                               encoding: "UTF-8", 
-                               wkhtmltopdf: 'bin/wkhtmltopdf', 
-                               page_height: '105in', 
-                               page_width: '10em'
-        save_path = Rails.root.join('pdfs',"#{filename}.merchant_application.pdf")
-        File.open(save_path, 'wb') do |file|
-          file << pdf
-        end
-        file = open(save_path)  
-        client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
-        response = client.put_file('Applications/' + filename + '.merchant_application.pdf', file)         
+        save_as_pdf
+        dropbox_upload(false)   
         # applicationNotifier.received(@application).deliver_now
         format.html { redirect_to current_user, notice: "Thank you for completing the merchant application" }
         format.json { render :show, status: :created, location: @application }  
@@ -87,20 +97,8 @@ class ApplicationsController < ApplicationController
     @application = Application.find(params[:id])
     respond_to do |format|
       if @application.update_attributes(application_params)
-        pdf = render_to_string pdf: "merchant_application.pdf", 
-                               layout: 'pdf.html.erb', 
-                               template: "applications/edit.pdf.erb", 
-                               encoding: "UTF-8", 
-                               wkhtmltopdf: 'bin/wkhtmltopdf', 
-                               page_height: '105in', 
-                               page_width: '10em'
-        save_path = Rails.root.join('pdfs',"#{filename}.merchant_application.pdf")
-        File.open(save_path, 'wb') do |file|
-          file << pdf
-        end  
-        file = open(save_path)  
-        client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
-        response = client.put_file('Applications/' + filename + '.merchant_application.pdf', file, overwrite=true)             
+        save_as_pdf
+        dropbox_upload(true)            
         format.html { redirect_to current_user, notice: 'Application was successfully updated.' }
         format.json { render :show, status: :ok, location: @application }
       else

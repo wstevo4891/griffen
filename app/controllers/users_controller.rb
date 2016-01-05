@@ -21,4 +21,8 @@ class UsersController < ApplicationController
   def document
   	@document = @user.document
   end
+
+  def order
+    @order = @user.order
+  end
 end

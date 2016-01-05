@@ -10,7 +10,39 @@ class AchesController < ApplicationController
   
   def filename
     @ach.legalname
-  end  
+  end
+
+  def save_path
+    Rails.root.join('pdfs',"#{filename}.ACH_agreement.pdf")
+  end
+
+  def render_pdf
+    render pdf: 'ACH_agreement',
+           layout: 'pdf.html.erb',
+           template: 'aches/edit.pdf.erb',
+           wkhtmltopdf: 'bin/wkhtmltopdf',
+           page_height: '47in',
+           page_width: '12in'
+  end
+
+  def save_as_pdf
+    pdf = render_to_string pdf: "ACH_agreement.pdf", 
+                           layout: 'pdf.html.erb', 
+                           template: "aches/edit.pdf.erb", 
+                           encoding: "UTF-8", 
+                           wkhtmltopdf: 'bin/wkhtmltopdf', 
+                           page_height: '47in', 
+                           page_width: '12in'
+    File.open(save_path, 'wb') do |file|
+      file << pdf
+    end
+  end
+
+  def dropbox_upload(bool)
+    file = open(save_path)  
+    client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
+    response = client.put_file('Applications/' + filename + '.ACH_agreement.pdf', file, overwrite=bool)
+  end
 
   # GET /aches/1
   # GET /aches/1.json
@@ -19,12 +51,7 @@ class AchesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: 'ACH_agreement',   # Excluding ".pdf" extension.
-               layout: 'pdf.html.erb',
-               template: 'aches/edit.pdf.erb',
-               wkhtmltopdf: 'bin/wkhtmltopdf',
-               page_height: '47in',
-               page_width: '12in'
+        render_pdf
       end
     end
   end
@@ -40,12 +67,7 @@ class AchesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: 'ACH_agreement',   # Excluding ".pdf" extension.
-               layout: 'pdf.html.erb',
-               template: 'aches/edit.pdf.erb',
-               wkhtmltopdf: 'bin/wkhtmltopdf',
-               page_height: '47in',
-               page_width: '12in'
+        render_pdf
       end
     end               
   end
@@ -56,20 +78,8 @@ class AchesController < ApplicationController
     @ach = Ach.new(ach_params)
     respond_to do |format|
       if @ach.save
-        pdf = render_to_string pdf: "ACH_agreement.pdf", 
-        layout: 'pdf.html.erb', 
-        template: "aches/edit.pdf.erb", 
-        encoding: "UTF-8", 
-        wkhtmltopdf: 'bin/wkhtmltopdf', 
-        page_height: '47in', 
-        page_width: '12in'
-        save_path = Rails.root.join('pdfs',"#{filename}.ACH_agreement.pdf")
-        File.open(save_path, 'wb') do |file|
-          file << pdf
-        end  
-        file = open(save_path)  
-        client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
-        response = client.put_file('Applications/' + filename + '.ACH_agreement.pdf', file)    
+        save_as_pdf 
+        dropbox_upload(false)   
         format.html { redirect_to current_user, notice: 'ACH Agreement was successfully created.' }
         format.json { render :show, status: :created, location: @ach }
       else
@@ -85,20 +95,8 @@ class AchesController < ApplicationController
     @ach = Ach.find(params[:id])
     respond_to do |format|
       if @ach.update_attributes(ach_params)
-        pdf = render_to_string pdf: "ACH_agreement.pdf", 
-        layout: 'pdf.html.erb', 
-        template: "aches/edit.pdf.erb", 
-        encoding: "UTF-8", 
-        wkhtmltopdf: 'bin/wkhtmltopdf', 
-        page_height: '47in', 
-        page_width: '12in'
-        save_path = Rails.root.join('pdfs',"#{filename}.ACH_agreement.pdf")
-        File.open(save_path, 'wb') do |file|
-          file << pdf
-        end     
-        file = open(save_path)  
-        client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
-        response = client.put_file('Applications/' + filename + '.ACH_agreement.pdf', file, overwrite=true)              
+        save_as_pdf    
+        dropbox_upload(true)             
         format.html { redirect_to current_user, notice: 'ACH was successfully updated.' }
         format.json { render :show, status: :ok, location: @ach }
       else

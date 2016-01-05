@@ -10,11 +10,39 @@ class DocumentsController < ApplicationController
   
   def filename
     @document.business
-  end  
-  
-  def current_document
-    @current_document ||= Document.find(session[:id])
-  end  
+  end
+
+  def save_path
+    Rails.root.join('pdfs',"#{filename}.Required_Documents.pdf")
+  end
+
+  def render_pdf
+    render pdf: 'Required_Documents',   # Excluding ".pdf" extension.
+           layout: 'pdf.html.erb',
+           template: 'documents/edit.pdf.erb',
+           wkhtmltopdf: 'bin/wkhtmltopdf',
+           page_height: '130',
+           page_width: '10em'
+  end
+
+  def save_as_pdf
+    pdf = render_to_string pdf: "Required_Documents.pdf", 
+                           layout: 'pdf.html.erb', 
+                           template: "documents/edit.pdf.erb", 
+                           encoding: "UTF-8", 
+                           wkhtmltopdf: 'bin/wkhtmltopdf', 
+                           page_height: '75in', 
+                           page_width: '10em'
+    File.open(save_path, 'wb') do |file|
+      file << pdf
+    end
+  end
+
+  def dropbox_upload(bool)
+    file = open(save_path)
+    client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
+    response = client.put_file('Applications/' + filename + '.Required_Documents.pdf', file, overwrite=bool)
+  end
 
   # GET /documents/1
   # GET /documents/1.json
@@ -34,12 +62,7 @@ class DocumentsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: 'Required_Documents',   # Excluding ".pdf" extension.
-               layout: 'pdf.html.erb',
-               template: 'documents/edit.pdf.erb',
-               wkhtmltopdf: 'bin/wkhtmltopdf',
-               page_height: '130',
-               page_width: '10em'
+        render_pdf
       end
     end     
   end
@@ -51,20 +74,8 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        pdf = render_to_string pdf: "Required_Documents.pdf", 
-                               layout: 'pdf.html.erb', 
-                               template: "documents/edit.pdf.erb", 
-                               encoding: "UTF-8", 
-                               wkhtmltopdf: 'bin/wkhtmltopdf', 
-                               page_height: '75in', 
-                               page_width: '10em'
-        save_path = Rails.root.join('pdfs',"#{filename}.Required_Documents.pdf")
-        File.open(save_path, 'wb') do |file|
-          file << pdf
-        end   
-        file = open(save_path)  
-        client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
-        response = client.put_file('Applications/' + filename + '.Required_Documents.pdf', file)                
+        save_as_pdf  
+        dropbox_upload(false)               
         format.html { redirect_to current_user, notice: 'Documents were successfully uploaded' }
         format.json { render :show, status: :created, location: @document }
       else
@@ -81,20 +92,8 @@ class DocumentsController < ApplicationController
     
     respond_to do |format|
       if @document.update_attributes(document_params)
-        pdf = render_to_string pdf: "Required_Documents.pdf", 
-                               layout: 'pdf.html.erb', 
-                               template: "documents/edit.pdf.erb", 
-                               encoding: "UTF-8", 
-                               wkhtmltopdf: 'bin/wkhtmltopdf', 
-                               page_height: '75in', 
-                               page_width: '10em'
-        save_path = Rails.root.join('pdfs',"#{filename}.Required_Documents.pdf")
-        File.open(save_path, 'wb') do |file|
-          file << pdf
-        end   
-        file = open(save_path)  
-        client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
-        response = client.put_file('Applications/' + filename + '.Required_Documents.pdf', file, overwrite=true)               
+        save_as_pdf 
+        dropbox_upload(true)               
         format.html { redirect_to current_user, notice: 'Documents were successfully updated.' }
         format.json { render :show, status: :ok, location: @document }
       else

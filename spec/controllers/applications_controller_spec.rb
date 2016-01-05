@@ -29,9 +29,9 @@ RSpec.describe ApplicationsController, type: :controller do
 
   describe "GET #show" do
     it "locates the requested @application" do
-      application = create(:application)
-      get :show, id: application
-      expect(assigns(:application)).to eq(application)
+      @application = create(:application)
+      get :show, id: @application
+      expect(assigns(:application)).to eq(@application)
     end
 
     it "renders the :show view" do
@@ -54,12 +54,12 @@ RSpec.describe ApplicationsController, type: :controller do
 
   describe "GET #edit" do
     before(:each) do
-      application = create(:application)
-      get :edit, id: application
+      @application = create(:application)
+      get :edit, id: @application
     end
 
     it "locates the requested @application" do
-      expect(assigns(:application)).to eq(application)
+      expect(assigns(:application)).to eq(@application)
     end
 
     it "renders the :edit view" do
