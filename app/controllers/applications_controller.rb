@@ -1,6 +1,7 @@
 class ApplicationsController < ApplicationController
+  before_action :set_application, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin!, only: [:index]
-  before_action :authenticate_user! || :authenticate_user!, except: [:index]
+  before_action :authenticate_user! || :authenticate_admin!, except: [:index]
 
   # GET /applications
   # GET /applications.json
@@ -22,7 +23,7 @@ class ApplicationsController < ApplicationController
          template: 'applications/edit.pdf.erb',
          wkhtmltopdf: 'bin/wkhtmltopdf',
          page_height: '105in',
-         page_width: '10em'
+         page_width: '12em'
   end
 
   def save_as_pdf
@@ -32,7 +33,7 @@ class ApplicationsController < ApplicationController
                          encoding: "UTF-8", 
                          wkhtmltopdf: 'bin/wkhtmltopdf', 
                          page_height: '105in', 
-                         page_width: '10em'
+                         page_width: '12em'
     File.open(save_path, 'wb') do |file|
       file << pdf
     end
@@ -41,13 +42,12 @@ class ApplicationsController < ApplicationController
   def dropbox_upload(bool)
     file = open(save_path)  
     client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
-    response = client.put_file('Applications/' + filename + '.merchant_application.pdf', file, overwrite=bool)
+    response = client.put_file('Applications/Merchant/' + filename + '.merchant_application.pdf', file, overwrite=bool)
   end
 
   # GET /applications/1
   # GET /applications/1.json
   def show
-    @application = Application.find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do
@@ -63,7 +63,6 @@ class ApplicationsController < ApplicationController
 
   # GET /applications/1/edit
   def edit
-    @application = Application.find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do
@@ -82,7 +81,11 @@ class ApplicationsController < ApplicationController
         save_as_pdf
         dropbox_upload(false)   
         # applicationNotifier.received(@application).deliver_now
-        format.html { redirect_to current_user, notice: "Thank you for completing the merchant application" }
+        if admin_signed_in?
+          format.html { redirect_to applications_url, notice: "Application was successfully created" }
+        else
+          format.html { redirect_to current_user, notice: "Thank you for completing the merchant application" }
+        end
         format.json { render :show, status: :created, location: @application }  
       else
         format.html { render :new }
@@ -94,12 +97,15 @@ class ApplicationsController < ApplicationController
   # PATCH/PUT /applications/1
   # PATCH/PUT /applications/1.json
   def update
-    @application = Application.find(params[:id])
     respond_to do |format|
       if @application.update_attributes(application_params)
         save_as_pdf
-        dropbox_upload(true)            
-        format.html { redirect_to current_user, notice: 'Application was successfully updated.' }
+        dropbox_upload(true)
+        if admin_signed_in?
+          format.html { redirect_to applications_url, notice: 'Application was successfully updated' }
+        else        
+          format.html { redirect_to current_user, notice: 'Application was successfully updated' }
+        end
         format.json { render :show, status: :ok, location: @application }
       else
         format.html { render :edit }
@@ -111,12 +117,12 @@ class ApplicationsController < ApplicationController
   # DELETE /applications/1
   # DELETE /applications/1.json
   def destroy
-    Application.find(params[:id]).destroy
+    @application.destroy
     respond_to do |format|
       if admin_signed_in?
-        format.html { redirect_to applications_url, notice: 'Application was successfully deleted' }
+        format.html { redirect_to applications_url, notice: 'Application was deleted' }
       else
-        format.html { redirect_to current_user, notice: 'Application was successfully deleted'}
+        format.html { redirect_to current_user, notice: 'Application was deleted'}
       end
       format.json { head :no_content }
     end

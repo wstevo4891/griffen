@@ -57,8 +57,8 @@
 
   <div class="button-row">
     <% if @user.application %>
-      <%= link_to "EDIT", edit_application_path(@user.application), class: "btn-black btn-lg" %>
-      <%= link_to 'DELETE', application, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+      <%= link_to "EDIT", edit_application_path(@application), class: "btn-black btn-lg" %>
+      <%= link_to 'DELETE', @application, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
     <% else %>
       <%= link_to "START", new_application_path, class: "btn-black btn-lg" %>
     <% end %>  
@@ -95,7 +95,7 @@
 <div class="break-black"></div>
 
 <div class='sign-up-button'>
-  <%= link_to "SUBMIT ORDER", new_order_path, class: "btn-black btn-lg" %>
+  <%= link_to "START ORDER", new_order_path, class: "btn-black btn-lg" %>
 </div>
 
 </div>

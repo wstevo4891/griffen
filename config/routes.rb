@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'admin' => 'pages#admin'
 
   devise_for :admins
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   resources :users
   resources :applications
@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   resources :documents
   resources :line_items
   resources :members
-  resources :shareholders 
+  resources :shareholders
+  resources :products
 end

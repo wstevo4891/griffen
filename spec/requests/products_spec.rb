@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "LineItems", type: :request do
-  describe "GET /line_items" do
+RSpec.describe "Products", type: :request do
+  describe "GET /products" do
     it "works! (now write some real specs)" do
-      get line_items_path
+      get products_path
       expect(response).to have_http_status(200)
     end
   end

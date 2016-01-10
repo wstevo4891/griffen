@@ -1,49 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Dropbox Send Forms</title>
+  <title>Griffen Financial</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-  <div class="navbar navbar-inverse navbar-static-top">
-  	<div class="container">
-  	  <div class="navbar-header">
-        <a href="#" class='navbar-brand'>
-  	      Vectron X-17 Wrist Computer
-        </a>
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-      	  <span class="sr-only">Toggle Navigation</span>
-      	  <span class='icon-bar'></span>
-          <span class='icon-bar'></span>
-          <span class='icon-bar'></span>
-        </button>
+  <%= render 'layouts/mobile_menu' %>
+  
+  <div id="wrapper">
+    <div id="mobile-head" class="navbar-inverse hidden-md hidden-lg">
+      <button type="button" class="btn btn-default" id="toggle-menu">
+        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+      </button>
+    </div>    
+
+    <div class="container">
+      <div class="row">
+        <div id="logo">
+          <%= image_tag("GriffenLogo.jpg") %> 
+        </div>
       </div>
-      <ul class="nav navbar-nav navbar-right collapse navbar-collapse">
-  	    <li><a href="#">Home</a></li>
-  	    <li><a href="#">Products</a></li>
-  	    <li><a href="#">Contact</a></li>
-      </ul>
+  
+      <div class="row hidden-md hidden-lg" id="mobile-head-contact">
+        <p class="col-xs-12">500 YALE AVE N</p>
+        <p class="col-xs-12">SEATTLE, WA 98109</p>
+        <p class="col-xs-12">999-888-7777</p> 
+      </div>
+
+      <div class="row hidden-xs hidden-sm"> 
+        <div id="head-contact">
+          <p>500 YALE AVE N</p>
+          <p id="contact-center">SEATTLE, WA 98109</p>
+          <p>999-888-7777</p>
+        </div>          
+      </div>
+
+      <div class='row hidden-xs hidden-sm'> 
+        <%= render 'layouts/navigation' %> 
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+          <% if admin_signed_in? %>
+            <%= "<p id=\"godModeNotice\">GOD MODE ACTIVE!</p>".html_safe if current_admin.god_mode? %>
+          <% end %>
+          <% if notice %>
+            <p class="alert alert-success"><%= notice %></p>
+          <% end %>
+          <% if alert %>
+            <p class="alert alert-danger"><%= alert %></p>
+          <% end %>
+        </div>
+      </div>
+      <%= yield %>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <%=  render 'layouts/footer' %>
+      </div>
     </div>
   </div>
-
-  <div class= "container">
-    <%= yield %>
-  </div>
-
-  <footer class="row">
-  	<div class="container">
-      <h4>Links</h4>
-      <ul class="list-unstyled">
-  	    <li><a href="#">Home</a></li>
-  	    <li><a href="#">Products</a></li>
-  	    <li><a href="#">Contact</a></li>
-      </ul>
-    </div>
-  </footer>
-
 </body>
 </html>

@@ -51,7 +51,7 @@ RSpec.feature "User cannot access admin page" do
   end
 
   scenario "products index" do
-    visit "/line_items"
+    visit "/products"
 
   	expect(current_path).to eq(new_admin_session_path)
   	expect(page).to have_content("Please Log in")

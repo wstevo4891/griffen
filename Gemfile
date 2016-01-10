@@ -4,8 +4,6 @@ ruby '2.2.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', group: :development
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Bootstrap Sass
@@ -54,6 +52,13 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'exception_handler', '~> 0.4'
 gem 'responders', '~> 2.0'
 
+group :development do
+  gem 'sqlite3'
+  gem 'better_errors'
+  gem 'meta_request'
+  gem 'quiet_assets'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -62,11 +67,12 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.5'
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
+  gem 'pry-rails'
   gem 'puffing-billy'
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'better_errors'
+  gem 'awesome_print', require: 'ap'
 end
 
 group :test do
@@ -76,6 +82,7 @@ group :test do
   gem 'email_spec'  
   gem 'guard-rspec'
   gem 'launchy'
+  gem 'vcr'
   gem 'database_cleaner'
 end
 

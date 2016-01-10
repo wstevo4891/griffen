@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216063454) do
+ActiveRecord::Schema.define(version: 20160107195803) do
 
   create_table "access_tokens", force: :cascade do |t|
     t.string   "locator",          null: false
@@ -211,11 +211,6 @@ ActiveRecord::Schema.define(version: 20151216063454) do
     t.string   "combpra"
   end
 
-  create_table "line_items", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "members", force: :cascade do |t|
     t.string   "mname"
     t.string   "memid"
@@ -232,14 +227,21 @@ ActiveRecord::Schema.define(version: 20151216063454) do
     t.string   "business"
     t.string   "email"
     t.string   "phone"
-    t.string   "product"
-    t.string   "payment"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"
+
+  create_table "products", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image_url"
+    t.decimal  "price",       precision: 8, scale: 2
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
 
   create_table "shareholders", force: :cascade do |t|
     t.string   "sname"

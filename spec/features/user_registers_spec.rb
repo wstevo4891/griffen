@@ -49,10 +49,12 @@ RSpec.feature "User registers" do
       click_on "Register"
 
       expect(page).to have_error_messages "Firstname can't be blank", 
-      "Lastname can't be blank", "Email can't be blank", "Business can't 
-      be blank", "Phone can't be blank", "Password can't be blank", "Password 
-      is not strong enough. Consider adding a number, symbols or more letters 
-      to make it stronger."
+                                          "Lastname can't be blank", 
+                                          "Email can't be blank", 
+                                          "Business can't be blank", 
+                                          "Phone can't be blank", 
+                                          "Password can't be blank", 
+                                          "Password is not strong enough. Consider adding a number, symbols or more letters to make it stronger."
     end
 
     scenario "incorrect password confirmation" do

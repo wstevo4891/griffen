@@ -1,0 +1,42 @@
+<%= form_for(@product) do |f| %>
+
+<div class="col-xs-10 col-xs-offset-1">
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  </div>
+
+<div class="jumbotron col-sm-10 col-md-offset-1">
+
+<div class="row">
+  <div class="form-group col-sm-8">
+    <%= f.label :title %><br>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group col-sm-8">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, rows: 6, class: "form-control" %>
+  </div>
+  <div class="form-group col-sm-8">
+    <%= f.label :image_url %><br>
+    <%= f.text_field :image_url, class: "form-control"  %>
+  </div>
+  <div class="form-group col-sm-8">
+    <%= f.label :price %><br>
+    <%= f.text_field :price, class: "form-control"  %>
+  </div>
+</div>
+
+<div class="row actions">
+  <%= f.submit "Create Product", class: "btn-black btn-lg" %>
+</div>
+</div>
+<% end %>

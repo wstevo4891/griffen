@@ -1,6 +1,7 @@
 class DocumentsController < ApplicationController
+  before_action :set_document, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin!, only: [:index]
-  before_action :authenticate_user! || :authenticate_user!, except: [:index]
+  before_action :authenticate_user! || :authenticate_admin!, except: [:index]
 
   # GET /documents
   # GET /documents.json
@@ -41,13 +42,12 @@ class DocumentsController < ApplicationController
   def dropbox_upload(bool)
     file = open(save_path)
     client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
-    response = client.put_file('Applications/' + filename + '.Required_Documents.pdf', file, overwrite=bool)
+    response = client.put_file('Applications/Documents/' + filename + '.Required_Documents.pdf', file, overwrite=bool)
   end
 
   # GET /documents/1
   # GET /documents/1.json
   def show
-    @document = Document.find(params[:id])
   end
 
   # GET /documents/new
@@ -58,7 +58,6 @@ class DocumentsController < ApplicationController
 
   # GET /documents/1/edit
   def edit
-    @document = Document.find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do
@@ -71,12 +70,15 @@ class DocumentsController < ApplicationController
   # POST /documents.json
   def create
     @document = Document.new(document_params)   
-
     respond_to do |format|
       if @document.save
         save_as_pdf  
-        dropbox_upload(false)               
-        format.html { redirect_to current_user, notice: 'Documents were successfully uploaded' }
+        dropbox_upload(false)
+        if admin_signed_in?
+          format.html { redirect_to documents_url, notice: 'Documents were successfully uploaded' }
+        else            
+          format.html { redirect_to current_user, notice: 'Thank you for submitting the required documents' }
+        end
         format.json { render :show, status: :created, location: @document }
       else
         format.html { render :new }
@@ -87,14 +89,16 @@ class DocumentsController < ApplicationController
 
   # PATCH/PUT /documents/1
   # PATCH/PUT /documents/1.json
-  def update
-    @document = Document.find(params[:id])
-    
+  def update    
     respond_to do |format|
       if @document.update_attributes(document_params)
         save_as_pdf 
-        dropbox_upload(true)               
-        format.html { redirect_to current_user, notice: 'Documents were successfully updated.' }
+        dropbox_upload(true)
+        if admin_signed_in?
+          format.html { redirect_to documents_url, notice: 'Documents were successfully updated' }
+        else              
+          format.html { redirect_to current_user, notice: 'Documents were successfully updated' }
+        end
         format.json { render :show, status: :ok, location: @document }
       else
         format.html { render :edit }
@@ -106,12 +110,12 @@ class DocumentsController < ApplicationController
   # DELETE /documents/1
   # DELETE /documents/1.json
   def destroy
-    Document.find(params[:id]).destroy
+    @document.destroy
     respond_to do |format|
       if admin_signed_in?
-        format.html { redirect_to documents_url, notice: 'Documents were successfully destroyed.' }
+        format.html { redirect_to documents_url, notice: 'Documents were deleted' }
       else
-        format.html { redirect_to current_user, notice: 'Documents were successfully destroyed.' }
+        format.html { redirect_to current_user, notice: 'Documents were deleted' }
       end
       format.json { head :no_content }
     end

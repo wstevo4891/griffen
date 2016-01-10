@@ -5,5 +5,9 @@
 </div>
 
 <div class="row sign-up-button">
-  <%= link_to 'Back', applications_path, class: "btn-black btn-lg" %>
+  <% if admin_signed_in? %>
+    <%= link_to 'Back', applications_path, class: "btn-black btn-lg" %>
+  <% else %>
+    <%= link_to 'Back', current_user, class: "btn-black btn-lg" %>
+  <% end %>
 </div>

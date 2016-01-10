@@ -1,6 +1,12 @@
+<div class="row">
 <h1>Editing Order</h1>
-
+</br>
 <%= render 'form' %>
+</div>
 
-<%= link_to 'Show', @order %> |
-<%= link_to 'Back', orders_path %>
+<div class="row sign-up-button">
+  <% if admin_signed_in?
+    <%= link_to 'Back', orders_path, class: "btn-black btn-lg" %>
+  <% else %>
+    <%= link_to 'Back', current_user, class: "btn-black btn-lg" %>
+</div>

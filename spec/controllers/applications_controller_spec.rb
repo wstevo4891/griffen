@@ -10,9 +10,9 @@ RSpec.describe ApplicationsController, type: :controller do
     end
 
     it "assigns all applications as @applications" do
-      application = create(:application)
+      @application = create(:application)
       get :index
-      expect(assigns(:applications)).to eq([application])
+      expect(assigns(:applications)).to eq([@application])
     end
 
     it "renders the :index view" do
@@ -175,7 +175,7 @@ RSpec.describe ApplicationsController, type: :controller do
       expect(response).to redirect_to(@user)
     end
 
-    it "redirects to the applications #index" do
+    it "redirects to the applications :index" do
       @admin = create(:admin)
       sign_in @admin
       delete_app

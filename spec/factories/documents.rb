@@ -8,5 +8,13 @@ FactoryGirl.define do
   	trait :invalid do
   	  name nil
   	end
+
+  	trait :with_members do
+  	  build(:member)
+  	end
+
+  	trait :with_shareholders do
+  	  build(:shareholder)
+  	end
   end  
 end

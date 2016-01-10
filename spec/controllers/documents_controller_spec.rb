@@ -28,14 +28,16 @@ RSpec.describe DocumentsController, type: :controller do
   end
 
   describe "GET #show" do
+    before(:each) do
+      @document = create(:document)
+      get :show, id: @document
+    end
+
   	it "locates the requested @document" do
-  	  @document = create(:document)
-  	  get :show, id: @document
   	  expect(assigns(:document)).to eq(@document)
   	end
 
   	it "renders the :show view" do
-  	  get :show, id: create(:document)
   	  expect(response).to render_template :show
   	end
   end

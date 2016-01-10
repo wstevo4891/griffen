@@ -5,8 +5,6 @@ class CreateOrders < ActiveRecord::Migration
     	t.string :business
     	t.string :email
     	t.string :phone
-        t.string :product
-        t.string :payment
     	t.integer :user_id
 
         t.timestamps null: false

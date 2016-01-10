@@ -1,6 +1,7 @@
 class AchesController < ApplicationController
+  before_action :set_ach, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin!, only: [:index]
-  before_action :authenticate_user! || :authenticate_user!, except: [:index]
+  before_action :authenticate_user! || :authenticate_admin!, except: [:index]
 
   # GET /aches
   # GET /aches.json
@@ -41,13 +42,12 @@ class AchesController < ApplicationController
   def dropbox_upload(bool)
     file = open(save_path)  
     client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
-    response = client.put_file('Applications/' + filename + '.ACH_agreement.pdf', file, overwrite=bool)
+    response = client.put_file('Applications/ACH/' + filename + '.ACH_agreement.pdf', file, overwrite=bool)
   end
 
   # GET /aches/1
   # GET /aches/1.json
   def show
-    @ach = Ach.find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do
@@ -63,7 +63,6 @@ class AchesController < ApplicationController
 
   # GET /aches/1/edit
   def edit
-    @ach = Ach.find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do
@@ -79,8 +78,12 @@ class AchesController < ApplicationController
     respond_to do |format|
       if @ach.save
         save_as_pdf 
-        dropbox_upload(false)   
-        format.html { redirect_to current_user, notice: 'ACH Agreement was successfully created.' }
+        dropbox_upload(false)
+        if admin_signed_in?
+          format.html { redirect_to aches_url, notice: 'ACH Agreement was successfully completed' }
+        else
+          format.html { redirect_to current_user, notice: 'ACH Agreement was successfully completed' }
+        end
         format.json { render :show, status: :created, location: @ach }
       else
         format.html { render :new }
@@ -92,12 +95,15 @@ class AchesController < ApplicationController
   # PATCH/PUT /aches/1
   # PATCH/PUT /aches/1.json
   def update
-    @ach = Ach.find(params[:id])
     respond_to do |format|
       if @ach.update_attributes(ach_params)
         save_as_pdf    
-        dropbox_upload(true)             
-        format.html { redirect_to current_user, notice: 'ACH was successfully updated.' }
+        dropbox_upload(true)
+        if admin_signed_in?
+          format.html { redirect_to aches_url, notice: 'ACH was successfully updated' }
+        else
+          format.html { redirect_to current_user, notice: 'ACH was successfully updated' }
+        end
         format.json { render :show, status: :ok, location: @ach }
       else
         format.html { render :edit }
@@ -109,7 +115,7 @@ class AchesController < ApplicationController
   # DELETE /aches/1
   # DELETE /aches/1.json
   def destroy
-    Ach.find(params[:id]).destroy
+    @ach.destroy
     respond_to do |format|
       if admin_signed_in?
         format.html { redirect_to aches_url, notice: 'ACH was successfully deleted' }

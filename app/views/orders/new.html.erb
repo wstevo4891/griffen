@@ -1,5 +1,13 @@
-<h1>New Order</h1>
+<div class="row">
+  <h1>New Order</h1>
+  </br>
+  <%= render 'form' %>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', orders_path %>
+<div class="row sign-up-button">
+<% if admin_signed_in? %>
+  <%= link_to 'Back', orders_path, class: "btn-black btn-lg" %>
+<% else %>
+  <%= link_to 'Back', current_user, class: "btn-black btn-lg" %>
+<% end %>
+</div>

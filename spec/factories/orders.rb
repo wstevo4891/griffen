@@ -4,7 +4,9 @@ FactoryGirl.define do
   	business { Faker::Company.name }
   	sequence(:email) { |n| "user#{n}@example.tld" }
   	phone { Faker::PhoneNumber.phone_number }
-  	product "Verifone 610"
-  	payment "Credit Card"
+
+  	trait :invalid do
+  	  name nil
+  	end
   end
 end
