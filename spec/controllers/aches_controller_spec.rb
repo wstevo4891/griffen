@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe AchesController, type: :controller do 
+  after(:all) do
+    File.delete(Rails.root.join('pdfs',"Emerald City Greens.ACH_agreement.pdf"))
+    File.delete(Rails.root.join('pdfs',"Bones' Bongs.ACH_agreement.pdf"))
+  end
 
   describe "GET #index" do
     # Sign in an admin to see Aches Index page
@@ -67,7 +71,7 @@ RSpec.describe AchesController, type: :controller do
   end
 
   describe "POST #create" do
-    context "with valid params" do
+    context "with valid params", :vcr do
       let(:post_create) { post :create, ach: attributes_for(:ach) }
 
       it "creates a new Ach" do
@@ -114,7 +118,7 @@ RSpec.describe AchesController, type: :controller do
       @ach = create(:ach, legalname: "Smith's Bongs")
     end
 
-    context "with valid params" do
+    context "with valid params", :vcr do
       let(:put_update) { put :update, id: @ach, ach: attributes_for(:ach) }
 
       it "updates the requested ach" do

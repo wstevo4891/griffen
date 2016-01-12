@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :ach do
-  	legalname { Faker::Company.name }
+  	legalname "Emerald City Greens"
   	pname "John Doe"
   	pphone { Faker::PhoneNumber.phone_number }
   	paddress { Faker::Address.street_address }

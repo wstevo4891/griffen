@@ -19,21 +19,21 @@ class ApplicationsController < ApplicationController
 
   def render_pdf
     render pdf: 'merchant_application',   # Excluding ".pdf" extension.
-         layout: 'pdf.html.erb',
-         template: 'applications/edit.pdf.erb',
-         wkhtmltopdf: 'bin/wkhtmltopdf',
-         page_height: '105in',
-         page_width: '12em'
+        layout: 'pdf.html.erb',
+      template: 'applications/edit.pdf.erb',
+   wkhtmltopdf: 'bin/wkhtmltopdf',
+   page_height: '105in',
+    page_width: '12em'
   end
 
   def save_as_pdf
     pdf = render_to_string pdf: "merchant_application.pdf", 
-                         layout: 'pdf.html.erb', 
-                         template: "applications/edit.pdf.erb", 
-                         encoding: "UTF-8", 
-                         wkhtmltopdf: 'bin/wkhtmltopdf', 
-                         page_height: '105in', 
-                         page_width: '12em'
+                        layout: 'pdf.html.erb', 
+                      template: "applications/edit.pdf.erb", 
+                      encoding: "UTF-8", 
+                   wkhtmltopdf: 'bin/wkhtmltopdf', 
+                   page_height: '105in', 
+                    page_width: '12em'
     File.open(save_path, 'wb') do |file|
       file << pdf
     end

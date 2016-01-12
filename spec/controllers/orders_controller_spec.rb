@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe OrdersController, type: :controller do
+  after(:all) do
+    File.delete(Rails.root.join('pdfs',"Emerald City Greens.order.pdf"))
+  end
 
   describe "GET #index" do
     before(:each) do
@@ -67,7 +70,7 @@ RSpec.describe OrdersController, type: :controller do
   end
 
   describe "POST #create" do
-    context "with valid params" do
+    context "with valid params", :vcr do
       let(:post_create) { post :create, order: attributes_for(:order) }
 
       it "creates a new Order" do
@@ -121,7 +124,7 @@ RSpec.describe OrdersController, type: :controller do
       @order = create(:order, name: "Larry Smith")
     end
 
-    context "with valid params" do
+    context "with valid params", :vcr do
       let(:put_update) { put :update, id: @order, order: attributes_for(:order) }
 
       it "locates the requested @order" do

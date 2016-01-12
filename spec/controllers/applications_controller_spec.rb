@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationsController, type: :controller do
+  after(:all) do
+    File.delete(Rails.root.join("pdfs", "John Doe.merchant_application.pdf"))
+    File.delete(Rails.root.join("pdfs", "Jimmy Bones.merchant_application.pdf"))
+  end  
 
   describe "GET #index" do
     # Sign in an admin to see Applications Index page
@@ -68,7 +72,7 @@ RSpec.describe ApplicationsController, type: :controller do
   end
 
   describe "POST #create" do
-    context "with valid params" do
+    context "with valid params", :vcr do
       let(:post_create) { post :create, application: attributes_for(:application) }
 
       it "creates a new Application" do
@@ -115,7 +119,7 @@ RSpec.describe ApplicationsController, type: :controller do
       @application = create(:application, oname: "Larry Smith")
     end
 
-    context "with valid params" do
+    context "with valid params", :vcr do
       let(:put_update) { put :update, id: @application, application: attributes_for(:application) }
 
       it "locates the requested @application" do

@@ -1,0 +1,90 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://api-content.dropbox.com/1/files_put/auto/Applications/Merchant/John%20Doe.merchant_application.pdf?overwrite=false
+    body:
+      encoding: UTF-8
+      base64_string: |
+        JVBERi0xLjQKMSAwIG9iago8PAovVGl0bGUgKP7/KQovUHJvZHVjZXIgKHdr
+        aHRtbHRvcGRmKQovQ3JlYXRpb25EYXRlIChEOjIwMTYwMTEyMTg0MTM0KQo+
+        PgplbmRvYmoKNCAwIG9iago8PAovVHlwZSAvRXh0R1N0YXRlCi9TQSB0cnVl
+        Ci9TTSAwLjAyCi9jYSAxLjAKL0NBIDEuMAovQUlTIGZhbHNlCi9TTWFzayAv
+        Tm9uZT4+CmVuZG9iago1IDAgb2JqClsvUGF0dGVybiAvRGV2aWNlUkdCXQpl
+        bmRvYmoKNyAwIG9iago8PAovVHlwZSAvQ2F0YWxvZwovUGFnZXMgMiAwIFIK
+        Pj4KZW5kb2JqCjYgMCBvYmoKPDwKL1R5cGUgL1BhZ2UKL1BhcmVudCAyIDAg
+        UgovQ29udGVudHMgOCAwIFIKL1Jlc291cmNlcyAxMCAwIFIKL0Fubm90cyAx
+        MSAwIFIKL01lZGlhQm94IFswIDAgODY0IDc1NjBdCj4+CmVuZG9iagoxMCAw
+        IG9iago8PAovQ29sb3JTcGFjZSA8PAovUENTcCA1IDAgUgovQ1NwIC9EZXZp
+        Y2VSR0IKL0NTcGcgL0RldmljZUdyYXkKPj4KL0V4dEdTdGF0ZSA8PAovR1Nh
+        IDQgMCBSCj4+Ci9QYXR0ZXJuIDw8Cj4+Ci9Gb250IDw8Cj4+Ci9YT2JqZWN0
+        IDw8Cj4+Cj4+CmVuZG9iagoxMSAwIG9iagpbIF0KZW5kb2JqCjggMCBvYmoK
+        PDwKL0xlbmd0aCA5IDAgUgovRmlsdGVyIC9GbGF0ZURlY29kZQo+PgpzdHJl
+        YW0KeJylUM0KwjAMvucpchbs2m7t2vMOggdh9OBBPMj8Q9yw7uDrm66bjIE/
+        YEKb5EvyJW2ycDs8tZgU7oZVbwsHnHHNo2DQ+RiQhqUyurlKBdMmuFUNHj2U
+        UNIdrIeBNXK0VQNJnNdXBbQGkWZKMUtC4XUcCi5pkrZWEc6nYSg+w3qGzcdR
+        Q0Z0Os54EJLllps8y7q2SUgv6lCuJBq8H+AY9v6l7f02EXHFirwHSlzSueBm
+        S+D+9XdCR179N5//UoAlPAHcRnA3ZW5kc3RyZWFtCmVuZG9iago5IDAgb2Jq
+        CjE5OAplbmRvYmoKMiAwIG9iago8PAovVHlwZSAvUGFnZXMKL0tpZHMgClsK
+        NiAwIFIKXQovQ291bnQgMQovUHJvY1NldCBbL1BERiAvVGV4dCAvSW1hZ2VC
+        IC9JbWFnZUNdCj4+CmVuZG9iagp4cmVmCjAgMTIKMDAwMDAwMDAwMCA2NTUz
+        NSBmIAowMDAwMDAwMDA5IDAwMDAwIG4gCjAwMDAwMDA4NjcgMDAwMDAgbiAK
+        MDAwMDAwMDAwMCAwMDAwMCBuIAowMDAwMDAwMDk5IDAwMDAwIG4gCjAwMDAw
+        MDAxOTQgMDAwMDAgbiAKMDAwMDAwMDI4MCAwMDAwMCBuIAowMDAwMDAwMjMx
+        IDAwMDAwIG4gCjAwMDAwMDA1NzcgMDAwMDAgbiAKMDAwMDAwMDg0OCAwMDAw
+        MCBuIAowMDAwMDAwNDAxIDAwMDAwIG4gCjAwMDAwMDA1NTcgMDAwMDAgbiAK
+        dHJhaWxlcgo8PAovU2l6ZSAxMgovSW5mbyAxIDAgUgovUm9vdCA3IDAgUgo+
+        PgpzdGFydHhyZWYKOTY1CiUlRU9GCg==
+    headers:
+      Content-Type:
+      - application/octet-stream
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - OfficialDropboxRubySDK/1.6.4
+      Content-Length:
+      - '1282'
+      Authorization:
+      - Bearer 5RqQ_lo4fCMAAAAAAAASRlfCvzvUpCUFctCqTnnS5L7wzSMuQf6E4KQ-GaJNNG9u
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 12 Jan 2016 18:41:33 GMT
+      Content-Type:
+      - text/javascript
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Dropbox-Request-Id:
+      - 0dfe571f76b3b8caa805d307063e9144
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - no-cache
+      X-Server-Response-Time:
+      - '488'
+      X-Robots-Tag:
+      - noindex, nofollow, noimageindex
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        eyJyZXZpc2lvbiI6IDgxNywgImJ5dGVzIjogMTI4MiwgInRodW1iX2V4aXN0
+        cyI6IGZhbHNlLCAicmV2IjogIjMzMTNlNTA5NGIzIiwgIm1vZGlmaWVkIjog
+        IlR1ZSwgMTIgSmFuIDIwMTYgMTg6NDE6MzMgKzAwMDAiLCAibWltZV90eXBl
+        IjogImFwcGxpY2F0aW9uL3BkZiIsICJwYXRoIjogIi9hcHBsaWNhdGlvbnMv
+        TWVyY2hhbnQvSm9obiBEb2UubWVyY2hhbnRfYXBwbGljYXRpb24ucGRmIiwg
+        ImlzX2RpciI6IGZhbHNlLCAic2l6ZSI6ICIxLjMgS0IiLCAicm9vdCI6ICJh
+        cHBfZm9sZGVyIiwgImNsaWVudF9tdGltZSI6ICJUdWUsIDEyIEphbiAyMDE2
+        IDE4OjQxOjMzICswMDAwIiwgImljb24iOiAicGFnZV93aGl0ZV9hY3JvYmF0
+        In0=
+    http_version: 
+  recorded_at: Tue, 12 Jan 2016 18:41:35 GMT
+recorded_with: VCR 3.0.0

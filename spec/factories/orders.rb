@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :order do
   	name "John Doe"
-  	business { Faker::Company.name }
+  	business "Emerald City Greens"
   	sequence(:email) { |n| "user#{n}@example.tld" }
   	phone { Faker::PhoneNumber.phone_number }
 

@@ -11,7 +11,7 @@ RSpec.describe UsersController do
     it "assigns all users as @users" do
       @user = create(:user)
       get :index
-      expect(assigns(:user)).to eq([@user])
+      expect(assigns(:users)).to eq([@user])
     end
 
     it "renders the :index view" do

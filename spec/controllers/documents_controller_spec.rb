@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe DocumentsController, type: :controller do
+  after(:all) do
+    File.delete(Rails.root.join('pdfs',"Emerald City Greens.Required_Documents.pdf"))
+  end
 
   describe "GET #index" do
   	# Sign in an admin to see Documents Index page
@@ -70,7 +73,7 @@ RSpec.describe DocumentsController, type: :controller do
   end
 
   describe "POST #create" do
-  	context "with valid params" do
+  	context "with valid params", :vcr do
   	  let(:post_create) { post :create, document: attributes_for(:document) }
 
   	  it "creates a new Document" do
@@ -117,7 +120,7 @@ RSpec.describe DocumentsController, type: :controller do
   	  @document = create(:document, name: "Larry Smith")
   	end
 
-  	context "with valid params" do
+  	context "with valid params", :vcr do
   	  let(:put_update) { put :update, id: @document, document: attributes_for(:document) }
 
   	  it "locates the requested @document" do

@@ -1,0 +1,90 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://api-content.dropbox.com/1/files_put/auto/Applications/Orders/Emerald%20City%20Greens.merchant_application.pdf?overwrite=false
+    body:
+      encoding: UTF-8
+      base64_string: |
+        JVBERi0xLjQKMSAwIG9iago8PAovVGl0bGUgKP7/KQovUHJvZHVjZXIgKHdr
+        aHRtbHRvcGRmKQovQ3JlYXRpb25EYXRlIChEOjIwMTYwMTEyMjA0MzE5KQo+
+        PgplbmRvYmoKNCAwIG9iago8PAovVHlwZSAvRXh0R1N0YXRlCi9TQSB0cnVl
+        Ci9TTSAwLjAyCi9jYSAxLjAKL0NBIDEuMAovQUlTIGZhbHNlCi9TTWFzayAv
+        Tm9uZT4+CmVuZG9iago1IDAgb2JqClsvUGF0dGVybiAvRGV2aWNlUkdCXQpl
+        bmRvYmoKNyAwIG9iago8PAovVHlwZSAvQ2F0YWxvZwovUGFnZXMgMiAwIFIK
+        Pj4KZW5kb2JqCjYgMCBvYmoKPDwKL1R5cGUgL1BhZ2UKL1BhcmVudCAyIDAg
+        UgovQ29udGVudHMgOCAwIFIKL1Jlc291cmNlcyAxMCAwIFIKL0Fubm90cyAx
+        MSAwIFIKL01lZGlhQm94IFswIDAgODY0IDE0NDBdCj4+CmVuZG9iagoxMCAw
+        IG9iago8PAovQ29sb3JTcGFjZSA8PAovUENTcCA1IDAgUgovQ1NwIC9EZXZp
+        Y2VSR0IKL0NTcGcgL0RldmljZUdyYXkKPj4KL0V4dEdTdGF0ZSA8PAovR1Nh
+        IDQgMCBSCj4+Ci9QYXR0ZXJuIDw8Cj4+Ci9Gb250IDw8Cj4+Ci9YT2JqZWN0
+        IDw8Cj4+Cj4+CmVuZG9iagoxMSAwIG9iagpbIF0KZW5kb2JqCjggMCBvYmoK
+        PDwKL0xlbmd0aCA5IDAgUgovRmlsdGVyIC9GbGF0ZURlY29kZQo+PgpzdHJl
+        YW0KeJylUM0KwjAMvucpchbs2q7t1vMOggdh9OBBPMj8Q9yw7uDrm66bjIE/
+        YEKb5EvyJW2ycDs8tZgU7oZVbwsHnHHDo2DQ+RiQOUtldIUSgpk8uFUNHj2U
+        UNIdrIeBNXK0VQNJnNdXBbQGkSqtmSWh8DoOBZc0yVirCefTMBSfYT3D5uOo
+        ISM6HWc8CMkyy/NMqa5tEtKLOpRriTneD3AMe//S9n6biLhiRd4DJS7pXHCz
+        JXD/+jthIq/5m89/KcASnsxwcC5lbmRzdHJlYW0KZW5kb2JqCjkgMCBvYmoK
+        MTk3CmVuZG9iagoyIDAgb2JqCjw8Ci9UeXBlIC9QYWdlcwovS2lkcyAKWwo2
+        IDAgUgpdCi9Db3VudCAxCi9Qcm9jU2V0IFsvUERGIC9UZXh0IC9JbWFnZUIg
+        L0ltYWdlQ10KPj4KZW5kb2JqCnhyZWYKMCAxMgowMDAwMDAwMDAwIDY1NTM1
+        IGYgCjAwMDAwMDAwMDkgMDAwMDAgbiAKMDAwMDAwMDg2NiAwMDAwMCBuIAow
+        MDAwMDAwMDAwIDAwMDAwIG4gCjAwMDAwMDAwOTkgMDAwMDAgbiAKMDAwMDAw
+        MDE5NCAwMDAwMCBuIAowMDAwMDAwMjgwIDAwMDAwIG4gCjAwMDAwMDAyMzEg
+        MDAwMDAgbiAKMDAwMDAwMDU3NyAwMDAwMCBuIAowMDAwMDAwODQ3IDAwMDAw
+        IG4gCjAwMDAwMDA0MDEgMDAwMDAgbiAKMDAwMDAwMDU1NyAwMDAwMCBuIAp0
+        cmFpbGVyCjw8Ci9TaXplIDEyCi9JbmZvIDEgMCBSCi9Sb290IDcgMCBSCj4+
+        CnN0YXJ0eHJlZgo5NjQKJSVFT0YK
+    headers:
+      Content-Type:
+      - application/octet-stream
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - OfficialDropboxRubySDK/1.6.4
+      Content-Length:
+      - '1281'
+      Authorization:
+      - Bearer 5RqQ_lo4fCMAAAAAAAASRlfCvzvUpCUFctCqTnnS5L7wzSMuQf6E4KQ-GaJNNG9u
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 12 Jan 2016 20:43:20 GMT
+      Content-Type:
+      - text/javascript
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Dropbox-Request-Id:
+      - 86a5e2f3ac1c55837fd9ee37b7d71acc
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - no-cache
+      X-Server-Response-Time:
+      - '522'
+      X-Robots-Tag:
+      - noindex, nofollow, noimageindex
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        eyJyZXZpc2lvbiI6IDg1MSwgImJ5dGVzIjogMTI4MSwgInRodW1iX2V4aXN0
+        cyI6IGZhbHNlLCAicmV2IjogIjM1MzNlNTA5NGIzIiwgIm1vZGlmaWVkIjog
+        IlR1ZSwgMTIgSmFuIDIwMTYgMjA6NDM6MTkgKzAwMDAiLCAibWltZV90eXBl
+        IjogImFwcGxpY2F0aW9uL3BkZiIsICJwYXRoIjogIi9hcHBsaWNhdGlvbnMv
+        T3JkZXJzL0VtZXJhbGQgQ2l0eSBHcmVlbnMubWVyY2hhbnRfYXBwbGljYXRp
+        b24gKDEpLnBkZiIsICJpc19kaXIiOiBmYWxzZSwgInNpemUiOiAiMS4zIEtC
+        IiwgInJvb3QiOiAiYXBwX2ZvbGRlciIsICJjbGllbnRfbXRpbWUiOiAiVHVl
+        LCAxMiBKYW4gMjAxNiAyMDo0MzoxOSArMDAwMCIsICJpY29uIjogInBhZ2Vf
+        d2hpdGVfYWNyb2JhdCJ9
+    http_version: 
+  recorded_at: Tue, 12 Jan 2016 20:43:20 GMT
+recorded_with: VCR 3.0.0
