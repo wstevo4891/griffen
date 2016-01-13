@@ -40,10 +40,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       set_minimum_password_length
       respond_with resource
     end
-    # if @user.save
-    #  zoho_lead
-      # RegistrationNotifier.new_user(@user).deliver_now
-    # end
   end
 
   # GET /resource/edit

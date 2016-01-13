@@ -8,7 +8,7 @@ RSpec.feature "User registers" do
 
   	expect(current_path).to eq(new_user_registration_path)
     
-    VCR.use_cassette('user_registers') do
+    VCR.use_cassette('user_registers', record: :new_episodes) do
   	  fill_in("First Name", with: "Jimi")
   	  fill_in("Last Name", with: "Hendrix")
   	  fill_in("Email", with: "tester@example.tld")
