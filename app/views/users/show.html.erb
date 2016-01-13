@@ -56,12 +56,10 @@
   </div>
 
   <div class="button-row">
-    <% if @user.application %>
-      <%= link_to "EDIT", edit_application_path(@application), class: "btn-black btn-lg" %>
-      <%= link_to 'DELETE', @application, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-    <% else %>
-      <%= link_to "START", new_application_path, class: "btn-black btn-lg" %>
-    <% end %>  
+    <%= link_to "START", new_application_path, class: "btn-black btn-lg" %>
+    <%= link_to "EDIT", edit_application_path, class: "btn-black btn-lg" %>
+    <%= link_to 'DELETE', @application, controller: ApplicationsController, 
+    method: :destroy, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-lg" %>  
   </div>
 </div>
 
@@ -73,7 +71,8 @@
   <div class="button-row">
     <%= link_to "START", new_ach_path, class: "btn-black btn-lg" %>
     <%= link_to "EDIT", edit_ach_path, class: "btn-black btn-lg" %>
-    <%= link_to 'DELETE', @ach, controller: AchesController, method: :destroy, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-lg" %>
+    <%= link_to 'DELETE', @ach, controller: AchesController, 
+    method: :destroy, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-lg" %>
   </div>
 </div>
 
@@ -83,12 +82,10 @@
   </div>
 
   <div class="button-row">
-  	<% if @user.document %>
-  	  <%= link_to "EDIT DOCUMENTS", edit_document_path(@user.document), class: "btn-black btn-lg" %>
-      <%= link_to 'DELETE', document, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-  	<% else %>
-      <%= link_to "START", new_document_path, class: "btn-black btn-lg" %>
-    <% end %>
+    <%= link_to "START", new_document_path, class: "btn-black btn-lg" %>
+    <%= link_to "EDIT", edit_document_path, class: "btn-black btn-lg" %>
+    <%= link_to 'DELETE', @document, controller: DocumentsController, 
+    method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-lg" %>
   </div>
 </div>
 

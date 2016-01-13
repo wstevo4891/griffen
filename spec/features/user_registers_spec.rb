@@ -7,15 +7,17 @@ RSpec.feature "User registers" do
   	click_link "SIGN UP NOW"
 
   	expect(current_path).to eq(new_user_registration_path)
-
-  	fill_in("First Name", with: "Jimi")
-  	fill_in("Last Name", with: "Hendrix")
-  	fill_in("Email", with: "tester@example.tld")
-  	fill_in("Business", with: "Hendrix Greens")
-  	fill_in("Phone", with: "777-888-9999")
-  	fill_in("Password", with: "zx%-7$6yu23")
-  	fill_in("Password confirmation", with: "zx%-7$6yu23")  	
-  	click_on "Register"
+    
+    VCR.use_cassette('user_registers') do
+  	  fill_in("First Name", with: "Jimi")
+  	  fill_in("Last Name", with: "Hendrix")
+  	  fill_in("Email", with: "tester@example.tld")
+  	  fill_in("Business", with: "Hendrix Greens")
+  	  fill_in("Phone", with: "777-888-9999")
+  	  fill_in("Password", with: "zx%-7$6yu23")
+  	  fill_in("Password confirmation", with: "zx%-7$6yu23")  	
+  	  click_on "Register"
+    end
 
   	expect(current_path).to eq(root_path)
   	expect(page).to have_content("A message with a confirmation 
