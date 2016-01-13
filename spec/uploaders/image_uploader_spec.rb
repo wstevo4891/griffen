@@ -4,16 +4,16 @@ require 'carrierwave/test/matchers'
 RSpec.describe ImageUploader do
   include CarrierWave::Test::Matchers
 
-  before(:all) do
+  before do
   	ImageUploader.enable_processing = true
-  end
-
-  before(:each) do
     @uploader = ImageUploader.new(@application, :voidcheck)
-  	@uploader.store!(File.open("#{Rails.root}/spec/images/salt_flats.jpg"))
+
+    File.open(Rails.root.join("spec/images", "salt_flats.jpg")) do |f|
+      @uploader.store!(f)
+    end
   end
 
-  after(:all) do
+  after do
   	ImageUploader.enable_processing = false
   	@uploader.remove!
   end
@@ -24,11 +24,7 @@ RSpec.describe ImageUploader do
     end
   end
 
-  it "should make the image readable only to the owner and not executable" do
+  it "should make the image readable only to the owner and admins" do
   	expect(@uploader).to have_permissions(0644)
-  end
-
-  it "should be the correct format" do
-  	expect(@uploader).to be_format('jpg')
   end
 end

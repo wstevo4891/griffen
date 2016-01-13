@@ -14,7 +14,7 @@ if Rails.env.test?
   	  end
 
   	  def store_dir
-  	  	"#{Rails.root}/spec/support/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model}"
+  	  	"#{Rails.root}/spec/support/uploads/#{mounted_as}/#{model}"
   	  end
   	end
   end

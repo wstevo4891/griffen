@@ -6,6 +6,12 @@ module FeatureHelpers
     click_on "Log in"
   end
 
+  def login_admin
+    @admin = create(:admin, email: "doodlemeister@example.tld", password: "zx%-7$6yu23")
+    visit new_admin_session_path
+    login("doodlemeister@example.tld", "zx%-7$6yu23")
+  end
+
   def expect_fields_to_be_blank
   	expect(page).to have_field("First Name", with: "")
   	expect(page).to have_field("Last Name", with: "")
