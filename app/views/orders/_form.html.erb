@@ -38,6 +38,16 @@
     </div>
   </div>
 
+  <div class="form-group col-sm-8 col-sm-offset-2">
+    <%= f.label :product, "Product" %><br>
+    <%= f.select :product, Order::PRODUCT_TYPES, prompt: "Select a product" %>
+  </div>   
+
+  <div class="form-group col-sm-8 col-sm-offset-2">
+    <%= f.label :payment, "Payment Type" %><br>
+    <%= f.select :payment, Order::PAYMENT_TYPES, prompt: "Select a payment type" %>
+  </div>  
+
   <div class="row actions">
     <%= f.submit "Submit Order", class: "btn-black btn-lg" %>
   </div>

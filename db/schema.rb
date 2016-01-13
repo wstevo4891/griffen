@@ -227,6 +227,8 @@ ActiveRecord::Schema.define(version: 20160107195803) do
     t.string   "business"
     t.string   "email"
     t.string   "phone"
+    t.string   "product"
+    t.string   "payment"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
