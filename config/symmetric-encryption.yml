@@ -5,19 +5,14 @@
 # For the development and test environments the test symmetric encryption keys
 # can be placed directly in the source code.
 # And therefore no RSA private key is required
-development:
-  key:               " \xDE\x8A\x1DN\xB4y\x8A'l\xD1\b-\xD2.w"
-  iv:                "9\xF2\x7F\x85/:\\\x1A,\xDE\xAD\x14h\xC1(\xB6"
-  cipher_name:       aes-128-cbc
-  encoding:          :base64strict
-  always_add_header: true
+development:   &development_defaults
+  key:         1234567890ABCDEF1234567890ABCDEF
+  iv:          1234567890ABCDEF
+  cipher_name: aes-128-cbc
+  encoding:    :base64strict
 
 test:
-  key:               "\x00\x1Cn^EDR\x80Q\x81p\e\xED\x88N\x80"
-  iv:                "\xF5\xE4\xF6\xD0\x89K\x06\x87\x02!p\x05E\x02\xC0\xA6"
-  cipher_name:       aes-128-cbc
-  encoding:          :base64strict
-  always_add_header: true
+  <<: *development_defaults
 
 release:
   # Since the key to encrypt and decrypt with must NOT be stored along with the
@@ -25,31 +20,31 @@ release:
   # containing the actual symmetric encryption key
   private_rsa_key: |
     -----BEGIN RSA PRIVATE KEY-----
-    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
+    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
     -----END RSA PRIVATE KEY-----
 
 
@@ -58,8 +53,8 @@ release:
     -
       # Filename containing Symmetric Encryption Key encrypted using the
       # RSA public key derived from the private key above
-      key_filename:      /etc/rails/keys/griffen_release.key
-      iv_filename:       /etc/rails/keys/griffen_release.iv
+      encrypted_key:     "<%= ENV['RELEASE_KEY1'] %>"
+      iv:                "7M47eZd/EWqMkqwuQOF+2Q=="
       cipher_name:       aes-256-cbc
       encoding:          :base64strict
       version:           1
@@ -71,31 +66,31 @@ production:
   # containing the actual symmetric encryption key
   private_rsa_key: |
     -----BEGIN RSA PRIVATE KEY-----
-    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
+    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
     -----END RSA PRIVATE KEY-----
 
 
@@ -104,8 +99,8 @@ production:
     -
       # Filename containing Symmetric Encryption Key encrypted using the
       # RSA public key derived from the private key above
-      key_filename:      /etc/rails/keys/griffen_production.key
-      iv_filename:       /etc/rails/keys/griffen_production.iv
+      encrypted_key:     "<%= ENV['PRODUCTION_KEY1'] %>"
+      iv:                "X0GPGwkUziT7CACJK+Gksw=="
       cipher_name:       aes-256-cbc
       encoding:          :base64strict
       version:           1
