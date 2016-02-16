@@ -29,7 +29,7 @@
   <%= link_to 'Show', application, class: "btn btn-primary" %>
   <%= link_to 'Edit', edit_application_path(application), class: "btn btn-warning" %>
   <%= link_to 'Destroy', application, method: :delete, 
-  data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-danger" %>
 </div>
 <% end %>
 <br>
@@ -123,7 +123,7 @@
 <div id="blk" class="index-buttons">
   <%= link_to 'SHOW', application, class: "btn btn-primary" %>
   <%= link_to 'EDIT', edit_application_path(application), class: "btn btn-warning" %>
-  <%= link_to 'DELETE', application, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  <%= link_to 'DELETE', application, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-danger" %>
 </div>
 <% end %>
 <br>

@@ -55,6 +55,11 @@ $mobile_v510Move = ->
   return
 
 main = ->
+  $v6dcs = 0
+  $v5dcs = 0
+  $mv6dcs = 0
+  $mv5dcs = 0
+
   $('.v610').on 'click', ->
     $v610Move()
     return
