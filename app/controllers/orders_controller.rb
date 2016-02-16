@@ -119,7 +119,11 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     respond_to do |format|
-      format.html
+      if admin_signed_in?
+        format.html { redirect_to orders_url }
+      else
+        format.html { redirect_to current_user }
+      end
       format.json { head :no_content }
       format.js
     end
