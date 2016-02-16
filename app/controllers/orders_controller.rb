@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin!, only: [:index]
-  before_action :authenticate_user! || :authenticate_admin!, except: [:index]
+  before_action :authenticate_user!, except: [:index]
+  skip_before_action :authenticate_user!, if: :admin_signed_in?
 
   # GET /orders
   # GET /orders.json
@@ -118,12 +119,9 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     respond_to do |format|
-      if admin_signed_in?
-        format.html { redirect_to orders_url, notice: 'Order was deleted' }
-      else
-        format.html { redirect_to current_user, notice: 'Order was deleted' }
-      end
+      format.html
       format.json { head :no_content }
+      format.js
     end
   end
 

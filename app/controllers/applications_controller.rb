@@ -1,7 +1,8 @@
 class ApplicationsController < ApplicationController
   before_action :set_application, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin!, only: [:index]
-  before_action :authenticate_admin! || :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index]
+  skip_before_action :authenticate_user!, if: :admin_signed_in?
 
   # GET /applications
   # GET /applications.json
@@ -119,7 +120,7 @@ class ApplicationsController < ApplicationController
   def destroy
     @application.destroy
     respond_to do |format|
-      format.html { notice 'Application was deleted' }
+      format.html
       format.json { head :no_content }
       format.js
     end

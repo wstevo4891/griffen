@@ -15,7 +15,7 @@
   </thead>
   <tbody>
     <% @documents.each do |document| %>
-      <tr>
+      <tr id="doc-row">
         <td><%= document.id %></td>
         <td><%= document.name %></td>
         <td><%= document.business %></td>
@@ -24,7 +24,7 @@
         <td><%= link_to 'Show', document, class: "btn btn-primary" %></td>
         <td><%= link_to 'Edit', edit_document_path(document), class: "btn btn-warning" %></td>
         <td><%= link_to 'Delete', document, method: :delete, 
-          data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+          data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-danger delete_doc" %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,1 +1,3 @@
-$('#<%= dom_id(@application) %>').fadeOut();
+$('.delete_app').bind('ajax:success', function() {
+	$(this).closest('#app-table').fadeOut();
+});

@@ -4,6 +4,7 @@
 
 <div class="jumbotron col-md-10 col-md-offset-1 hidden-xs">
 <% @applications.each do |application| %>
+<div id="app-table">
 <table class="table">
   <thead>
     <tr>
@@ -29,7 +30,8 @@
   <%= link_to 'Show', application, class: "btn btn-primary" %>
   <%= link_to 'Edit', edit_application_path(application), class: "btn btn-warning" %>
   <%= link_to 'Destroy', application, method: :delete, 
-  data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-danger" %>
+  data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-danger delete_app" %>
+</div>
 </div>
 <% end %>
 <br>
@@ -39,7 +41,7 @@
 
 <div class="jumbotron visible-xs">
 <% @applications.each do |application| %>
-	
+<div id="app-table">
 <table class="table-bordered table-mobile-large">
   <thead>
     <tr>
@@ -123,7 +125,9 @@
 <div id="blk" class="index-buttons">
   <%= link_to 'SHOW', application, class: "btn btn-primary" %>
   <%= link_to 'EDIT', edit_application_path(application), class: "btn btn-warning" %>
-  <%= link_to 'DELETE', application, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-danger" %>
+  <%= link_to 'DELETE', application, method: :delete, data: { confirm: 'Are you sure?' }, 
+  remote: true, class: "btn btn-danger delete_app" %>
+</div>
 </div>
 <% end %>
 <br>

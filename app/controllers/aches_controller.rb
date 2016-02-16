@@ -1,7 +1,8 @@
 class AchesController < ApplicationController
   before_action :set_ach, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin!, only: [:index]
-  before_action :authenticate_user! || :authenticate_admin!, except: [:index]
+  before_action :authenticate_user!, except: [:index]
+  skip_before_action :authenticate_user!, if: :admin_signed_in?
 
   # GET /aches
   # GET /aches.json
@@ -117,12 +118,9 @@ class AchesController < ApplicationController
   def destroy
     @ach.destroy
     respond_to do |format|
-      if admin_signed_in?
-        format.html { redirect_to aches_url, notice: 'ACH was successfully deleted' }
-      else
-        format.html { redirect_to current_user, notice: 'ACH was successfully deleted' }
-      end
+      format.html
       format.json { head :no_content }
+      format.js
     end
   end
 

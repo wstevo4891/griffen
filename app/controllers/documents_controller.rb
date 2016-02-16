@@ -1,7 +1,8 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin!, only: [:index]
-  before_action :authenticate_user! || :authenticate_admin!, except: [:index]
+  before_action :authenticate_user!, except: [:index]
+  skip_before_action :authenticate_user!, if: :admin_signed_in?
 
   # GET /documents
   # GET /documents.json
@@ -112,12 +113,9 @@ class DocumentsController < ApplicationController
   def destroy
     @document.destroy
     respond_to do |format|
-      if admin_signed_in?
-        format.html { redirect_to documents_url, notice: 'Documents were deleted' }
-      else
-        format.html { redirect_to current_user, notice: 'Documents were deleted' }
-      end
+      format.html
       format.json { head :no_content }
+      format.js
     end
   end
 
