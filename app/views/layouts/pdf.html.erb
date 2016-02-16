@@ -4,69 +4,69 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>Griffen Financial</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= wicked_pdf_stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= wicked_pdf_javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-  <%= render 'layouts/mobile_menu' %>
-  
-  <div id="wrapper">
-    <div id="mobile-head" class="navbar-inverse hidden-md hidden-lg">
-      <button type="button" class="btn btn-default" id="toggle-menu">
-        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-      </button>
-    </div>    
+<div id="pdf-wrapper">
 
-    <div class="container">
-      <div class="row">
-        <div id="logo">
-          <%= image_tag("GriffenLogo.jpg") %> 
-        </div>
-      </div>
-  
-      <div class="row hidden-md hidden-lg" id="mobile-head-contact">
-        <p class="col-xs-12">500 YALE AVE N</p>
-        <p class="col-xs-12">SEATTLE, WA 98109</p>
-        <p class="col-xs-12">999-888-7777</p> 
-      </div>
-
-      <div class="row hidden-xs hidden-sm"> 
-        <div id="head-contact">
-          <p>500 YALE AVE N</p>
-          <p id="contact-center">SEATTLE, WA 98109</p>
-          <p>999-888-7777</p>
-        </div>          
-      </div>
-
-      <div class='row hidden-xs hidden-sm'> 
-        <%= render 'layouts/navigation' %> 
+  <div class="container">
+    <div class="row">
+      <div id="pdf-logo">
+        <%= wicked_pdf_image_tag("GriffenLogo.jpg") %> 
       </div>
     </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
-          <% if admin_signed_in? %>
-            <%= "<p id=\"godModeNotice\">GOD MODE ACTIVE!</p>".html_safe if current_admin.god_mode? %>
-          <% end %>
-          <% if notice %>
-            <p class="alert alert-success"><%= notice %></p>
-          <% end %>
-          <% if alert %>
-            <p class="alert alert-danger"><%= alert %></p>
-          <% end %>
-        </div>
-      </div>
-      <%= yield %>
+    <div class="row"> 
+      <div id="pdf-head-contact">
+        <p>500 YALE AVE N</p>
+        <p id="contact-center">SEATTLE, WA 98109</p>
+        <p>999-888-7777</p>
+      </div>          
     </div>
 
-    <div class="container">
-      <div class="row">
-        <%=  render 'layouts/footer' %>
-      </div>
+    <div class='row'> 
+      <div id="pdf-mainnav">
+        <div id="pdf-left"></div>
+        <div id="pdf-middle">
+          <nav>
+            <ul id="nav">
+              <li><%= link_to "HOME", root_path %></li>
+              <li><%= link_to "ABOUT", pages_about_path %></li>
+              <li><%= link_to "PRODUCTS", pages_products_path %></li>
+              <li><%= link_to "CONTACT", pages_contact_path %></li>
+              <li><a href="#">ACCOUNT</a></li>                  
+            </ul>
+          </nav>
+        </div>
+        <div id="pdf-right"></div>
+      </div> 
     </div>
   </div>
+
+  <div class="container">
+    <%= yield %>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <footer class="col-md-12">
+        <p>The Griffen Credit Card Reader</p>
+        <ul>
+          <li><%= link_to "HOME", root_path %></li>
+          <li><%= link_to "ABOUT", pages_about_path %></li>
+          <li><%= link_to "PRODUCTS", pages_products_path %></li>
+          <li><%= link_to "CONTACT", pages_contact_path %></li>
+          <li><a href="#">ACCOUNT</a></li>
+        </ul>
+        <div id="mjba" class="container">
+            <%= wicked_pdf_image_tag("MJBA.jpg") %> 
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
 </body>
 </html>

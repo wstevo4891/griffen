@@ -23,7 +23,7 @@ class ApplicationsController < ApplicationController
         layout: 'pdf.html.erb',
       template: 'applications/edit.pdf.erb',
    wkhtmltopdf: 'bin/wkhtmltopdf',
-   page_height: '105in',
+   page_height: '75in',
     page_width: '12em'
   end
 
@@ -33,7 +33,7 @@ class ApplicationsController < ApplicationController
                       template: "applications/edit.pdf.erb", 
                       encoding: "UTF-8", 
                    wkhtmltopdf: 'bin/wkhtmltopdf', 
-                   page_height: '105in', 
+                   page_height: '75in', 
                     page_width: '12em'
     File.open(save_path, 'wb') do |file|
       file << pdf

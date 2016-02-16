@@ -52,6 +52,105 @@
 }
 
 
+/* PDF HEADER */
+
+#pdf-wrapper {
+  width: 100%;
+  padding: 15px 0px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  background: #fff;
+}
+
+#pdf-logo {
+  padding-top: 1em;
+  img {
+    width: 15em;
+    height: 12em;
+    margin: 0 auto;
+  }
+}
+
+#pdf-head-contact {
+  margin-top: 2em;
+  p {
+    width: 10em;
+    font-size: 1.3em;
+    color: #949494;
+    font-family: Calibri;
+    font-style: normal;
+    font-weight: 400;
+    display: inline-block;
+  }
+  #contact-center {
+    margin-left: 15%;
+    margin-right: 15%;
+  } 
+}
+
+#pdf-mainnav {
+  width: 100%;
+  height: 2em;
+  margin-top: 3em;
+  margin-bottom: 5em;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+}
+
+#pdf-left {
+  width: 15%;
+  height: 2em;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 0.2em solid #D3D3D3;
+}
+
+#pdf-middle {
+  width: auto;
+  height: 3em;
+  display: inline-block;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+#pdf-right {
+  width: 15%;
+  height: 2em;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 0.2em solid #D3D3D3;
+}
+
+#pdf-nav {
+  width: auto;
+  margin: 0 auto;
+  padding: 0px;
+  list-style-type: none;
+  float: left;
+  li {
+    font-size: 1.2em;
+    float: left;
+    font-family: Calibri;
+    font-style: normal;
+    font-weight: 400;
+  }
+  a {
+  display: block;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  line-height: 1.5em;
+  text-decoration: none;
+  color: #949494;
+  height: 1.6em;
+  }
+}
+
+
 /* NAVIGATION */
 
 #mainnav {
