@@ -97,7 +97,7 @@ class AchesController < ApplicationController
   # PATCH/PUT /aches/1.json
   def update
     respond_to do |format|
-      if @ach.update_attributes(ach_params)
+      if @ach.update(ach_params)
         save_as_pdf    
         dropbox_upload(true)
         if admin_signed_in?

@@ -98,7 +98,7 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1.json
   def update
     respond_to do |format|
-      if @order.update_attributes(order_params)
+      if @order.update(order_params)
         save_as_pdf
         dropbox_upload(true)
         if admin_signed_in?

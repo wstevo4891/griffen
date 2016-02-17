@@ -99,7 +99,7 @@ class ApplicationsController < ApplicationController
   # PATCH/PUT /applications/1.json
   def update
     respond_to do |format|
-      if @application.update_attributes(application_params)
+      if @application.update(application_params)
         save_as_pdf
         dropbox_upload(true)
         if admin_signed_in?
