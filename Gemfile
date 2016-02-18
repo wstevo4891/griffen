@@ -52,6 +52,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'exception_handler', '~> 0.4'
 gem 'responders', '~> 2.0'
 
+# Use Puma for a server
+  gem 'puma'
+
 group :development do
   gem 'sqlite3'
   gem 'better_errors'

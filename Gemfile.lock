@@ -217,6 +217,7 @@ GEM
       eventmachine_httpserver
       http_parser.rb (~> 0.6.0)
       multi_json
+    puma (2.16.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
@@ -381,6 +382,7 @@ DEPENDENCIES
   pry-rescue
   pry-stack_explorer
   puffing-billy
+  puma
   quiet_assets
   rails (= 4.2.3)
   rails_12factor
@@ -403,3 +405,6 @@ DEPENDENCIES
   webmock
   wicked_pdf
   wkhtmltopdf-binary
+
+BUNDLED WITH
+   1.11.2
