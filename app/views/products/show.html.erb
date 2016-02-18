@@ -25,7 +25,9 @@
   <%= @product.price %>
 </p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<div class="index-buttons">
+  <%= link_to 'Edit', edit_product_path(@product), class: "btn-black btn-lg" %>
+  <%= link_to 'Back', products_path, class: "btn-black btn-lg" %>
+</div>
 </div>
 </div>
