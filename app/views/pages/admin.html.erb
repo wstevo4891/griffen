@@ -2,7 +2,7 @@
   <div class='jumbotron col-md-6 col-md-offset-3'>
     <h1>Welcome</h1>
 
-    <p>It's <%= Time.now %></p>
+    <p>It is <%= @current_time %> on <%= @current_date %></p>
     <p> We have <%= pluralize(@total_orders, "order") %></p>
   </div>
 </div>

@@ -15,5 +15,8 @@ class PagesController < ApplicationController
   
   def admin
     @total_orders = Order.count
+
+    @current_date = Time.now.strftime("%A, %b %d, %Y")
+    @current_time = Time.now.strftime("%I:%M %p")
   end
 end
