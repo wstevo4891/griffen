@@ -8,12 +8,12 @@
 <table class="table">
   <tr class="info">
     <td>
-      <%= image_tag(product.image_url, class: 'list_image') %>  
+      <%= image_tag(product.image_url, class: 'list_image img-responsive') %>  
     </td>
     <td class="list_description">
       <dl>
         <dt><%= product.title %></dt>
-        <dd><%= truncate(strip_tags(product.description), length: 80) %></dd>
+        <dd><%= truncate(strip_tags(product.description), length: 100) %></dd>
       </dl>
     </td>
   </tr>
@@ -40,12 +40,12 @@
 <table class="table">
   <tr class="info">
     <td>
-      <%= image_tag(product.image_url, class: 'list_image') %>  
+      <%= image_tag(product.image_url, class: 'list_image img-responsive') %>  
     </td>
     <td class="list_description">
       <dl>
         <dt><%= product.title %></dt>
-        <dd><%= truncate(strip_tags(product.description), length: 80) %></dd>
+        <dd><%= truncate(strip_tags(product.description), length: 100) %></dd>
       </dl>
     </td>
   </tr>

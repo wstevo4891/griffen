@@ -51,6 +51,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Heroku armor
 gem 'exception_handler', '~> 0.4'
 gem 'responders', '~> 2.0'
+gem 'rack-timeout'
 
 # Use Puma for a server
   gem 'puma'
