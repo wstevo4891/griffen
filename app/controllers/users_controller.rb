@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user! || :authenticate_admin!, only: [:show]
-  before_action :authenticate_admin!, only: [:index]
+  before_action :authenticate_admin!, only: :index
+  before_action :authenticate_user!, except: :index
+  skip_before_action :authenticate_user!, if: :admin_signed_in?
 
   def index
     @users = User.all
