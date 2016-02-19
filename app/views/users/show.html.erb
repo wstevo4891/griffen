@@ -47,45 +47,41 @@
 </div>
 
 
-<h1 style="font-size: 2.5em">Application Checklist</h1>
+<h2>Application Checklist</h2>
 
 <div class='checklist row'>
 	
-  <div>
-    <p>Step 1: Merchant Application</p>
-  </div>
+  <h3>Step 1: Merchant Application</h3>
 
   <div class="button-row">
     <%= link_to "START", new_application_path, class: "btn-black btn-lg" %>
     <%= link_to "EDIT", edit_application_path, class: "btn-black btn-lg" %>
     <%= link_to 'DELETE', @application, controller: ApplicationsController, 
-    method: :destroy, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-lg" %>  
+    method: :destroy, data: { confirm: 'Are you sure?' }, class: "btn-square btn-danger btn-lg" %>  
   </div>
 </div>
 
 <div class='checklist row'>
-  <div>
-    <p>Step 2: ACH Agreement</p>
-  </div>
+
+  <h3>Step 2: ACH Agreement</h3>
 
   <div class="button-row">
     <%= link_to "START", new_ach_path, class: "btn-black btn-lg" %>
     <%= link_to "EDIT", edit_ach_path, class: "btn-black btn-lg" %>
     <%= link_to 'DELETE', @ach, controller: AchesController, 
-    method: :destroy, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-lg" %>
+    method: :destroy, data: { confirm: 'Are you sure?' }, class: "btn-square btn-danger btn-lg" %>
   </div>
 </div>
 
 <div class='checklist row'>
-  <div>
-    <p>Step 3: Required Documents</p>
-  </div>
+
+  <h3>Step 3: Required Documents</h3>
 
   <div class="button-row">
     <%= link_to "START", new_document_path, class: "btn-black btn-lg" %>
     <%= link_to "EDIT", edit_document_path, class: "btn-black btn-lg" %>
     <%= link_to 'DELETE', @document, controller: DocumentsController, 
-    method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-lg" %>
+    method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-square btn-danger btn-lg" %>
   </div>
 </div>
 

@@ -83,8 +83,17 @@ fieldset {
   text-decoration: none;
 }
 
+.btn-square {
+  @extend .btn;
+  border-radius: 0;
+  padding: 1em;
+}
+
 .button-row {
   margin-bottom: 2em;
+  a {
+    margin: 1em;
+  }
 }
 
 .sign-up-button {
