@@ -54,7 +54,7 @@ gem 'responders', '~> 2.0'
 gem 'rack-timeout'
 
 # Use Puma for a server
-  gem 'puma'
+gem 'puma'
 
 group :development do
   gem 'sqlite3'

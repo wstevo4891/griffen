@@ -1,0 +1,7 @@
+$('.delete-user').bind('ajax:success', function() {
+	$(this).closest('#users-table').fadeOut();
+});
+
+$('.delete-user').on('ajax:error', function() {
+	alert("Only Crom the Mighty may delete users and he laughs at your Four Winds!");
+});

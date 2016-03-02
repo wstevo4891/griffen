@@ -29,3 +29,27 @@ Product.create!(title: 'Griffen Vx610',
       },
   image_url: 'vx610.jpg',
   price: 650.00)
+# . . .
+User.create!(firstname: "Jimi", 
+             lastname: "Hendrix",
+             email: "jimi@purplehaze.com",
+             business: "Purple Haze",
+             phone: "444-888-7777",
+             password: "&*374qUPt")
+User.create!(firstname: "Amy",
+             lastname: "Winehouse",
+             email: "amy@wineygreens.com",
+             business: "Winey Greens",
+             phone: "333-555-6666",
+             password: "420NoRehab!!")
+User.create!(firstname: "Jim",
+             lastname: "Morrison",
+             email: "jim@greenriders.com",
+             business: "Riders on the Green",
+             phone: "222-333-7777",
+             password: "TouchMe!77")
+
+
+
+
+

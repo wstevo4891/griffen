@@ -43,13 +43,11 @@
       <div class='row hidden-xs hidden-sm'>	
         <%= render 'layouts/navigation' %> 
       </div>
-    </div>
 
-    <div class="container">
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
           <% if admin_signed_in? %>
-            <%= "<p id=\"godModeNotice\">GOD MODE ACTIVE!</p>".html_safe if current_admin.god_mode? %>
+            <%= "<p id=\"godModeNotice\">CROM MODE ACTIVE!</p>".html_safe if current_admin.god_mode? %>
           <% end %>
           <% if notice %>
             <p class="alert alert-success"><%= notice %></p>
@@ -58,11 +56,16 @@
             <p class="alert alert-danger"><%= alert %></p>
           <% end %>
         </div>
+        <% if !admin_signed_in? && !user_signed_in? %>
+          <div class="col-sm-6 col-sm-offset-3 well">
+            <p>Here to evaluate the site?  Go to Admin and use this login:</p>
+            <p><strong>Email:</strong> jbones@example.com, <strong>Password:</strong> $T1000%sn</p>
+          </div>
+        <% end %>
       </div>
-      <%= yield %>
-    </div>
 
-    <div class="container">
+      <%= yield %>
+
   	  <div class="row">
   	    <%=  render 'layouts/footer' %>
   	  </div>
