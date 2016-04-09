@@ -36,18 +36,24 @@ User.create!(firstname: "Jimi",
              business: "Purple Haze",
              phone: "444-888-7777",
              password: "&*374qUPt")
+
 User.create!(firstname: "Amy",
              lastname: "Winehouse",
              email: "amy@wineygreens.com",
              business: "Winey Greens",
              phone: "333-555-6666",
              password: "420NoRehab!!")
+
 User.create!(firstname: "Jim",
              lastname: "Morrison",
              email: "jim@greenriders.com",
              business: "Riders on the Green",
              phone: "222-333-7777",
              password: "TouchMe!77")
+
+Admin.create!(email: "jbones@example.com",
+             password: "$T1000%sn",
+             god_mode: false)
 
 
 
