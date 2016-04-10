@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable, :zxcvbnable
+         :recoverable, :rememberable, :validatable
 
   validates :firstname, :lastname, :business, :phone, presence: true
 
