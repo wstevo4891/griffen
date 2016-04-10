@@ -226,11 +226,10 @@
 }
 
 #godModeNotice {
-  p {
     color: gold;
-    box-shadow: 10px yellow;
+    text-shadow: 2px 2px 4px #000;
     font-size: 2em;
-  }
+    font-weight: bold;
 }
 
 

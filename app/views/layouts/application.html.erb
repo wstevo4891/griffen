@@ -46,8 +46,8 @@
 
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
-          <% if admin_signed_in? %>
-            <%= "<p id=\"godModeNotice\">CROM MODE ACTIVE!</p>".html_safe if current_admin.god_mode? %>
+          <% if admin_signed_in? and current_admin.god_mode? %>
+            <p id="godModeNotice">CROM MODE ACTIVE!</p>
           <% end %>
           <% if notice %>
             <p class="alert alert-success"><%= notice %></p>
