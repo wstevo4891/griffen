@@ -211,6 +211,8 @@ ActiveRecord::Schema.define(version: 20160107195803) do
     t.string   "combpra"
   end
 
+  add_index "documents", ["user_id"], name: "index_documents_on_user_id"
+
   create_table "members", force: :cascade do |t|
     t.string   "mname"
     t.string   "memid"

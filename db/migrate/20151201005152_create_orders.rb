@@ -8,10 +8,9 @@ class CreateOrders < ActiveRecord::Migration
         t.string :product
         t.string :payment
     	t.integer :user_id
-
+        t.belongs_to :user, index: true
+        
         t.timestamps null: false
     end
-
-    add_index :orders, :user_id
   end
 end

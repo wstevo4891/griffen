@@ -56,12 +56,10 @@ class CreateAches < ActiveRecord::Migration
       t.string :apptitle
       t.string :appdate
       
-      t.integer :user_id
+      t.belongs_to :user, index: true
       
       t.timestamps null: false
     end
-    
-    add_index :aches, :user_id
   end
 end
 

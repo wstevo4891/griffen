@@ -6,8 +6,7 @@ class CreateDocuments < ActiveRecord::Migration
       t.string :email
       t.string :phone
       t.string :irsidn
-      
-      t.integer :user_id
+      t.belongs_to :user, index: true
 
       t.timestamps null: false
     end

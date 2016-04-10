@@ -103,11 +103,9 @@ class CreateApplications < ActiveRecord::Migration
       t.string :verby
       t.string :appby
       
-      t.integer :user_id
+      t.belongs_to :user, index: true
 
       t.timestamps null: false
     end
-    
-    add_index :applications, :user_id
   end
 end
