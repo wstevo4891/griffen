@@ -1,8 +1,8 @@
 require 'dropbox_sdk'
-DROPBOX_APP_KEY = ENV["DROPBOX_APP_KEY"] #put your app key between the quotes
-DROPBOX_APP_KEY_SECRET = ENV["DROPBOX_APP_KEY_SECRET"] #put your app key secret between the quotes
+DROPBOX_APP_KEY = ENV["DROPBOX_APP_KEY"]
+DROPBOX_APP_KEY_SECRET = ENV["DROPBOX_APP_KEY_SECRET"] 
 DROPBOX_APP_MODE = "app_folder"
-OAUTH2_ACCESS_TOKEN = ENV["OAUTH2_ACCESS_TOKEN"] #put your generated access token between the quotes
+OAUTH2_ACCESS_TOKEN = ENV["OAUTH2_ACCESS_TOKEN"]
 
 
 # flow = DropboxOAuth2FlowNoRedirect.new(DROPBOX_APP_KEY, DROPBOX_APP_KEY_SECRET)
