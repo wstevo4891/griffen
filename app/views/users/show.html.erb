@@ -53,12 +53,13 @@
   <h3>Step 1: Merchant Application</h3>
 
   <div class="button-row">
-    <% if @user.application %>
-      <%= link_to "EDIT", edit_application_path, class: "btn-black btn-lg" %>
-      <%= link_to 'DELETE', @application, controller: ApplicationsController, 
-      method: :destroy, data: { confirm: 'Are you sure?' }, class: "btn-square btn-danger btn-lg" %>
+    <% if @application %>
+      <%= link_to "EDIT", edit_user_application_path(@user), class: "btn-black btn-lg" %>
+
+      <%= link_to 'DELETE', [@application.user, @application], controller: ApplicationsController, 
+      method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-square btn-danger btn-lg" %>     
     <% else %>
-      <%= link_to "START", new_application_path, class: "btn-black btn-lg" %>
+      <%= link_to "START", new_user_application_path(@user), class: "btn-black btn-lg" %>
     <% end %>
   </div>
 </div>
@@ -68,13 +69,14 @@
   <h3>Step 2: ACH Agreement</h3>
 
   <div class="button-row">
-    <% if @user.ach %>
-      <%= link_to "EDIT", edit_ach_path, class: "btn-black btn-lg" %>
-      <%= link_to 'DELETE', @ach, controller: AchesController, 
-      method: :destroy, data: { confirm: 'Are you sure?' }, 
+    <% if @ach %>
+      <%= link_to "EDIT", edit_user_ach_path(@user), class: "btn-black btn-lg" %>
+
+      <%= link_to 'DELETE', [@ach.user, @ach], controller: AchesController, 
+      method: :delete, data: { confirm: 'Are you sure?' }, 
       class: "btn-square btn-danger btn-lg" %>
     <% else %>
-      <%= link_to "START", new_ach_path, class: "btn-black btn-lg" %>
+      <%= link_to "START", new_user_ach_path(@user), class: "btn-black btn-lg" %>
     <% end %>
   </div>
 </div>
@@ -84,13 +86,14 @@
   <h3>Step 3: Required Documents</h3>
 
   <div class="button-row">
-    <% if @user.document %>
-      <%= link_to "EDIT", edit_document_path, class: "btn-black btn-lg" %>
-      <%= link_to 'DELETE', @document, controller: DocumentsController, 
+    <% if @document %>
+      <%= link_to "EDIT", edit_user_document_path(@document), class: "btn-black btn-lg" %>
+
+      <%= link_to 'DELETE', [@document.user, @document], controller: DocumentsController, 
       method: :delete, data: { confirm: 'Are you sure?' }, 
       class: "btn-square btn-danger btn-lg" %>
     <% else %>
-      <%= link_to "START", new_document_path, class: "btn-black btn-lg" %>
+      <%= link_to "START", new_user_document_path(@user), class: "btn-black btn-lg" %>
     <% end %>
   </div>
 </div>
@@ -100,8 +103,8 @@
 <h3>Step 4: Send Order</h3>
 
 <div class='sign-up-button'>
-  <% if @user.application and @user.ach and @user.document %>
-    <%= link_to "START ORDER", new_order_path, class: "btn-black btn-lg" %>
+  <% if @application and @ach and @document %>
+    <%= link_to "START ORDER", new_user_order_path(@user), class: "btn-black btn-lg" %>
   <% else %>
     <h3>Your required documents are unfinished</h3>
   <% end %>

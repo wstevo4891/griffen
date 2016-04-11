@@ -1,4 +1,4 @@
-<%= form_for(@application) do |f| %>
+<%= form_for [@user, @application], as: :application, url: user_application_path do |f| %>
 
 <div class="col-xs-10 col-xs-offset-1">
   <% if @application.errors.any? %>
@@ -767,7 +767,7 @@
 </fieldset>
 
 <div class="actions">
-  <%= f.submit "SUBMIT", class: "btn-black btn-lg" %>
+  <%= f.submit "SAVE", class: "btn-black btn-lg" %>
 </div>
 
 </div>

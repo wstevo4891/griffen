@@ -4,11 +4,9 @@ class CreateShareholders < ActiveRecord::Migration
       t.string :sname
       t.string :shid
       t.string :shid_cache
-      t.integer :document_id
+      t.references :document, foreign_key: true
 
       t.timestamps null: false
     end
-    
-    add_index :shareholders, :document_id
   end
 end

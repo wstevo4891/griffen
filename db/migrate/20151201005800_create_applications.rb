@@ -103,7 +103,7 @@ class CreateApplications < ActiveRecord::Migration
       t.string :verby
       t.string :appby
       
-      t.belongs_to :user, index: true
+      t.references :user, foreign_key: true
 
       t.timestamps null: false
     end

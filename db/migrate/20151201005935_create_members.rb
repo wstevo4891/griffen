@@ -4,11 +4,9 @@ class CreateMembers < ActiveRecord::Migration
       t.string :mname
       t.string :memid
       t.string :memid_cache
-      t.integer :document_id
+      t.references :document, foreign_key: true
 
       t.timestamps null: false
     end
-    
-    add_index :members, :document_id
   end
 end

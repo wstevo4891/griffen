@@ -1,14 +1,8 @@
 class ApplicationsController < ApplicationController
-  before_action :set_application, only: [:show, :edit, :update, :destroy]
+  before_action :set_application, only: [:show, :edit, :update, :submit, :destroy]
   before_action :authenticate_admin!, only: [:index]
   before_action :authenticate_user!, except: [:index]
   skip_before_action :authenticate_user!, if: :admin_signed_in?
-
-  # GET /applications
-  # GET /applications.json
-  def index
-    @applications = Application.all
-  end
 
   def filename
     @application.oname
@@ -40,12 +34,6 @@ class ApplicationsController < ApplicationController
     end
   end
 
-  def dropbox_upload(bool)
-    file = open(save_path)  
-    client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
-    response = client.put_file('Applications/Merchant/' + filename + '.merchant_application.pdf', file, overwrite=bool)
-  end
-
   # GET /applications/1
   # GET /applications/1.json
   def show
@@ -58,35 +46,25 @@ class ApplicationsController < ApplicationController
   end
 
   # GET /applications/new
-  def new    
-    @application = Application.new
+  def new
+    @user = User.find(params[:user_id])
+    @application = @user.build_application
   end
 
   # GET /applications/1/edit
   def edit
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render_pdf
-      end         
-    end 
   end
 
   # POST /applications
   # POST /applications.json
   def create
-    @application = Application.new(application_params)
+    @user = User.find(params[:user_id])
+    @application = @user.create_application(application_params)
 
     respond_to do |format|
-      if @application.save
-        save_as_pdf
-        dropbox_upload(false)   
+      if @application.save   
         # applicationNotifier.received(@application).deliver_now
-        if admin_signed_in?
-          format.html { redirect_to applications_url, notice: "Application was successfully created" }
-        else
-          format.html { redirect_to current_user, notice: "Thank you for completing the merchant application" }
-        end
+        format.html { redirect_to user_path(@user), notice: "Thank you for completing the merchant application" }
         format.json { render :show, status: :created, location: @application }  
       else
         format.html { render :new }
@@ -100,10 +78,8 @@ class ApplicationsController < ApplicationController
   def update
     respond_to do |format|
       if @application.update(application_params)
-        save_as_pdf
-        dropbox_upload(true)
         if admin_signed_in?
-          format.html { redirect_to applications_url, notice: 'Application was successfully updated' }
+          format.html { redirect_to admin_applications_url, notice: 'Application was successfully updated' }
         else        
           format.html { redirect_to current_user, notice: 'Application was successfully updated' }
         end
@@ -115,18 +91,21 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def submit
+    save_as_pdf
+    file = open(save_path)  
+    client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
+    response = client.put_file('Applications/Merchant/' + filename + '.merchant_application.pdf', file, overwrite=true)
+  end
+
   # DELETE /applications/1
   # DELETE /applications/1.json
   def destroy
     @application.destroy
-    respond_to do |format|
-      if admin_signed_in?
-        format.html { redirect_to applications_url }
-      else
-        format.html { redirect_to current_user }
-      end
-      format.json { head :no_content }
-      format.js
+    if admin_signed_in?
+      redirect_to admin_applications_path
+    else
+      redirect_to user_path(@user)
     end
   end
   
@@ -140,12 +119,13 @@ class ApplicationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_application
-      @application = Application.find(params[:id])
+      @user = User.find(params[:user_id])
+      @application = @user.application
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def application_params
-      params.require(:application).permit(:user_id, :legalname, :dba, :address,
+      params.require(:application).permit(:legalname, :dba, :address,
       :baddress, :city, :state, :bcity, :bstate, :zip, :bzip, :phone, :fax,
       :bphone, :bfax, :ftin, :email, :contact, :oname, :dob, :ssn, :ophone,
       :oaddress, :ocity, :ostate, :ozip, :avgt, :monv, :maxta, :qc, :tz, :pref,

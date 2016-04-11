@@ -1,0 +1,134 @@
+<div class="row">
+<h1>Listing Orders</h1>
+</br>
+
+<div class="jumbotron col-md-10 col-md-offset-1 hidden-xs">
+<% @orders.each do |order| %>
+<div id="order-table">
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Business</th>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= order.oname %></td>
+      <td><%= order.legalname %></td>
+      <td><%= order.email %></td>
+      <td><%= order.phone %></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="index-buttons">
+  <%= link_to 'Show', order, class: "btn btn-primary" %>
+  <%= link_to 'Edit', edit_order_path(order), class: "btn btn-warning" %>
+  <%= link_to 'Destroy', order, method: :delete, 
+  data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-danger delete_order" %>
+</div>
+</div>
+<% end %>
+<br>
+<%= link_to 'New Order', new_order_path, class: "btn-black btn-lg" %>
+</br>
+</div>
+
+<div class="jumbotron visible-xs">
+<% @orders.each do |order| %>
+<div id="order-table">
+<table class="table-bordered table-mobile-large">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Business</th>
+    </tr>
+   </thead>
+   
+   <tbody>
+   	 <tr>
+   	   <td><%= order.oname %></td>
+   	   <td><%= order.legalname %></td>
+   	 </tr>
+   </tbody>
+   
+   <thead>
+    <tr>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+  	<tr>
+  	  <td><%= order.email %></td>
+  	  <td><%= order.phone %></td>
+  	</tr>
+  </tbody>
+</table>
+
+<table class="table-bordered table-mobile-small">
+  <thead>
+     <tr>
+       <th>Name</th>
+     </tr>
+  </thead>
+  
+  <tbody>
+  	<tr>
+  	  <td><%= order.oname %></td>
+  	</tr>
+  </tbody>
+  
+  <thead>
+     <tr>
+       <th>Business</th>
+     </tr>
+   </thead>
+   
+   <tbody>
+   	 <tr>
+   	   <td><%= order.legalname %></td>
+   	 </tr>
+   </tbody>
+   
+   <thead>
+     <tr>
+       <th>Email</th>
+     </tr>
+   </thead>
+   
+   <tbody>
+     <tr>
+       <td><%= order.email %></td>
+     </tr>
+   </tbody>
+   
+   <thead>
+     <tr>
+       <th>Phone</th>
+     </tr>
+  </thead>
+  
+  <tbody>
+  	<tr>
+  	  <td><%= order.phone %></td>
+  	</tr>
+  </tbody>
+</table>
+
+<div id="blk" class="index-buttons">
+  <%= link_to 'SHOW', order, class: "btn btn-primary" %>
+  <%= link_to 'EDIT', edit_order_path(order), class: "btn btn-warning" %>
+  <%= link_to 'DELETE', order, method: :delete, data: { confirm: 'Are you sure?' }, 
+  remote: true class: "btn btn-danger delete_order" %>
+</div>
+</div>
+<br>
+<%= link_to 'New Order', new_order_path, class: "btn-black btn-lg" %>
+</br>
+</div>
+</div>

@@ -1,10 +1,10 @@
 <div class="row">
-<h1>Listing Applications</h1>
+<h1>Listing ACH Forms</h1>
 </br>
 
 <div class="jumbotron col-md-10 col-md-offset-1 hidden-xs">
-<% @applications.each do |application| %>
-<div id="app-table">
+<% @aches.each do |ach| %>
+<div id="ach-table">
 <table class="table">
   <thead>
     <tr>
@@ -17,22 +17,22 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= application.id %></td>
-      <td><%= application.oname %></td>
-      <td><%= application.legalname %></td>
-      <td><%= application.email %></td>
-      <td><%= application.phone %></td>
+      <td><%= ach.id %></td>
+      <td><%= ach.pname %></td>
+      <td><%= ach.legalname %></td>
+      <td><%= ach.email %></td>
+      <td><%= ach.bphone %></td>
     </tr>
   </tbody>
 </table>
 
 <div class="index-buttons">
-  <%= link_to 'Edit', edit_user_application_path(application.id, application.id), 
+  <%= link_to 'EDIT', edit_user_ach_path(ach.user, ach.), 
   class: "btn btn-warning" %>
 
-  <%= link_to 'DELETE', [application.user, application], 
-  method: :delete, data: { confirm: 'Are you sure?' }, 
-  remote: true, class: "btn btn-danger delete_app" %>
+  <%= link_to 'DELETE', [ach.user, ach], method: :delete, 
+  data: { confirm: 'Are you sure?' }, 
+  class: "btn btn-danger delete_ach" %>
 </div>
 </div>
 <% end %>
@@ -40,8 +40,8 @@
 </div>
 
 <div class="jumbotron visible-xs">
-<% @applications.each do |application| %>
-<div id="app-table">
+<% @aches.each do |ach| %>
+<div id="ach-table">
 <table class="table-bordered table-mobile-large">
   <thead>
     <tr>
@@ -52,8 +52,8 @@
    
    <tbody>
    	 <tr>
-   	   <td><%= application.oname %></td>
-   	   <td><%= application.legalname %></td>
+   	   <td><%= ach.pname %></td>
+   	   <td><%= ach.legalname %></td>
    	 </tr>
    </tbody>
    
@@ -66,8 +66,8 @@
   
   <tbody>
   	<tr>
-  	  <td><%= application.email %></td>
-  	  <td><%= application.phone %></td>
+  	  <td><%= ach.email %></td>
+  	  <td><%= ach.bphone %></td>
   	</tr>
   </tbody>
 </table>
@@ -81,7 +81,7 @@
   
   <tbody>
   	<tr>
-  	  <td><%= application.oname %></td>
+  	  <td><%= ach.pname %></td>
   	</tr>
   </tbody>
   
@@ -93,7 +93,7 @@
    
    <tbody>
    	 <tr>
-   	   <td><%= application.legalname %></td>
+   	   <td><%= ach.legalname %></td>
    	 </tr>
    </tbody>
    
@@ -105,7 +105,7 @@
    
    <tbody>
      <tr>
-       <td><%= application.email %></td>
+       <td><%= ach.email %></td>
      </tr>
    </tbody>
    
@@ -117,17 +117,18 @@
   
   <tbody>
   	<tr>
-  	  <td><%= application.phone %></td>
+  	  <td><%= ach.bphone %></td>
   	</tr>
   </tbody>
 </table>
 
 <div id="blk" class="index-buttons">
-  <%= link_to 'EDIT', edit_user_application_path(application.id, application.id), class: "btn btn-warning" %>
-  
-  <%= link_to 'DELETE', [application.user, application], 
-  method: :delete, data: { confirm: 'Are you sure?' }, 
-  remote: true, class: "btn btn-danger delete_app" %>
+  <%= link_to 'EDIT', edit_user_ach_path(ach.user, ach), 
+  class: "btn btn-warning" %>
+
+  <%= link_to 'DELETE', [ach.user, ach], method: :delete, 
+  data: { confirm: 'Are you sure?' }, 
+  class: "btn btn-danger delete_ach" %>
 </div>
 </div>
 <% end %>

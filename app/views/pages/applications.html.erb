@@ -27,12 +27,12 @@
 </table>
 
 <div class="index-buttons">
-  <%= link_to 'Edit', edit_user_application_path(application.id, application.id), 
+  <%= link_to 'EDIT', edit_user_application_path(application.user, application), 
   class: "btn btn-warning" %>
 
   <%= link_to 'DELETE', [application.user, application], 
   method: :delete, data: { confirm: 'Are you sure?' }, 
-  remote: true, class: "btn btn-danger delete_app" %>
+  class: "btn btn-danger delete_app" %>
 </div>
 </div>
 <% end %>
@@ -123,11 +123,12 @@
 </table>
 
 <div id="blk" class="index-buttons">
-  <%= link_to 'EDIT', edit_user_application_path(application.id, application.id), class: "btn btn-warning" %>
+  <%= link_to 'EDIT', edit_user_application_path(application.user, application), 
+  class: "btn btn-warning" %>
   
   <%= link_to 'DELETE', [application.user, application], 
   method: :delete, data: { confirm: 'Are you sure?' }, 
-  remote: true, class: "btn btn-danger delete_app" %>
+  class: "btn btn-danger delete_app" %>
 </div>
 </div>
 <% end %>

@@ -6,7 +6,7 @@ class CreateDocuments < ActiveRecord::Migration
       t.string :email
       t.string :phone
       t.string :irsidn
-      t.belongs_to :user, index: true
+      t.references :user, foreign_key: true
 
       t.timestamps null: false
     end

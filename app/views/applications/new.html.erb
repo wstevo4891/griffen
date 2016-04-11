@@ -6,7 +6,7 @@
 
 <div class="row sign-up-button">
   <% if admin_signed_in? %>
-    <%= link_to 'Back', applications_path, class: "btn-black btn-lg" %>
+    <%= link_to 'Back', admin_applications_path, class: "btn-black btn-lg" %>
   <% else %>
     <%= link_to 'Back', current_user, class: "btn-black btn-lg" %>
   <% end %>

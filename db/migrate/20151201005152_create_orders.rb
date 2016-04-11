@@ -8,7 +8,7 @@ class CreateOrders < ActiveRecord::Migration
         t.string :product
         t.string :payment
     	t.integer :user_id
-        t.belongs_to :user, index: true
+        t.references :user, foreign_key: true
         
         t.timestamps null: false
     end

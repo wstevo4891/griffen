@@ -78,8 +78,6 @@ ActiveRecord::Schema.define(version: 20160107195803) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "aches", ["user_id"], name: "index_aches_on_user_id"
-
   create_table "admins", force: :cascade do |t|
     t.string   "email",               default: "",    null: false
     t.string   "encrypted_password",  default: "",    null: false
@@ -188,8 +186,6 @@ ActiveRecord::Schema.define(version: 20160107195803) do
     t.string   "dlicense"
   end
 
-  add_index "applications", ["user_id"], name: "index_applications_on_user_id"
-
   create_table "documents", force: :cascade do |t|
     t.string   "name"
     t.string   "business"
@@ -211,8 +207,6 @@ ActiveRecord::Schema.define(version: 20160107195803) do
     t.string   "combpra"
   end
 
-  add_index "documents", ["user_id"], name: "index_documents_on_user_id"
-
   create_table "members", force: :cascade do |t|
     t.string   "mname"
     t.string   "memid"
@@ -221,8 +215,6 @@ ActiveRecord::Schema.define(version: 20160107195803) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
-
-  add_index "members", ["document_id"], name: "index_members_on_document_id"
 
   create_table "orders", force: :cascade do |t|
     t.string   "name"
@@ -235,8 +227,6 @@ ActiveRecord::Schema.define(version: 20160107195803) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "products", force: :cascade do |t|
     t.string   "title"
@@ -255,8 +245,6 @@ ActiveRecord::Schema.define(version: 20160107195803) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
-
-  add_index "shareholders", ["document_id"], name: "index_shareholders_on_document_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "firstname",              default: "", null: false

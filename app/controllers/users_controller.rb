@@ -9,6 +9,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    @application = @user.application
+    @ach = @user.ach
+    @document = @user.document
   end
 
   def edit
@@ -36,22 +39,6 @@ class UsersController < ApplicationController
         format.js { render status: 403 }
       end
     end
-  end
-
-  def application
-  	@application = @user.application
-  end
-
-  def ach
-  	@ach = @user.ach
-  end
-
-  def document
-  	@document = @user.document
-  end
-
-  def order
-    @order = @user.order
   end
 
   private
