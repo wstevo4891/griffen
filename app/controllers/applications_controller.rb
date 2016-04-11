@@ -1,9 +1,65 @@
 class ApplicationsController < ApplicationController
   before_action :set_user, except: [:filename, :save_path, :render_pdf, :save_as_pdf]
-  before_action :set_application, only: [:show, :edit, :update, :submit, :destroy]
+  before_action :set_application, only: [:show, :edit, :update, :dropbox_upload, :destroy]
   before_action :authenticate_admin!, only: [:index]
   before_action :authenticate_user!, except: [:index]
   skip_before_action :authenticate_user!, if: :admin_signed_in?
+
+  def new
+    @application = @user.build_application
+  end
+
+  def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render_pdf
+      end         
+    end  
+  end
+
+  def edit
+  end
+
+  def create
+    @application = @user.create_application(application_params)
+
+    respond_to do |format|
+      if @application.save   
+        # applicationNotifier.received(@application).deliver_now
+        format.html { redirect_to user_path(@user), notice: "Thank you for completing the merchant application" }
+        format.json { render :show, status: :created, location: @application }  
+      else
+        format.html { render :new }
+        format.json { render json: @application.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @application.update(application_params)
+        if admin_signed_in?
+          format.html { redirect_to admin_applications_url, notice: 'Application was successfully updated' }
+        else        
+          format.html { redirect_to current_user, notice: 'Application was successfully updated' }
+        end
+        format.json { render :show, status: :ok, location: @application }
+      else
+        format.html { render :edit }
+        format.json { render json: @application.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @application.destroy
+    if admin_signed_in?
+      redirect_to admin_applications_path
+    else
+      redirect_to user_path(@user)
+    end
+  end
 
   def filename
     @application.oname
@@ -35,77 +91,11 @@ class ApplicationsController < ApplicationController
     end
   end
 
-  # GET /applications/1
-  # GET /applications/1.json
-  def show
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render_pdf
-      end         
-    end  
-  end
-
-  # GET /applications/new
-  def new
-    @application = @user.build_application
-  end
-
-  # GET /applications/1/edit
-  def edit
-  end
-
-  # POST /applications
-  # POST /applications.json
-  def create
-    @application = @user.create_application(application_params)
-
-    respond_to do |format|
-      if @application.save   
-        # applicationNotifier.received(@application).deliver_now
-        format.html { redirect_to user_path(@user), notice: "Thank you for completing the merchant application" }
-        format.json { render :show, status: :created, location: @application }  
-      else
-        format.html { render :new }
-        format.json { render json: @application.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /applications/1
-  # PATCH/PUT /applications/1.json
-  def update
-    respond_to do |format|
-      if @application.update(application_params)
-        if admin_signed_in?
-          format.html { redirect_to admin_applications_url, notice: 'Application was successfully updated' }
-        else        
-          format.html { redirect_to current_user, notice: 'Application was successfully updated' }
-        end
-        format.json { render :show, status: :ok, location: @application }
-      else
-        format.html { render :edit }
-        format.json { render json: @application.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def submit
+  def dropbox_upload
     save_as_pdf
     file = open(save_path)  
     client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
     response = client.put_file('Applications/Merchant/' + filename + '.merchant_application.pdf', file, overwrite=true)
-  end
-
-  # DELETE /applications/1
-  # DELETE /applications/1.json
-  def destroy
-    @application.destroy
-    if admin_signed_in?
-      redirect_to admin_applications_path
-    else
-      redirect_to user_path(@user)
-    end
   end
   
   def upload

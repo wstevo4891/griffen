@@ -54,12 +54,15 @@
 
   <div class="button-row">
     <% if @application %>
-      <%= link_to "EDIT", edit_user_application_path(@user), class: "btn-black btn-lg" %>
+      <%= link_to "EDIT", edit_user_application_path(@user), class: "btn btn-warning btn-lg" %>
 
       <%= link_to 'DELETE', [@application.user, @application], controller: ApplicationsController, 
-      method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-square btn-danger btn-lg" %>     
+      method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-lg" %> 
+
+      <%= button_to "SUBMIT", [@application.user, @application], controller: ApplicationsController, 
+      action: :dropbox_upload, class: "btn btn-lg btn-primary" %>    
     <% else %>
-      <%= link_to "START", new_user_application_path(@user), class: "btn-black btn-lg" %>
+      <%= link_to "START", new_user_application_path(@user), class: "btn btn-lg btn-primary" %>
     <% end %>
   </div>
 </div>
@@ -76,7 +79,7 @@
       method: :delete, data: { confirm: 'Are you sure?' }, 
       class: "btn-square btn-danger btn-lg" %>
     <% else %>
-      <%= link_to "START", new_user_ach_path(@user), class: "btn-black btn-lg" %>
+      <%= link_to "START", new_user_ach_path(@user), class: "btn btn-lg btn-primary" %>
     <% end %>
   </div>
 </div>
@@ -93,7 +96,7 @@
       method: :delete, data: { confirm: 'Are you sure?' }, 
       class: "btn-square btn-danger btn-lg" %>
     <% else %>
-      <%= link_to "START", new_user_document_path(@user), class: "btn-black btn-lg" %>
+      <%= link_to "START", new_user_document_path(@user), class: "btn btn-lg btn-primary" %>
     <% end %>
   </div>
 </div>

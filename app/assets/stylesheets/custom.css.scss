@@ -69,8 +69,13 @@ fieldset {
 
 /* buttons */
 
+.btn {
+  border: 2px solid black;
+}
+
 .btn-black {
   @extend .btn;
+  border: none;
   border-radius: 0;
   background-color: #000;
   padding: 1em;
@@ -91,8 +96,19 @@ fieldset {
 
 .button-row {
   margin-bottom: 2em;
-  a {
+  
+  a, button {
     margin: 1em;
+    display: inline-block;
+  }
+
+  form {
+    width: 8em;
+    margin: 1.2em;
+    display: inline-block;
+    float: right;
+    position: relative;
+    right: 17em;
   }
 }
 
