@@ -1,15 +1,10 @@
 class AchesController < ApplicationController
-  before_action :set_ach, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, except: [:filename, :save_path, :render_pdf, :save_as_pdf]
+  before_action :set_ach, only: [:show, :edit, :update, :submit, :destroy]
   before_action :authenticate_admin!, only: [:index]
   before_action :authenticate_user!, except: [:index]
   skip_before_action :authenticate_user!, if: :admin_signed_in?
-
-  # GET /aches
-  # GET /aches.json
-  def index
-    @aches = Ach.all
-  end
-  
+ 
   def filename
     @ach.legalname
   end
@@ -40,51 +35,34 @@ class AchesController < ApplicationController
     end
   end
 
-  def dropbox_upload(bool)
+  def submit
+    save_as_pdf
     file = open(save_path)  
     client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
-    response = client.put_file('Applications/ACH/' + filename + '.ACH_agreement.pdf', file, overwrite=bool)
+    response = client.put_file('Applications/ACH/' + filename + '.ACH_agreement.pdf', file, overwrite=true)
   end
 
   # GET /aches/1
   # GET /aches/1.json
   def show
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render_pdf
-      end
-    end
   end
 
   # GET /aches/new
   def new
-    @ach = Ach.new
+    @ach = @user.build_ach
   end
 
   # GET /aches/1/edit
-  def edit
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render_pdf
-      end
-    end               
+  def edit              
   end
 
   # POST /aches
   # POST /aches.json
   def create
-    @ach = Ach.new(ach_params)
+    @ach = @user.create_ach(ach_params)
     respond_to do |format|
       if @ach.save
-        save_as_pdf 
-        dropbox_upload(false)
-        if admin_signed_in?
-          format.html { redirect_to aches_url, notice: 'ACH Agreement was successfully completed' }
-        else
-          format.html { redirect_to current_user, notice: 'ACH Agreement was successfully completed' }
-        end
+        format.html { redirect_to user_path(@user), notice: 'Thank you for completing the ACH Agreement' }
         format.json { render :show, status: :created, location: @ach }
       else
         format.html { render :new }
@@ -98,8 +76,6 @@ class AchesController < ApplicationController
   def update
     respond_to do |format|
       if @ach.update(ach_params)
-        save_as_pdf    
-        dropbox_upload(true)
         if admin_signed_in?
           format.html { redirect_to aches_url, notice: 'ACH was successfully updated' }
         else
@@ -117,28 +93,29 @@ class AchesController < ApplicationController
   # DELETE /aches/1.json
   def destroy
     @ach.destroy
-    respond_to do |format|
-      if admin_signed_in?
-        format.html { redirect_to aches_url }
-      else
-        format.html { redirect_to current_user }
-      end      
-      format.json { head :no_content }
-      format.js
+    if admin_signed_in?
+      redirect_to admin_applications_path
+    else
+      redirect_to user_path(@user)
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = User.find(params[:user_id])
+    end
+
     def set_ach
-      @ach = Ach.find(params[:id])
+      @ach = @user.ach
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ach_params
-      params.require(:ach).permit(:user_id, :bmn, :iso, :isoid, :agentname, :legalname, :taxid, :dba, :dbaddress, :maddress, :dbacity,
-      :mcity, :dbastate, :dbazip, :mstate, :mzip, :bphone, :bfax, :contact, :title, :ownertype, :goodstype, :totalbustime,
-      :locbustime, :webaddress, :email, :pname, :pphone, :ptitle, :pequity, :paddress, :pdob, :pcity, :pssn, :pstate, :pzip,
-      :pdlicense)
+      params.require(:ach).permit(:bmn, :iso, :isoid, :agentname, :legalname, :taxid, 
+        :dba, :dbaddress, :maddress, :dbacity, :mcity, :dbastate, :dbazip, :mstate, 
+        :mzip, :bphone, :bfax, :contact, :title, :ownertype, :goodstype, :totalbustime,
+        :locbustime, :webaddress, :email, :pname, :pphone, :ptitle, :pequity, :paddress, 
+        :pdob, :pcity, :pssn, :pstate, :pzip, :pdlicense)
     end
 end

@@ -1,4 +1,4 @@
-<%= form_for(@ach) do |f| %>
+<%= form_for [@user, @ach], as: :ach, url: user_ach_path do |f| %>
 
 <div class="col-xs-10 col-xs-offset-1">
   <% if @ach.errors.any? %>

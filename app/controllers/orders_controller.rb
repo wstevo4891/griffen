@@ -1,14 +1,9 @@
 class OrdersController < ApplicationController
+  before_action :set_user, except: [:filename, :save_path, :render_pdf, :save_as_pdf, :dropbox_upload]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin!, only: [:index]
   before_action :authenticate_user!, except: [:index]
   skip_before_action :authenticate_user!, if: :admin_signed_in?
-
-  # GET /orders
-  # GET /orders.json
-  def index
-    @orders = Order.all
-  end
 
   def filename
     @order.business
@@ -59,7 +54,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = Order.new
+    @order = @user.build_order
   end
 
   # GET /orders/1/edit
@@ -75,14 +70,14 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
+    @order = @user.create_order(order_params)
 
     respond_to do |format|
       if @order.save
         save_as_pdf
         dropbox_upload(false)
         if admin_signed_in?
-          format.html { redirect_to orders_url, notice: 'Order was successfully created' }
+          format.html { redirect_to admin_orders_url, notice: 'Order was successfully created' }
         else
           format.html { redirect_to current_user, notice: 'Your order has been processed' }
         end
@@ -102,7 +97,7 @@ class OrdersController < ApplicationController
         save_as_pdf
         dropbox_upload(true)
         if admin_signed_in?
-          format.html { redirect_to orders_url, notice: 'Order was successfully updated' }
+          format.html { redirect_to admin_orders_url, notice: 'Order was successfully updated' }
         else
           format.html { redirect_to current_user, notice: 'Order was successfully updated' }
         end
@@ -118,21 +113,22 @@ class OrdersController < ApplicationController
   # DELETE /orders/1.json
   def destroy
     @order.destroy
-    respond_to do |format|
-      if admin_signed_in?
-        format.html { redirect_to orders_url }
-      else
-        format.html { redirect_to current_user }
-      end
-      format.json { head :no_content }
-      format.js
+    if admin_signed_in?
+      format.html { redirect_to admin_orders_url }
+    else
+      format.html { redirect_to current_user }
     end
+    format.json { head :no_content }
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def user
+      @user = User.find(params[:user_id])
+    end
+
     def set_order
-      @order = Order.find(params[:id])
+      @order = @user.order
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

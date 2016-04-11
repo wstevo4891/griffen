@@ -1,4 +1,5 @@
 class ApplicationsController < ApplicationController
+  before_action :set_user, except: [:filename, :save_path, :render_pdf, :save_as_pdf]
   before_action :set_application, only: [:show, :edit, :update, :submit, :destroy]
   before_action :authenticate_admin!, only: [:index]
   before_action :authenticate_user!, except: [:index]
@@ -47,7 +48,6 @@ class ApplicationsController < ApplicationController
 
   # GET /applications/new
   def new
-    @user = User.find(params[:user_id])
     @application = @user.build_application
   end
 
@@ -58,7 +58,6 @@ class ApplicationsController < ApplicationController
   # POST /applications
   # POST /applications.json
   def create
-    @user = User.find(params[:user_id])
     @application = @user.create_application(application_params)
 
     respond_to do |format|
@@ -118,8 +117,11 @@ class ApplicationsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_application
+    def set_user
       @user = User.find(params[:user_id])
+    end
+
+    def set_application
       @application = @user.application
     end
 

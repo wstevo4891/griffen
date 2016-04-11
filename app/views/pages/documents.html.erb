@@ -21,17 +21,12 @@
         <td><%= document.business %></td>
         <td><%= document.email %></td>
         <td><%= document.phone %></td>
-        <td><%= link_to 'Show', document, class: "btn btn-primary" %></td>
-        <td><%= link_to 'Edit', edit_document_path(document), class: "btn btn-warning" %></td>
-        <td><%= link_to 'Delete', document, method: :delete, 
-          data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-danger delete_doc" %></td>
+        <td><%= link_to 'Edit', edit_user_document_path(document.user, document), class: "btn btn-warning" %></td>
+        <td><%= link_to 'Delete', [document.user, document], method: :delete, 
+          data: { confirm: 'Are you sure?' }, class: "btn btn-danger delete_doc" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-</div>
-
-<div class="sign-up-button">
-  <%= link_to 'New Document', new_document_path, class: "btn-black btn-lg" %>
 </div>
 </div>

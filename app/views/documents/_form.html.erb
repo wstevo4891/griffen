@@ -1,4 +1,4 @@
-<%= form_for(@document) do |f| %>
+<%= form_for [@user, @document], as: :document, url: user_document_path do |f| %>
 
 <div class="col-xs-10 col-xs-offset-1">      
   <%= render 'documents/document_errors' %>

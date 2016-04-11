@@ -1,14 +1,9 @@
 class DocumentsController < ApplicationController
-  before_action :set_document, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, except: [:filename, :save_path, :render_pdf, :save_as_pdf]
+  before_action :set_document, only: [:show, :edit, :update, :submit, :destroy]
   before_action :authenticate_admin!, only: [:index]
   before_action :authenticate_user!, except: [:index]
   skip_before_action :authenticate_user!, if: :admin_signed_in?
-
-  # GET /documents
-  # GET /documents.json
-  def index
-    @documents = Document.all
-  end
   
   def filename
     @document.business
@@ -40,10 +35,11 @@ class DocumentsController < ApplicationController
     end
   end
 
-  def dropbox_upload(bool)
+  def submit
+    save_as_pdf
     file = open(save_path)
     client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
-    response = client.put_file('Applications/Documents/' + filename + '.Required_Documents.pdf', file, overwrite=bool)
+    response = client.put_file('Applications/Documents/' + filename + '.Required_Documents.pdf', file, overwrite=true)
   end
 
   # GET /documents/1
@@ -53,33 +49,21 @@ class DocumentsController < ApplicationController
 
   # GET /documents/new
   def new
-    @document = Document.new
+    @document = @user.build_document
   end
   
 
   # GET /documents/1/edit
-  def edit
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render_pdf
-      end
-    end     
+  def edit    
   end
 
   # POST /documents
   # POST /documents.json
   def create
-    @document = Document.new(document_params)   
+    @document = @user.create_document(document_params)   
     respond_to do |format|
       if @document.save
-        save_as_pdf  
-        dropbox_upload(false)
-        if admin_signed_in?
-          format.html { redirect_to documents_url, notice: 'Documents were successfully uploaded' }
-        else            
-          format.html { redirect_to current_user, notice: 'Thank you for submitting the required documents' }
-        end
+        format.html { redirect_to user_path(@user), notice: 'Thank you for submitting the required documents' }
         format.json { render :show, status: :created, location: @document }
       else
         format.html { render :new }
@@ -93,10 +77,8 @@ class DocumentsController < ApplicationController
   def update    
     respond_to do |format|
       if @document.update(document_params)
-        save_as_pdf 
-        dropbox_upload(true)
         if admin_signed_in?
-          format.html { redirect_to documents_url, notice: 'Documents were successfully updated' }
+          format.html { redirect_to admin_documents_url, notice: 'Documents were successfully updated' }
         else              
           format.html { redirect_to current_user, notice: 'Documents were successfully updated' }
         end
@@ -112,34 +94,31 @@ class DocumentsController < ApplicationController
   # DELETE /documents/1.json
   def destroy
     @document.destroy
-    respond_to do |format|
-      if admin_signed_in?
-        format.html { redirect_to documents_url }
-      else
-        format.html { redirect_to current_user }
-      end      
-      format.json { head :no_content }
-      format.js
-    end
+    if admin_signed_in?
+      format.html { redirect_to admin_documents_url }
+    else
+      format.html { redirect_to current_user }
+    end      
   end
 
   private
   # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:user_id])
+  end
+
   def set_document
-    @document = Document.find(params[:id])
+    @document = @user.document
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def document_params
-    params.require(:document).permit(
-        :name, :business, :email, :phone, :buslicense, :buslicense_cache,
-        :bpra, :bpra_cache, :artinc, :artinc_cache, :certform, :certform_cache, 
-        :opagree, :opagree_cache, :stockcert, :stockcert_cache, :llclist, 
-        :llclist_cache, :shlist, :shlist_cache, :irsidn, :combuslicense,
-        :combuslicense_cache, :combpra, :combpra_cache, :user_id,
-        members_attributes: [ :id, :mname, :memid, :memid_cache, :_destroy ],
-        shareholders_attributes: [ :id, :sname, :shid, :shid_cache, :_destroy ]
-    )
+    params.require(:document).permit(:name, :business, :email, :phone, :buslicense, 
+      :buslicense_cache, :bpra, :bpra_cache, :artinc, :artinc_cache, :certform, 
+      :certform_cache, :opagree, :opagree_cache, :stockcert, :stockcert_cache, 
+      :llclist, :llclist_cache, :shlist, :shlist_cache, :irsidn, :combuslicense,
+      :combuslicense_cache, :combpra, :combpra_cache, :user_id,
+      members_attributes: [ :id, :mname, :memid, :memid_cache, :_destroy ],
+      shareholders_attributes: [ :id, :sname, :shid, :shid_cache, :_destroy ])
   end
 end
-
