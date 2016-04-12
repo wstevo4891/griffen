@@ -1,46 +1,10 @@
 class AchesController < ApplicationController
-  before_action :set_user, except: [:filename, :save_path, :render_pdf, :save_as_pdf]
-  before_action :set_ach, only: [:show, :edit, :update, :submit, :destroy]
+  before_action :set_user, except: [:save_path, :render_pdf, :save_as_pdf]
+  before_action :set_ach, only: [:show, :edit, :update, :destroy, :dropbox_upload]
   before_action :authenticate_admin!, only: [:index]
   before_action :authenticate_user!, except: [:index]
   skip_before_action :authenticate_user!, if: :admin_signed_in?
  
-  def filename
-    @ach.legalname
-  end
-
-  def save_path
-    Rails.root.join('pdfs',"#{filename}.ACH_agreement.pdf")
-  end
-
-  def render_pdf
-    render pdf: 'ACH_agreement',
-           layout: 'pdf.html.erb',
-           template: 'aches/edit.pdf.erb',
-           wkhtmltopdf: 'bin/wkhtmltopdf',
-           page_height: '47in',
-           page_width: '12in'
-  end
-
-  def save_as_pdf
-    pdf = render_to_string pdf: "ACH_agreement.pdf", 
-                           layout: 'pdf.html.erb', 
-                           template: "aches/edit.pdf.erb", 
-                           encoding: "UTF-8", 
-                           wkhtmltopdf: 'bin/wkhtmltopdf', 
-                           page_height: '47in', 
-                           page_width: '12in'
-    File.open(save_path, 'wb') do |file|
-      file << pdf
-    end
-  end
-
-  def submit
-    save_as_pdf
-    file = open(save_path)  
-    client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
-    response = client.put_file('Applications/ACH/' + filename + '.ACH_agreement.pdf', file, overwrite=true)
-  end
 
   # GET /aches/1
   # GET /aches/1.json
@@ -98,6 +62,45 @@ class AchesController < ApplicationController
     else
       redirect_to user_path(@user)
     end
+    flash.notice = 'ACH Agreement was deleted'
+  end
+
+  def filename
+    @ach.user_id.to_s + "_" + @ach.legalname
+  end
+
+  def save_path
+    Rails.root.join('tmp',"#{filename}.ACH_agreement.pdf")
+  end
+
+  def render_pdf
+    render pdf: 'ACH_agreement',
+           layout: 'pdf.html.erb',
+           template: 'aches/edit.pdf.erb',
+           wkhtmltopdf: 'bin/wkhtmltopdf',
+           page_height: '47in',
+           page_width: '12in'
+  end
+
+  def save_as_pdf
+    pdf = render_to_string pdf: "ACH_agreement.pdf", 
+                           layout: 'pdf.html.erb', 
+                           template: "aches/edit.pdf.erb", 
+                           encoding: "UTF-8", 
+                           wkhtmltopdf: 'bin/wkhtmltopdf', 
+                           page_height: '47in', 
+                           page_width: '12in'
+    File.open(save_path, 'wb') do |file|
+      file << pdf
+    end
+  end
+
+  def dropbox_upload
+    save_as_pdf
+    file = open(save_path)  
+    client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
+    response = client.put_file('Applications/ACH/' + filename + '.ACH_agreement.pdf', file, overwrite=true)
+    File.delete(save_path)
   end
 
   private

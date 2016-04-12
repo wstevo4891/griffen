@@ -122,3 +122,12 @@ fieldset {
     margin: 2em 0;
   }
 }
+
+/* User Profile */
+
+.progress-wrapper {
+  display: none;
+  .progress-bar {
+    min-width: 2em;
+  }
+}

@@ -18,8 +18,11 @@ Rails.application.routes.draw do
 
   resources :users do
     resource :application, controller: 'applications'
+    post '/application_upload' => 'applications#dropbox_upload', as: 'application_upload'
     resource :ach, controller: 'aches'
+    post '/ach_upload' => 'aches#dropbox_upload', as: 'ach_upload'
     resource :document, controller: 'documents'
+    post '/document_upload' => 'documents#dropbox_upload', as: 'document_upload'
     resource :order, controller: 'orders'
   end
 

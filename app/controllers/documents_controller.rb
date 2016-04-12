@@ -1,46 +1,10 @@
 class DocumentsController < ApplicationController
-  before_action :set_user, except: [:filename, :save_path, :render_pdf, :save_as_pdf]
-  before_action :set_document, only: [:show, :edit, :update, :submit, :destroy]
+  before_action :set_user, except: [:save_path, :render_pdf, :save_as_pdf]
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :dropbox_upload]
   before_action :authenticate_admin!, only: [:index]
   before_action :authenticate_user!, except: [:index]
   skip_before_action :authenticate_user!, if: :admin_signed_in?
   
-  def filename
-    @document.business
-  end
-
-  def save_path
-    Rails.root.join('pdfs',"#{filename}.Required_Documents.pdf")
-  end
-
-  def render_pdf
-    render pdf: 'Required_Documents',   # Excluding ".pdf" extension.
-           layout: 'pdf.html.erb',
-           template: 'documents/edit.pdf.erb',
-           wkhtmltopdf: 'bin/wkhtmltopdf',
-           page_height: '130',
-           page_width: '10em'
-  end
-
-  def save_as_pdf
-    pdf = render_to_string pdf: "Required_Documents.pdf", 
-                           layout: 'pdf.html.erb', 
-                           template: "documents/edit.pdf.erb", 
-                           encoding: "UTF-8", 
-                           wkhtmltopdf: 'bin/wkhtmltopdf', 
-                           page_height: '75in', 
-                           page_width: '10em'
-    File.open(save_path, 'wb') do |file|
-      file << pdf
-    end
-  end
-
-  def submit
-    save_as_pdf
-    file = open(save_path)
-    client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
-    response = client.put_file('Applications/Documents/' + filename + '.Required_Documents.pdf', file, overwrite=true)
-  end
 
   # GET /documents/1
   # GET /documents/1.json
@@ -99,6 +63,44 @@ class DocumentsController < ApplicationController
     else
       format.html { redirect_to current_user }
     end      
+  end
+
+  def filename
+    @document.user_id.to_s + "_" + @document.business
+  end
+
+  def save_path
+    Rails.root.join('tmp',"#{filename}.Required_Documents.pdf")
+  end
+
+  def render_pdf
+    render pdf: 'Required_Documents',   # Excluding ".pdf" extension.
+           layout: 'pdf.html.erb',
+           template: 'documents/edit.pdf.erb',
+           wkhtmltopdf: 'bin/wkhtmltopdf',
+           page_height: '130',
+           page_width: '12in'
+  end
+
+  def save_as_pdf
+    pdf = render_to_string pdf: "Required_Documents.pdf", 
+                           layout: 'pdf.html.erb', 
+                           template: "documents/edit.pdf.erb", 
+                           encoding: "UTF-8", 
+                           wkhtmltopdf: 'bin/wkhtmltopdf', 
+                           page_height: '75in', 
+                           page_width: '12in'
+    File.open(save_path, 'wb') do |file|
+      file << pdf
+    end
+  end
+
+  def dropbox_upload
+    save_as_pdf
+    file = open(save_path)
+    client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
+    response = client.put_file('Applications/Documents/' + filename + '.Required_Documents.pdf', file, overwrite=true)
+    File.delete(save_path)
   end
 
   private

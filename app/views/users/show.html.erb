@@ -54,15 +54,22 @@
 
   <div class="button-row">
     <% if @application %>
+      <%= link_to "SUBMIT", user_application_upload_path(@user), method: :post, multipart: true, 
+      remote: true, data: { confirm: 'Are you ready to submit this document for review?'}, 
+      class: "btn btn-lg btn-primary", id: "send-app-to-dropbox" %> 
+
       <%= link_to "EDIT", edit_user_application_path(@user), class: "btn btn-warning btn-lg" %>
 
       <%= link_to 'DELETE', [@application.user, @application], controller: ApplicationsController, 
-      method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-lg" %> 
-
-      <%= button_to "SUBMIT", [@application.user, @application], controller: ApplicationsController, 
-      action: :dropbox_upload, class: "btn btn-lg btn-primary" %>    
+      method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-lg" %>  
     <% else %>
       <%= link_to "START", new_user_application_path(@user), class: "btn btn-lg btn-primary" %>
+    <% end %>
+  </div>
+
+  <div id="application-upload-bar">
+    <% if @application %>
+      <%= render 'progress_bar' %>
     <% end %>
   </div>
 </div>
@@ -73,6 +80,10 @@
 
   <div class="button-row">
     <% if @ach %>
+      <%= link_to "SUBMIT", user_ach_upload_path, method: :post, remote: true, multipart: true, 
+      data: { confirm: 'Are you ready to submit this document for review?'}, 
+      class: "btn btn-lg btn-primary", id: "send-ach-to-dropbox" %> 
+
       <%= link_to "EDIT", edit_user_ach_path(@user), class: "btn-black btn-lg" %>
 
       <%= link_to 'DELETE', [@ach.user, @ach], controller: AchesController, 
@@ -80,6 +91,12 @@
       class: "btn-square btn-danger btn-lg" %>
     <% else %>
       <%= link_to "START", new_user_ach_path(@user), class: "btn btn-lg btn-primary" %>
+    <% end %>
+  </div>
+
+  <div id="ach-upload-bar">
+    <% if @ach %>
+      <%= render 'progress_bar' %>
     <% end %>
   </div>
 </div>
@@ -90,6 +107,10 @@
 
   <div class="button-row">
     <% if @document %>
+      <%= link_to "SUBMIT", user_document_upload_path, method: :post, multipart: true, remote: true, 
+      data: { confirm: 'Are you ready to submit this document for review?'}, 
+      class: "btn btn-lg btn-primary", id: "send-doc-to-dropbox" %> 
+
       <%= link_to "EDIT", edit_user_document_path(@document), class: "btn-black btn-lg" %>
 
       <%= link_to 'DELETE', [@document.user, @document], controller: DocumentsController, 
@@ -97,6 +118,12 @@
       class: "btn-square btn-danger btn-lg" %>
     <% else %>
       <%= link_to "START", new_user_document_path(@user), class: "btn btn-lg btn-primary" %>
+    <% end %>
+  </div>
+
+  <div id="document-upload-bar">
+    <% if @document %>
+      <%= render 'progress_bar' %>
     <% end %>
   </div>
 </div>
@@ -115,3 +142,21 @@
 
 </div>
 </div>
+
+<script>
+  var wrapper = $('#application-upload-bar').find('.progress-wrapper');
+  var progress_bar = wrapper.find('.progress-bar');
+  var bitrate = wrapper.find('.bitrate');
+  var upload_link = $('#send-app-to-dropbox');
+  upload_link.fileupload({datatype: 'script'});
+
+  var main = function() {
+    upload_link.on('fileuploadprogressall', function(e, data) {
+      bitrate.text((data.bitrate / 1024).toFixed(2) + 'Kb/s');
+      var progress = parseInt(data.loaded / data.total * 100, 10);
+      progress_bar.css('width', progress + '%').text(progress + '%');
+    });
+  };
+
+  $(document).ready(main);
+</script>

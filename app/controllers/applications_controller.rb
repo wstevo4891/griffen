@@ -1,6 +1,6 @@
 class ApplicationsController < ApplicationController
-  before_action :set_user, except: [:filename, :save_path, :render_pdf, :save_as_pdf]
-  before_action :set_application, only: [:show, :edit, :update, :dropbox_upload, :destroy]
+  before_action :set_user, except: [:save_path, :render_pdf, :save_as_pdf]
+  before_action :set_application, only: [:show, :edit, :update, :destroy, :dropbox_upload]
   before_action :authenticate_admin!, only: [:index]
   before_action :authenticate_user!, except: [:index]
   skip_before_action :authenticate_user!, if: :admin_signed_in?
@@ -25,7 +25,7 @@ class ApplicationsController < ApplicationController
     @application = @user.create_application(application_params)
 
     respond_to do |format|
-      if @application.save   
+      if @application.save 
         # applicationNotifier.received(@application).deliver_now
         format.html { redirect_to user_path(@user), notice: "Thank you for completing the merchant application" }
         format.json { render :show, status: :created, location: @application }  
@@ -54,19 +54,21 @@ class ApplicationsController < ApplicationController
 
   def destroy
     @application.destroy
+    File.delete(save_path)
     if admin_signed_in?
       redirect_to admin_applications_path
     else
       redirect_to user_path(@user)
     end
+    flash.notice = 'Application was deleted'
   end
 
   def filename
-    @application.oname
+    @application.user_id.to_s + "_" + @application.legalname
   end
 
   def save_path
-    Rails.root.join('pdfs',"#{filename}.merchant_application.pdf")
+    Rails.root.join('tmp',"#{filename}.merchant_application.pdf")
   end
 
   def render_pdf
@@ -74,7 +76,7 @@ class ApplicationsController < ApplicationController
         layout: 'pdf.html.erb',
       template: 'applications/edit.pdf.erb',
    wkhtmltopdf: 'bin/wkhtmltopdf',
-   page_height: '75in',
+   page_height: '70in',
     page_width: '12em'
   end
 
@@ -84,7 +86,7 @@ class ApplicationsController < ApplicationController
                       template: "applications/edit.pdf.erb", 
                       encoding: "UTF-8", 
                    wkhtmltopdf: 'bin/wkhtmltopdf', 
-                   page_height: '75in', 
+                   page_height: '70in', 
                     page_width: '12em'
     File.open(save_path, 'wb') do |file|
       file << pdf
@@ -96,6 +98,7 @@ class ApplicationsController < ApplicationController
     file = open(save_path)  
     client = DropboxClient.new(OAUTH2_ACCESS_TOKEN)
     response = client.put_file('Applications/Merchant/' + filename + '.merchant_application.pdf', file, overwrite=true)
+    File.delete(save_path)
   end
   
   def upload

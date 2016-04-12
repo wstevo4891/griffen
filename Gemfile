@@ -14,7 +14,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # Use Devise for authentication
 gem 'devise'
-gem 'devise_zxcvbn'
+# gem 'devise_zxcvbn'
 gem 'symmetric-encryption'
 
 # Use jquery as the JavaScript library
@@ -22,6 +22,9 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 gem 'jquery-turbolinks'
+# Use AJAX file uploads
+gem 'remotipart'
+gem 'jquery-fileupload-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -31,9 +34,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
-# Use Dropbox for Cloud Database
+# Use Dropbox for document uploads
 gem 'dropbox-sdk'
-gem 'remotipart'
+
+# Use Progress_Job for progress bars
+gem 'delayed_job_active_record'
+gem 'progress_job'
 
 # User carrierwave for image uploads
 gem 'carrierwave'
@@ -51,7 +57,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Heroku armor
 gem 'exception_handler', '~> 0.4'
 gem 'responders', '~> 2.0'
-gem 'rack-timeout'
+# gem 'rack-timeout'
 
 # Use Puma for a server
 gem 'puma'
