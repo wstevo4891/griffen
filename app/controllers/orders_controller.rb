@@ -1,10 +1,8 @@
 class OrdersController < ApplicationController
   before_action :set_user, except: [:filename, :save_path, :render_pdf, :save_as_pdf, :dropbox_upload]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_admin!, only: [:index]
-  before_action :authenticate_user!, except: [:index]
-  skip_before_action :authenticate_user!, if: :admin_signed_in?
-
+  before_action :authenticate_admin!, unless: :user_signed_in?
+  before_action :authenticate_user!, unless: :admin_signed_in?
 
 
   # GET /orders/1

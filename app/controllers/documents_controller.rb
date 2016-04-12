@@ -1,9 +1,8 @@
 class DocumentsController < ApplicationController
   before_action :set_user, except: [:save_path, :render_pdf, :save_as_pdf]
   before_action :set_document, only: [:show, :edit, :update, :destroy, :dropbox_upload]
-  before_action :authenticate_admin!, only: [:index]
-  before_action :authenticate_user!, except: [:index]
-  skip_before_action :authenticate_user!, if: :admin_signed_in?
+  before_action :authenticate_admin!, unless: :user_signed_in?
+  before_action :authenticate_user!, unless: :admin_signed_in?
   
 
   # GET /documents/1
