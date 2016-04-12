@@ -13,9 +13,10 @@ body {
   a {
     color: #fff;
   }
-  h1 {
-    font-family: 'Calibri';
-  }
+}
+
+h1 {
+  font-family: 'Cabin', sans-serif;
 }
 
 #wrapper {
@@ -67,7 +68,7 @@ fieldset {
   margin-bottom: 2em;
   legend {
     color: #fff;
-    background: #333;
+    background: #5D737E;
     font-family: sans-serif;
     font-size: 2em;
     padding: 0.2em 1em; 

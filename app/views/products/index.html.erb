@@ -6,14 +6,14 @@
 
 <% @products.each do |product| %>
 <table class="table">
-  <tr class="info">
+  <tr class="product-info">
     <td>
       <%= image_tag(product.image_url, class: 'list_image img-responsive') %>  
     </td>
     <td class="list_description">
       <dl>
         <dt><%= product.title %></dt>
-        <dd><%= truncate(strip_tags(product.description), length: 100) %></dd>
+        <dd><%= truncate(strip_tags(product.description), length: 400) %></dd>
       </dl>
     </td>
   </tr>
