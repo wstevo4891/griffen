@@ -8,6 +8,7 @@ gem 'rails', '4.2.3'
 gem 'sass-rails', '~> 5.0'
 # Use Bootstrap Sass
 gem 'bootstrap-sass', '3.3.4.1'
+gem 'compass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views

@@ -1,8 +1,15 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin!, only: [:index, :edit, :destroy]
-  before_action :authenticate_user!, only: [:show]
-  skip_before_action :authenticate_user!, if: :admin_signed_in?
+  before_action :authenticate_user!, :validate_user, only: :show
+  skip_before_action :authenticate_user!, :validate_user, if: :admin_signed_in?
+
+  def validate_user
+    unless current_user.id.to_s == params[:id]
+      redirect_to pages_welcome_path
+      flash.alert = "You are not authorized to view that account"
+    end
+  end
 
   def index
     @users = User.all

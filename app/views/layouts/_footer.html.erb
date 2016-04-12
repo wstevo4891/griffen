@@ -1,14 +1,13 @@
-<footer class="col-md-10 col-md-offset-1">
-  <p>The Griffen Credit Card Reader</p>
-  <ul class="hidden-xs">
-  	<li><%= link_to "HOME", root_path %></li>
-  	<li><%= link_to "ABOUT", pages_about_path %></li>
-  	<li><%= link_to "PRODUCTS", pages_products_path %></li>
-  	<li><%= link_to "CONTACT", pages_contact_path %></li>
-  	<li><%= link_to "LOGIN", new_user_session_path %></li>
-  </ul>
-  
-  <div id="mjba">
-  	<%= image_tag("MJBA.jpg") %>	
-  </div>    
+<footer>
+  <div class="container">
+    <p class="text-center hidden-md hidden-lg">The Griffen Credit Card Reader</p>
+    <p class="pull-left hidden-sm hidden-xs">The Griffen Credit Card Reader</p>
+    <ul class="pull-right hidden-xs hidden-sm">
+    	<li><%= link_to "HOME", root_path %></li>
+    	<li><%= link_to "ABOUT", pages_about_path %></li>
+    	<li><%= link_to "PRODUCTS", pages_products_path %></li>
+    	<li><%= link_to "CONTACT", pages_contact_path %></li>
+    	<li><%= link_to "LOGIN", new_user_session_path %></li>
+    </ul>
+  </div>
 </footer>

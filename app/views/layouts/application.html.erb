@@ -58,18 +58,18 @@
         </div>
         <% if !admin_signed_in? && !user_signed_in? %>
           <div class="col-sm-6 col-sm-offset-3 well">
-            <p>Here to evaluate the site?  Go to Admin and use this login:</p>
+            <p>Here to evaluate the site?  Click on Account/Admin and use this login:</p>
             <p><strong>Email:</strong> jbones@example.com, <strong>Password:</strong> $T1000%sn</p>
           </div>
         <% end %>
       </div>
 
       <%= yield %>
-
-  	  <div class="row">
-  	    <%=  render 'layouts/footer' %>
-  	  </div>
+    
     </div>
   </div>
+
+  <%=  render 'layouts/footer' %>
+  
 </body>
 </html>
