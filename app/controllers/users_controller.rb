@@ -29,10 +29,11 @@ class UsersController < ApplicationController
       respond_to do |format|
         if admin_signed_in?
           format.html { redirect_to admin_users_path, notice: "User was updated" }
+          format.json { render :index, status: :ok }
         else
           format.html { redirect_to user_path(@user), notice: "Your account has been updated" }
+          format.json { render :show, status: :ok, location: @user }
         end
-        format.json { render :show, status: :ok, location: @user }
       end
     end 
   end

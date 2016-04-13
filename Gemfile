@@ -68,6 +68,9 @@ group :development do
   gem 'better_errors'
   gem 'meta_request'
   gem 'quiet_assets'
+  gem 'guard'
+  gem 'guard-livereload', '~> 2.5', require: false
+  gem 'rack-livereload'
 end
 
 group :development, :test do

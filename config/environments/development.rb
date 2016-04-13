@@ -13,6 +13,19 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
+  # Add Rack::LiveReload for live reloading in development.
+  # I'm inserting before Rack::Lock because I'm using the better_errors gem
+  config.middleware.insert_before Rack::Lock, Rack::LiveReload
+
+  # Rack::LiveReload options.
+  config.middleware.use(Rack::LiveReload,
+    min_delay:        500,
+    max_delay:        10_000,
+    live_reload_port: 56789,
+    host:             'localhost:3000',
+    ignore:           [ %r{don't/modify\.html$} ]
+  )
+
   # ActionMailer Config
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
