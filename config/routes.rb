@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   
   get 'pages/welcome'
   get 'pages/about'
-  get 'pages/products'
   get 'pages/contact'
 
   get 'admin' => 'pages#admin'
@@ -12,11 +11,13 @@ Rails.application.routes.draw do
   get 'admin/aches' => 'pages#aches'
   get 'admin/documents' => 'pages#documents'
   get 'admin/orders' => 'pages#orders'
+  get 'admin/products' => 'pages#products'
 
   devise_for :admins
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   resources :users do
+    get 'admin/users' => 'users#index'
     resource :application, controller: 'applications'
     post '/application_upload' => 'applications#dropbox_upload', as: 'application_upload'
     resource :ach, controller: 'aches'
