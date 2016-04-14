@@ -80,7 +80,7 @@
 
   <div class="button-row">
     <% if @ach %>
-      <%= link_to "SUBMIT", user_ach_upload_path, method: :post, remote: true, multipart: true, 
+      <%= link_to "SUBMIT", user_ach_upload_path(@user), method: :post, remote: true, multipart: true, 
       data: { confirm: 'Are you ready to submit this document for review?'}, 
       class: "btn btn-lg btn-primary", id: "send-ach-to-dropbox" %> 
 
@@ -107,7 +107,7 @@
 
   <div class="button-row">
     <% if @document %>
-      <%= link_to "SUBMIT", user_document_upload_path, method: :post, multipart: true, remote: true, 
+      <%= link_to "SUBMIT", user_document_upload_path(@user), method: :post, multipart: true, remote: true, 
       data: { confirm: 'Are you ready to submit this document for review?'}, 
       class: "btn btn-lg btn-primary", id: "send-doc-to-dropbox" %> 
 

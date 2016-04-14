@@ -7,28 +7,32 @@ Rails.application.routes.draw do
   get 'pages/products'
   get 'pages/contact'
 
-  get 'admin' => 'pages#admin'
-  get 'admin/users' => 'users#index'
-  get 'admin/applications' => 'pages#applications'
-  get 'admin/aches' => 'pages#aches'
-  get 'admin/documents' => 'pages#documents'
-  get 'admin/orders' => 'pages#orders'
-  get 'admin/products' => 'products#index'
+  get '/admin' => 'pages#admin'
+
+  namespace :admin do
+    get '/users' => 'users#index'
+    get '/applications' => 'pages#applications'
+    get '/aches' => 'pages#aches'
+    get '/documents' => 'pages#documents'
+    get '/orders' => 'pages#orders'
+    get '/products' => 'products#index'
+  end
 
   devise_for :admins
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   resources :users do
     resource :application, controller: 'applications'
-    post '/application_upload' => 'applications#dropbox_upload', as: 'application_upload'
+    post '/application_upload' => 'applications#dropbox_upload'
+
     resource :ach, controller: 'aches'
-    post '/ach_upload' => 'aches#dropbox_upload', as: 'ach_upload'
+    post '/ach_upload' => 'aches#dropbox_upload'
+
     resource :document, controller: 'documents'
-    post '/document_upload' => 'documents#dropbox_upload', as: 'document_upload'
+    post '/document_upload' => 'documents#dropbox_upload'
+
     resource :order, controller: 'orders'
   end
 
-  resources :members
-  resources :shareholders
-  resources :products
+  resources :members, :shareholders, :products
 end
