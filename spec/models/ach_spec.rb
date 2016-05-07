@@ -6,13 +6,13 @@ RSpec.describe Ach do
   end
   
   context 'validations' do
-  	it { should validate_presence_of :legalname }
-  	it { should validate_presence_of :pname }
-  	it { should validate_presence_of :pphone }
-  	it { should validate_presence_of :paddress }
+  	it { is_expected.to validate_presence_of :legalname }
+  	it { is_expected.to validate_presence_of :pname }
+  	it { is_expected.to validate_presence_of :pphone }
+  	it { is_expected.to validate_presence_of :paddress }
   end
 
   context 'associations' do
-  	it { should belong_to(:user) }
+  	it { is_expected.to belong_to(:user) }
   end  
 end

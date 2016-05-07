@@ -28,12 +28,12 @@ RSpec.describe UsersController do
 
     it "should be successful" do
       get :show, id: @user.id
-      response { should be_success }
+      response { is_expected.to be_success }
     end
     
     it "should find the right user" do
       get :show, id: @user.id
-      assigns(:user) { should == @user }
+      assigns(:user) { is_expected.to eq(@user) }
     end
   end
 end

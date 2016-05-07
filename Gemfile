@@ -94,7 +94,6 @@ end
 group :test do
   gem 'faker'
   gem 'capybara'
-  gem 'shoulda-matchers'
   gem 'email_spec'  
   gem 'guard-rspec'
   gem 'launchy'

@@ -18,20 +18,20 @@ RSpec.describe AccessToken do
   end
 
   context 'associations' do
-    it { should belong_to(:user) }
+    it { is_expected.to belong_to(:user) }
   end
 
   context 'attributes' do
 
     context 'locator' do
 
-      it { should have_db_column(:locator).of_type(:string).with_options(null: false) }
-      it { should have_db_index(:locator).unique }
+      it { is_expected.to have_db_column(:locator).of_type(:string).with_options(null: false) }
+      it { is_expected.to have_db_index(:locator).unique }
 
       context 'validation' do
         subject { AccessToken.new(secret: 'this-is-a-test-secret') }
-        it { should validate_uniqueness_of(:locator) }
-        it { should validate_length_of(:locator).is_equal_to(64) }
+        it { is_expected.to validate_uniqueness_of(:locator) }
+        it { is_expected.to validate_length_of(:locator).is_equal_to(64) }
       end
 
       it 'generates long random value before validation' do
@@ -60,14 +60,14 @@ RSpec.describe AccessToken do
 
     context 'secret' do
       it 'has column name for encryption' do
-          should have_db_column(:encrypted_secret).of_type(:text).with_options(null: false)
+          is_expected.to have_db_column(:encrypted_secret).of_type(:text).with_options(null: false)
       end
       it 'has no plain column name' do
-        should_not have_db_column(:secret)
+        is_expected.not_to have_db_column(:secret)
       end
 
       context 'validation' do
-        it { should validate_length_of(:secret).is_equal_to(256) }
+        it { is_expected.to validate_length_of(:secret).is_equal_to(256) }
       end
 
       context 'encryption' do

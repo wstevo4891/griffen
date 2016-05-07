@@ -6,11 +6,11 @@ RSpec.describe Shareholder, type: :model do
   end
 
   context "validations" do
-  	it { should validate_presence_of :sname }
-  	it { should validate_presence_of :shid }
+  	it { is_expected.to validate_presence_of :sname }
+  	it { is_expected.to validate_presence_of :shid }
   end
 
   context "associations" do
-  	it { should belong_to :document }
+  	it { is_expected.to belong_to :document }
   end
 end

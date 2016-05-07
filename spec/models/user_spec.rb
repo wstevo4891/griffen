@@ -6,22 +6,22 @@ RSpec.describe User do
   end
 
   context 'validations' do
-    it { should validate_presence_of :firstname }
-    it { should validate_presence_of :lastname }
-    it { should validate_presence_of :email }
-    it { should validate_presence_of :business }
-    it { should validate_presence_of :phone }
-    it { should validate_presence_of :password }
-    it { should validate_confirmation_of :password }
-    it { should validate_uniqueness_of(:email).case_insensitive }
+    it { is_expected.to validate_presence_of :firstname }
+    it { is_expected.to validate_presence_of :lastname }
+    it { is_expected.to validate_presence_of :email }
+    it { is_expected.to validate_presence_of :business }
+    it { is_expected.to validate_presence_of :phone }
+    it { is_expected.to validate_presence_of :password }
+    it { is_expected.to validate_confirmation_of :password }
+    it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
   end
 
   context 'associations' do
-    it { should have_many(:orders).dependent(:destroy) }
-    it { should have_one(:application).dependent(:destroy) }
-    it { should have_one(:ach).dependent(:destroy) }
-    it { should have_one(:document).dependent(:destroy) }
-    it { should have_many(:access_tokens).dependent(:destroy) }
+    it { is_expected.to have_many(:orders).dependent(:destroy) }
+    it { is_expected.to have_one(:application).dependent(:destroy) }
+    it { is_expected.to have_one(:ach).dependent(:destroy) }
+    it { is_expected.to have_one(:document).dependent(:destroy) }
+    it { is_expected.to have_many(:access_tokens).dependent(:destroy) }
   end
 
   context '#issue_access_token' do

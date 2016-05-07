@@ -6,10 +6,10 @@ RSpec.describe Product, type: :model do
   end
 
   context 'validations' do
-  	it { should validate_presence_of :title }
-  	it { should validate_presence_of :description }
-  	it { should validate_presence_of :image_url }
-  	it { should validate_presence_of :price }
-  	it { should validate_uniqueness_of :title }
+  	it { is_expected.to validate_presence_of :title }
+  	it { is_expected.to validate_presence_of :description }
+  	it { is_expected.to validate_presence_of :image_url }
+  	it { is_expected.to validate_presence_of :price }
+  	it { is_expected.to validate_uniqueness_of :title }
   end
 end

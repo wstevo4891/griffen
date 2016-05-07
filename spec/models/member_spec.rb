@@ -6,11 +6,11 @@ RSpec.describe Member, type: :model do
   end
 
   context "validations" do
-  	it { should validate_presence_of :mname }
-  	it { should validate_presence_of :memid }
+  	it { is_expected.to validate_presence_of :mname }
+  	it { is_expected.to validate_presence_of :memid }
   end
 
   context "associations" do
-  	it { should belong_to :document }
+  	it { is_expected.to belong_to :document }
   end
 end
