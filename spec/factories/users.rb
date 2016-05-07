@@ -10,11 +10,7 @@ FactoryGirl.define do
     sequence(:email) { |n| "user#{n}@example.tld" }
     business { Faker::Company.name }
     phone { Faker::PhoneNumber.phone_number }
-    password  "zx%-7$6yu23"
-
-    before(:create) do |user, evaluator|
-      user.skip_confirmation! if evaluator.skip_confirmation
-    end   
+    password  "zx%-7$6yu23"  
   end
 
 end

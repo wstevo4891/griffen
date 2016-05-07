@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.2'
+ruby '2.2.5'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -72,6 +72,7 @@ group :development do
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'rack-livereload'
   gem 'rack-mini-profiler'
+  gem 'web-console', '~> 2.0'
 end
 
 group :development, :test do
@@ -79,12 +80,12 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'rspec-rails', '~> 3.0'
+  gem 'transpec'
   gem 'factory_girl_rails', '~> 4.5'
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
   gem 'pry-rails'
   gem 'puffing-billy'
-  gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'awesome_print', require: 'ap'
