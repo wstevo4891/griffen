@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://crm.zoho.com/crm/private/xml/Leads/insertRecords
+    body:
+      encoding: UTF-8
+      string: newFormat=1&authtoken=204728ae41e4db458723f237f4daf41c&scope=crmapi&xmlData=%3CLeads%3E%3Crow%20no%3D%271%27%3E%3CFL%20val%3D%27First%20Name%27%3EJimi%3C%2FFL%3E%3CFL%20val%3D%27Last%20Name%27%3EHendrix%3C%2FFL%3E%3CFL%20val%3D%27Company%27%3EHendrix%20Greens%3C%2FFL%3E%3CFL%20val%3D%27Email%27%3Etester%40example.tld%3C%2FFL%3E%3CFL%20val%3D%27Phone%27%3E777-888-9999%3C%2FFL%3E%3C%2Frow%3E%3C%2FLeads%3E&wfTrigger=true
+    headers:
+      Content-Length:
+      - '0'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - ZGS
+      Date:
+      - Sun, 08 May 2016 04:16:18 GMT
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '429'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - 6726760df9=28e6b00829febaa93159f3ad23bdcc46; Path=/
+      - crmcsr=662591d1-0ddd-4344-a734-b12db4506352; Path=/; Secure
+      X-Xss-Protection:
+      - '1'
+      X-Content-Type-Options:
+      - nosniff
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - no-cache
+      - no-store, no-cache, must-revalidate, private
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=15768000
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" ?>
+        <response uri="/crm/private/xml/Leads/insertRecords"><result><message>Record(s) added successfully</message><recorddetail><FL val="Id">1453831000000126005</FL><FL val="Created Time">2016-05-07 21:16:18</FL><FL val="Modified Time">2016-05-07 21:16:18</FL><FL val="Created By"><![CDATA[Jim Alekson]]></FL><FL val="Modified By"><![CDATA[Jim Alekson]]></FL></recorddetail></result></response>
+    http_version: 
+  recorded_at: Sun, 08 May 2016 04:16:18 GMT
+recorded_with: VCR 3.0.1

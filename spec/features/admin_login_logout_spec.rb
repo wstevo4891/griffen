@@ -17,7 +17,7 @@ RSpec.feature "Admin logs in and logs out" do
 
     expect(current_path).to eq(root_path)
     expect(page).to have_content "Signed in successfully"
-    expect(page).to have_content "GOD MODE ACTIVE!"
+    expect(page).to have_content "CROM MODE ACTIVE!"
 
     click_on "admin-dropdown"
     click_on "admin-logout"

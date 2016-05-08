@@ -17,9 +17,9 @@ RSpec.describe AccessToken do
     end
   end
 
-  context 'associations' do
-    it { is_expected.to belong_to(:user) }
-  end
+  # context 'associations' do
+  #   it { is_expected.to belong_to(:user) }
+  # end
 
   context 'attributes' do
 

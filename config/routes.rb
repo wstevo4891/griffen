@@ -9,14 +9,12 @@ Rails.application.routes.draw do
 
   get '/admin' => 'pages#admin'
 
-  namespace :admin do
-    get '/users' => 'users#index'
-    get '/applications' => 'pages#applications'
-    get '/aches' => 'pages#aches'
-    get '/documents' => 'pages#documents'
-    get '/orders' => 'pages#orders'
-    get '/products' => 'products#index'
-  end
+  get '/admin/users' => 'users#index'
+  get '/admin/applications' => 'pages#applications'
+  get '/admin/aches' => 'pages#aches'
+  get '/admin/documents' => 'pages#documents'
+  get '/admin/orders' => 'pages#orders'
+  get '/admin/products' => 'products#index'
 
   devise_for :admins
   devise_for :users, controllers: { registrations: 'users/registrations' }

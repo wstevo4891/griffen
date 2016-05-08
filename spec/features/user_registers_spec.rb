@@ -19,6 +19,7 @@ RSpec.feature "User registers" do
   	  click_on "Register"
     end
 
+=begin
   	expect(current_path).to eq(root_path)
   	expect(page).to have_content("A message with a confirmation 
       link has been sent to your email address. Please follow the 
@@ -33,9 +34,11 @@ RSpec.feature "User registers" do
     fill_in "Email", with: "tester@example.tld"
     fill_in "Password", with: "zx%-7$6yu23"
     click_button "Log in"
+=end
 
     expect(current_path).to eq(root_path)
-    expect(page).to have_content "Signed in successfully."
+    expect(page).to have_content "Welcome! You have signed up successfully."
+  #  expect(page).to have_content "Signed in successfully."
   end
 
   context "with invalid details" do
@@ -55,8 +58,8 @@ RSpec.feature "User registers" do
                                           "Email can't be blank", 
                                           "Business can't be blank", 
                                           "Phone can't be blank", 
-                                          "Password can't be blank", 
-                                          "Password is not strong enough. Consider adding a number, symbols or more letters to make it stronger."
+                                          "Password can't be blank" 
+                                          # "Password is not strong enough. Consider adding a number, symbols or more letters to make it stronger."
     end
 
     scenario "incorrect password confirmation" do
