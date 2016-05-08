@@ -100,6 +100,7 @@ group :test do
   gem 'vcr'
   gem 'webmock', '1.24.2'
   gem 'database_cleaner'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :production do

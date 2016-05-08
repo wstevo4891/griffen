@@ -162,7 +162,7 @@ RSpec.describe ProductsController, type: :controller do
 
     it "redirects to the products #index" do
       delete_product
-      expect(response).to redirect_to(products_url)
+      expect(response).to redirect_to(admin_products_url)
     end
   end
 end
