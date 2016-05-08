@@ -1,29 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationsController, type: :controller do
-  after(:all) do
-    File.delete(Rails.root.join("pdfs", "John Doe.merchant_application.pdf"))
-    File.delete(Rails.root.join("pdfs", "Jimmy Bones.merchant_application.pdf"))
-  end  
-
-  describe "GET #index" do
-    # Sign in an admin to see Applications Index page
-    before(:each) do
-      @admin = create(:admin)
-      sign_in @admin
-    end
-
-    it "assigns all applications as @applications" do
-      @application = create(:application)
-      get :index
-      expect(assigns(:applications)).to eq([@application])
-    end
-
-    it "renders the :index view" do
-      get :index
-      expect(response).to render_template :index
-    end
-  end
 
   # Sign in a user for the rest of the tests
   before (:each) do
@@ -34,24 +11,24 @@ RSpec.describe ApplicationsController, type: :controller do
   describe "GET #show" do
     it "locates the requested @application" do
       @application = create(:application)
-      get :show, id: @application
+      get :show, user_id: @user.id, id: @application
       expect(assigns(:application)).to eq(@application)
     end
 
     it "renders the :show view" do
-      get :show, id: create(:application)
+      get :show, user_id: @user.id, id: create(:application)
       expect(response).to render_template :show
     end
   end
 
   describe "GET #new" do
     it "assigns a new application as @application" do
-      get :new
+      get :new, user_id: @user.id
       expect(assigns(:application)).to be_a_new(Application)
     end
 
     it "renders the :new view" do
-      get :new
+      get :new, user_id: @user.id
       expect(response).to render_template :new
     end
   end
@@ -59,7 +36,7 @@ RSpec.describe ApplicationsController, type: :controller do
   describe "GET #edit" do
     before(:each) do
       @application = create(:application)
-      get :edit, id: @application
+      get :edit, user_id: @user.id, id: @application
     end
 
     it "locates the requested @application" do
@@ -72,8 +49,8 @@ RSpec.describe ApplicationsController, type: :controller do
   end
 
   describe "POST #create" do
-    context "with valid params", :vcr do
-      let(:post_create) { post :create, application: attributes_for(:application) }
+    context "with valid params" do
+      let(:post_create) { post :create, user_id: @user.id, application: attributes_for(:application) }
 
       it "creates a new Application" do
         expect {
@@ -94,7 +71,7 @@ RSpec.describe ApplicationsController, type: :controller do
     end
 
     context "with invalid params" do
-      let(:post_invalid) { post :create, application: attributes_for(:application, :invalid) }
+      let(:post_invalid) { post :create, user_id: @user.id, application: attributes_for(:application, :invalid) }
 
       it "does not save the new application" do
         expect {
@@ -119,8 +96,8 @@ RSpec.describe ApplicationsController, type: :controller do
       @application = create(:application, oname: "Larry Smith")
     end
 
-    context "with valid params", :vcr do
-      let(:put_update) { put :update, id: @application, application: attributes_for(:application) }
+    context "with valid params" do
+      let(:put_update) { put :update, user_id: @user.id, id: @application, application: attributes_for(:application) }
 
       it "locates the requested @application" do
         put_update
@@ -128,7 +105,7 @@ RSpec.describe ApplicationsController, type: :controller do
       end
 
       it "updates the requested application" do
-        put :update, id: @application, application: attributes_for(:application, 
+        put :update, user_id: @user.id, id: @application, application: attributes_for(:application, 
           oname: "Jimmy Bones", legalname: "Bones' Bongs")
         @application.reload
         expect(@application.oname).to eq("Jimmy Bones")
@@ -142,7 +119,7 @@ RSpec.describe ApplicationsController, type: :controller do
     end
 
     context "with invalid params" do
-      let(:put_invalid) { put :update, id: @application, application: attributes_for(:application, :invalid) }
+      let(:put_invalid) { put :update, user_id: @user.id, id: @application, application: attributes_for(:application, :invalid) }
 
       it "locates the requested @application" do
         put_invalid
@@ -163,7 +140,7 @@ RSpec.describe ApplicationsController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    let(:delete_app) { delete :destroy, id: @application }
+    let(:delete_app) { delete :destroy, user_id: @user.id, id: @application }
     before(:each) do
       @application = create(:application)
     end
@@ -183,7 +160,7 @@ RSpec.describe ApplicationsController, type: :controller do
       @admin = create(:admin)
       sign_in @admin
       delete_app
-      expect(response).to redirect_to applications_url
+      expect(response).to redirect_to admin_applications_url
     end
   end
 end

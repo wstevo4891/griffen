@@ -2,12 +2,12 @@
 http_interactions:
 - request:
     method: put
-    uri: https://api-content.dropbox.com/1/files_put/auto/Applications/Orders/Emerald%20City%20Greens.merchant_application.pdf?overwrite=false
+    uri: https://api-content.dropbox.com/1/files_put/auto/Applications/Orders/1_Emerald%20City%20Greens.merchant_application.pdf?overwrite=false
     body:
       encoding: UTF-8
       base64_string: |
         JVBERi0xLjQKMSAwIG9iago8PAovVGl0bGUgKP7/KQovUHJvZHVjZXIgKHdr
-        aHRtbHRvcGRmKQovQ3JlYXRpb25EYXRlIChEOjIwMTYwMTEyMjA0MzE5KQo+
+        aHRtbHRvcGRmKQovQ3JlYXRpb25EYXRlIChEOjIwMTYwNTA4MDMzNTUxKQo+
         PgplbmRvYmoKNCAwIG9iago8PAovVHlwZSAvRXh0R1N0YXRlCi9TQSB0cnVl
         Ci9TTSAwLjAyCi9jYSAxLjAKL0NBIDEuMAovQUlTIGZhbHNlCi9TTWFzayAv
         Tm9uZT4+CmVuZG9iago1IDAgb2JqClsvUGF0dGVybiAvRGV2aWNlUkdCXQpl
@@ -43,7 +43,7 @@ http_interactions:
       Accept:
       - "*/*"
       User-Agent:
-      - OfficialDropboxRubySDK/1.6.4
+      - OfficialDropboxRubySDK/1.6.5
       Content-Length:
       - '1281'
       Authorization:
@@ -56,7 +56,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 12 Jan 2016 20:43:20 GMT
+      - Sun, 08 May 2016 03:35:52 GMT
       Content-Type:
       - text/javascript
       Transfer-Encoding:
@@ -64,27 +64,27 @@ http_interactions:
       Connection:
       - keep-alive
       X-Dropbox-Request-Id:
-      - 86a5e2f3ac1c55837fd9ee37b7d71acc
+      - 41f770381d92db2f17d0befe55c8c7c1
       Pragma:
       - no-cache
       Cache-Control:
       - no-cache
       X-Server-Response-Time:
-      - '522'
+      - '410'
       X-Robots-Tag:
       - noindex, nofollow, noimageindex
     body:
       encoding: ASCII-8BIT
       base64_string: |
-        eyJyZXZpc2lvbiI6IDg1MSwgImJ5dGVzIjogMTI4MSwgInRodW1iX2V4aXN0
-        cyI6IGZhbHNlLCAicmV2IjogIjM1MzNlNTA5NGIzIiwgIm1vZGlmaWVkIjog
-        IlR1ZSwgMTIgSmFuIDIwMTYgMjA6NDM6MTkgKzAwMDAiLCAibWltZV90eXBl
-        IjogImFwcGxpY2F0aW9uL3BkZiIsICJwYXRoIjogIi9hcHBsaWNhdGlvbnMv
-        T3JkZXJzL0VtZXJhbGQgQ2l0eSBHcmVlbnMubWVyY2hhbnRfYXBwbGljYXRp
-        b24gKDEpLnBkZiIsICJpc19kaXIiOiBmYWxzZSwgInNpemUiOiAiMS4zIEtC
-        IiwgInJvb3QiOiAiYXBwX2ZvbGRlciIsICJjbGllbnRfbXRpbWUiOiAiVHVl
-        LCAxMiBKYW4gMjAxNiAyMDo0MzoxOSArMDAwMCIsICJpY29uIjogInBhZ2Vf
-        d2hpdGVfYWNyb2JhdCJ9
+        eyJyZXZpc2lvbiI6IDExOTQsICJieXRlcyI6IDEyODEsICJ0aHVtYl9leGlz
+        dHMiOiBmYWxzZSwgInJldiI6ICI0YWEzZTUwOTRiMyIsICJtb2RpZmllZCI6
+        ICJTdW4sIDA4IE1heSAyMDE2IDAzOjM1OjUyICswMDAwIiwgIm1pbWVfdHlw
+        ZSI6ICJhcHBsaWNhdGlvbi9wZGYiLCAicGF0aCI6ICIvYXBwbGljYXRpb25z
+        L09yZGVycy8xX0VtZXJhbGQgQ2l0eSBHcmVlbnMubWVyY2hhbnRfYXBwbGlj
+        YXRpb24gKDYpLnBkZiIsICJpc19kaXIiOiBmYWxzZSwgInNpemUiOiAiMS4z
+        IEtCIiwgInJvb3QiOiAiYXBwX2ZvbGRlciIsICJjbGllbnRfbXRpbWUiOiAi
+        U3VuLCAwOCBNYXkgMjAxNiAwMzozNTo1MiArMDAwMCIsICJpY29uIjogInBh
+        Z2Vfd2hpdGVfYWNyb2JhdCJ9
     http_version: 
-  recorded_at: Tue, 12 Jan 2016 20:43:20 GMT
-recorded_with: VCR 3.0.0
+  recorded_at: Sun, 08 May 2016 03:35:52 GMT
+recorded_with: VCR 3.0.1

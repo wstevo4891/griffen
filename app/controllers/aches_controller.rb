@@ -57,7 +57,7 @@ class AchesController < ApplicationController
   def destroy
     @ach.destroy
     if admin_signed_in?
-      redirect_to admin_applications_path
+      redirect_to admin_aches_path
     else
       redirect_to user_path(@user)
     end

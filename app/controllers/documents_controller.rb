@@ -58,10 +58,11 @@ class DocumentsController < ApplicationController
   def destroy
     @document.destroy
     if admin_signed_in?
-      format.html { redirect_to admin_documents_url }
+      redirect_to admin_documents_path
     else
-      format.html { redirect_to current_user }
-    end      
+      redirect_to user_path(@user)
+    end
+    flash.notice = 'Documents were deleted'
   end
 
   def filename

@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :set_user, except: [:filename, :save_path, :render_pdf, :save_as_pdf, :dropbox_upload]
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, except: [:save_path, :render_pdf, :save_as_pdf, :dropbox_upload]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :filename, :dropbox_upload]
   before_action :authenticate_admin!, unless: :user_signed_in?
   before_action :authenticate_user!, unless: :admin_signed_in?
 
@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = @user.build_order
+    @order = @user.orders.build
   end
 
   # GET /orders/1/edit
@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = @user.create_order(order_params)
+    @order = @user.orders.create(order_params)
 
     respond_to do |format|
       if @order.save
@@ -74,13 +74,12 @@ class OrdersController < ApplicationController
   # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy
-    @order.destroy
+    @user.orders.destroy(@order)
     if admin_signed_in?
-      format.html { redirect_to admin_orders_url }
+      redirect_to admin_orders_url
     else
-      format.html { redirect_to current_user }
+      redirect_to user_path(@user)
     end
-    format.json { head :no_content }
   end
 
   def filename
@@ -123,16 +122,16 @@ class OrdersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def user
+    def set_user
       @user = User.find(params[:user_id])
     end
 
     def set_order
-      @order = @user.order
+      @order = Order.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:user_id, :name, :business, :email, :phone, :product, :payment)
+      params.require(:order).permit(:name, :business, :email, :phone, :product, :payment)
     end
 end

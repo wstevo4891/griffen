@@ -28,6 +28,7 @@ RSpec.feature "User logs in and logs out" do
     expect(page).to have_content "Signed out successfully"
   end
 
+=begin
   scenario "unconfirmed user cannot login" do
 
     create(:user, skip_confirmation: false, email: "e@example.tld", password: "zx%-7$6yu23")
@@ -60,4 +61,6 @@ RSpec.feature "User logs in and logs out" do
     expect(page).to have_content "Your account is locked."
 
   end
+=end
+
 end

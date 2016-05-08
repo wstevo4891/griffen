@@ -5,6 +5,7 @@ FactoryGirl.define do
   	sequence(:email) { |n| "user#{n}@example.tld" }
   	phone { Faker::PhoneNumber.phone_number }
     user
+    user_id 1
 
   	trait :invalid do
   	  oname nil

@@ -6,6 +6,8 @@ FactoryGirl.define do
   	phone { Faker::PhoneNumber.phone_number }
   	product "Verifone 510"
   	payment "Credit Card"
+    user
+    user_id 1
 
   	trait :invalid do
   	  name nil

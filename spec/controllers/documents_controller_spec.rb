@@ -1,28 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe DocumentsController, type: :controller do
-  after(:all) do
-    File.delete(Rails.root.join('pdfs',"Emerald City Greens.Required_Documents.pdf"))
-  end
-
-  describe "GET #index" do
-  	# Sign in an admin to see Documents Index page
-  	before(:each) do
-  	  @admin = create(:admin)
-  	  sign_in @admin
-  	end
-
-  	it "assigns all documents as @documents" do
-      @document = create(:document)
-      get :index
-      expect(assigns(:documents)).to eq([@document])
-    end
-
-    it "renders the :index view" do
-      get :index
-      expect(response).to render_template :index
-    end
-  end
 
   #Sign in a user for the rest of the tests
   before(:each) do
@@ -33,7 +11,7 @@ RSpec.describe DocumentsController, type: :controller do
   describe "GET #show" do
     before(:each) do
       @document = create(:document)
-      get :show, id: @document
+      get :show, user_id: @user.id, id: @document
     end
 
   	it "locates the requested @document" do
@@ -47,12 +25,12 @@ RSpec.describe DocumentsController, type: :controller do
 
   describe "GET #new" do
   	it "locates the requested @document" do
-  	  get :new
+  	  get :new, user_id: @user.id
   	  expect(assigns(:document)).to be_a_new(Document)
   	end
 
   	it "renders the :new view" do
-  	  get :new
+  	  get :new, user_id: @user.id
   	  expect(response).to render_template :new
   	end
   end
@@ -60,7 +38,7 @@ RSpec.describe DocumentsController, type: :controller do
   describe "GET #edit" do
     before(:each) do
   	  @document = create(:document)
-  	  get :edit, id: @document
+  	  get :edit, user_id: @user.id, id: @document
   	end
 
   	it "locates the requested @document" do
@@ -73,8 +51,8 @@ RSpec.describe DocumentsController, type: :controller do
   end
 
   describe "POST #create" do
-  	context "with valid params", :vcr do
-  	  let(:post_create) { post :create, document: attributes_for(:document) }
+  	context "with valid params" do
+  	  let(:post_create) { post :create, user_id: @user.id, document: attributes_for(:document) }
 
   	  it "creates a new Document" do
   	  	expect {
@@ -95,7 +73,7 @@ RSpec.describe DocumentsController, type: :controller do
   	end
 
   	context "with invalid params" do
-  	  let(:post_invalid) { post :create, document: attributes_for(:document, :invalid) }
+  	  let(:post_invalid) { post :create, user_id: @user.id, document: attributes_for(:document, :invalid) }
 
   	  it "does not save the new document" do
   	  	expect {
@@ -120,8 +98,8 @@ RSpec.describe DocumentsController, type: :controller do
   	  @document = create(:document, name: "Larry Smith")
   	end
 
-  	context "with valid params", :vcr do
-  	  let(:put_update) { put :update, id: @document, document: attributes_for(:document) }
+  	context "with valid params" do
+  	  let(:put_update) { put :update, user_id: @user.id, id: @document, document: attributes_for(:document) }
 
   	  it "locates the requested @document" do
   	  	put_update
@@ -129,7 +107,7 @@ RSpec.describe DocumentsController, type: :controller do
   	  end
 
   	  it "updates the requested @document" do
-  	  	put :update, id: @document, document: attributes_for(:document, name: "Jimmy Bones")
+  	  	put :update, user_id: @user.id, id: @document, document: attributes_for(:document, name: "Jimmy Bones")
   	  	@document.reload
   	  	expect(@document.name).to eq("Jimmy Bones")
   	  end
@@ -141,7 +119,7 @@ RSpec.describe DocumentsController, type: :controller do
   	end
 
   	context "with invalid params" do
-  	  let(:put_invalid) { put :update, id: @document, document: attributes_for(:document, :invalid) }
+  	  let(:put_invalid) { put :update, user_id: @user.id, id: @document, document: attributes_for(:document, :invalid) }
       
       it "locates the requested @document" do
       	put_invalid
@@ -162,7 +140,7 @@ RSpec.describe DocumentsController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-  	let(:delete_doc) { delete :destroy, id: @document }
+  	let(:delete_doc) { delete :destroy, user_id: @user.id, id: @document }
   	before(:each) do
   	  @document = create(:document)
   	end
@@ -182,7 +160,7 @@ RSpec.describe DocumentsController, type: :controller do
   	  @admin = create(:admin)
   	  sign_in @admin
   	  delete_doc
-  	  expect(response).to redirect_to documents_url
+  	  expect(response).to redirect_to admin_documents_url
   	end
   end
 end

@@ -53,7 +53,6 @@ class ApplicationsController < ApplicationController
 
   def destroy
     @application.destroy
-    File.delete(save_path)
     if admin_signed_in?
       redirect_to admin_applications_path
     else

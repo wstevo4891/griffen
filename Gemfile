@@ -98,7 +98,7 @@ group :test do
   gem 'guard-rspec'
   gem 'launchy'
   gem 'vcr'
-  gem 'webmock'
+  gem 'webmock', '1.24.2'
   gem 'database_cleaner'
 end
 

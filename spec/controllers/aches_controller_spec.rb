@@ -1,29 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe AchesController, type: :controller do 
-  after(:all) do
-    File.delete(Rails.root.join('pdfs',"Emerald City Greens.ACH_agreement.pdf"))
-    File.delete(Rails.root.join('pdfs',"Bones' Bongs.ACH_agreement.pdf"))
-  end
-
-  describe "GET #index" do
-    # Sign in an admin to see Aches Index page
-    before(:each) do
-      @admin = create(:admin)
-      sign_in @admin
-    end
-
-    it "assigns all aches as @aches" do
-      ach = create(:ach)
-      get :index
-      expect(assigns(:aches)).to eq([ach])
-    end
-
-    it "renders the :index view" do
-      get :index
-      expect(response).to render_template :index
-    end
-  end
   
   # Sign in a user for the rest of the tests
   before (:each) do
@@ -33,25 +10,25 @@ RSpec.describe AchesController, type: :controller do
 
   describe "GET #show" do
     it "assigns the requested ach as @ach" do
-      ach = create(:ach)
-      get :show, id: ach
-      expect(assigns(:ach)).to eq(ach)
+      @ach = create(:ach)
+      get :show, user_id: @user.id, id: @ach
+      expect(assigns(:ach)).to eq(@ach)
     end
 
     it "renders the :show view" do
-      get :show, id: create(:ach)
+      get :show, user_id: @user.id, id: create(:ach)
       expect(response).to render_template :show
     end
   end
 
   describe "GET #new" do
     it "assigns a new ach as @ach" do
-      get :new
+      get :new, user_id: @user.id
       expect(assigns(:ach)).to be_a_new(Ach)
     end
 
     it "renders the :new view" do
-      get :new
+      get :new, user_id: @user.id
       expect(response).to render_template :new
     end
   end
@@ -59,20 +36,20 @@ RSpec.describe AchesController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested ach as @ach" do
       ach = create(:ach)
-      get :edit, id: ach
+      get :edit, user_id: @user.id, id: ach
       expect(assigns(:ach)).to eq(ach)
     end
 
     it "renders the :edit view" do
       ach = create(:ach)
-      get :edit, id: ach
+      get :edit, user_id: @user.id, id: ach
       expect(response).to render_template :edit
     end
   end
 
   describe "POST #create" do
-    context "with valid params", :vcr do
-      let(:post_create) { post :create, ach: attributes_for(:ach) }
+    context "with valid params" do
+      let(:post_create) { post :create, user_id: @user.id, ach: attributes_for(:ach) }
 
       it "creates a new Ach" do
         expect {
@@ -93,7 +70,7 @@ RSpec.describe AchesController, type: :controller do
     end
 
     context "with invalid params" do
-      let(:post_invalid) { post :create, ach: attributes_for(:ach, :invalid) }
+      let(:post_invalid) { post :create, user_id: @user.id, ach: attributes_for(:ach, :invalid) }
 
       it "does not save the new ach" do
         expect {
@@ -118,11 +95,11 @@ RSpec.describe AchesController, type: :controller do
       @ach = create(:ach, legalname: "Smith's Bongs")
     end
 
-    context "with valid params", :vcr do
-      let(:put_update) { put :update, id: @ach, ach: attributes_for(:ach) }
+    context "with valid params" do
+      let(:put_update) { put :update, user_id: @user.id, id: @ach, ach: attributes_for(:ach) }
 
       it "updates the requested ach" do
-        put :update, id: @ach, ach: attributes_for(:ach, legalname: "Bones' Bongs")
+        put :update, user_id: @user.id, id: @ach, ach: attributes_for(:ach, legalname: "Bones' Bongs")
         @ach.reload
         expect(@ach.legalname).to eq("Bones' Bongs")
       end
@@ -139,7 +116,7 @@ RSpec.describe AchesController, type: :controller do
     end
 
     context "with invalid params" do
-      let(:put_invalid) { put :update, id: @ach, ach: attributes_for(:ach, :invalid) }
+      let(:put_invalid) { put :update, user_id: @user.id, id: @ach, ach: attributes_for(:ach, :invalid) }
 
       it "locates the requested @ach" do
         put_invalid
@@ -160,7 +137,7 @@ RSpec.describe AchesController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    let(:delete_ach) { delete :destroy, id: @ach }
+    let(:delete_ach) { delete :destroy, user_id: @user.id, id: @ach }
 
     before(:each) do
       @ach = create(:ach)
@@ -181,7 +158,7 @@ RSpec.describe AchesController, type: :controller do
       @admin = create(:admin)
       sign_in @admin
       delete_ach
-      expect(response).to redirect_to aches_url
+      expect(response).to redirect_to admin_aches_url
     end
   end
 

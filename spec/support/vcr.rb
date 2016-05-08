@@ -9,4 +9,9 @@ VCR.configure do |config|
 
   # Only want VCR to intercept requests to external URLs.
   config.ignore_localhost = true
+
+  config.default_cassette_options = { allow_playback_repeats: true, match_requests_on: [:method, :uri, :headers] }
+
+
+  config.debug_logger = File.open(Rails.root.join('log/vcr.log'), 'w')
 end
