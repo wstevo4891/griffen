@@ -123,7 +123,7 @@
   
   <div class="form-group col-sm-6">
     <%= f.label :dob, "Date of Birth" %><br>
-    <%= f.text_field :dob, class: "form-control" %>
+    <%= f.date_field :dob, class: "form-control" %>
   </div>
   
   <div class="form-group col-sm-6">
@@ -296,7 +296,7 @@
   
   <div class="form-group col-sm-6">
     <%= f.label :date, "Date" %><br>
-    <%= f.text_field :date, class: "form-control" %>
+    <%= f.date_field :date, class: "form-control" %>
   </div>
   
   <div class="form-group col-sm-6">
@@ -452,7 +452,7 @@
   
   <div class="form-group col-sm-12">
     <%= f.label :billmail, "E-mail" %><br>
-    <%= f.text_field :billmail, class: "form-control" %>
+    <%= f.email_field :billmail, class: "form-control" %>
   </div>  
   
   <div class="form-group col-sm-8">
@@ -462,7 +462,7 @@
   
   <div class="form-group col-sm-4">
     <%= f.label :billdate, "Date" %><br>
-    <%= f.text_field :billdate, class: "form-control" %>
+    <%= f.date_field :billdate, class: "form-control" %>
   </div>    
      
   <div class="form-group col-sm-8">
@@ -486,7 +486,7 @@
   
   <div class="form-group col-sm-12">
     <%= f.label :bankphone, "Bank Phone Number" %><br>
-    <%= f.text_field :bankphone, class: "form-control" %>
+    <%= f.telephone_field :bankphone, class: "form-control" %>
   </div>   
   
 
@@ -586,7 +586,7 @@
   
   <div class="form-group col-sm-4">
     <%= f.label :mtdate, "Date" %><br>
-    <%= f.text_field :mtdate, class: "form-control" %>
+    <%= f.date_field :mtdate, class: "form-control" %>
   </div> 
   
   <div class="form-group col-sm-8">
@@ -601,7 +601,7 @@
   
   <div class="form-group col-sm-6">
     <%= f.label :mtagentid, "Agent ID Number" %><br>
-    <%= f.text_field :mtagentid, class: "form-control" %>
+    <%= f.number_field :mtagentid, class: "form-control" %>
   </div>  
   
   <div class="form-group col-sm-6">
@@ -655,7 +655,7 @@
   
   <div class="form-group col-sm-6">
     <%= f.label :fphone, "Phone" %><br>
-    <%= f.text_field :fphone, class: "form-control" %>
+    <%= f.telephone_field :fphone, class: "form-control" %>
   </div>             
 
   <div class="form-group col-sm-12">
@@ -665,12 +665,12 @@
   
   <div class="form-group col-sm-6">
     <%= f.label :frn, "Routing Number" %><br>
-    <%= f.text_field :frn, class: "form-control" %>
+    <%= f.number_field :frn, class: "form-control" %>
   </div>  
   
   <div class="form-group col-sm-6">
     <%= f.label :fan, "Account Number" %><br>
-    <%= f.text_field :fan, class: "form-control" %>
+    <%= f.password_field :fan, class: "form-control" %>
   </div>
 
   
@@ -744,7 +744,7 @@
   
   <div class="form-group col-sm-4">
     <%= f.label :codate, "Date" %><br>
-    <%= f.text_field :codate, class: "form-control" %>
+    <%= f.date_field :codate, class: "form-control" %>
   </div>
   
   <div class="form-group col-sm-12">

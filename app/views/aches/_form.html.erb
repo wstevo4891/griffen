@@ -18,8 +18,8 @@
 
 <div class="row">  
   <div class="form-group col-sm-6">
-    <%= f.label :bmn, "Bankcard Merchant #" %><br>
-    <%= f.text_field :bmn, class: "form-control" %>
+    <%= f.label :bmn, "Bankcard Merchant Number" %><br>
+    <%= f.number_field :bmn, class: "form-control" %>
   </div>
   
   <div class="form-group col-sm-6">
@@ -28,8 +28,8 @@
   </div>
   
   <div class="form-group col-sm-6">
-    <%= f.label :isoid, "ISO ID#" %><br>
-    <%= f.text_field :isoid, class: "form-control" %>
+    <%= f.label :isoid, "ISO ID Number" %><br>
+    <%= f.number_field :isoid, class: "form-control" %>
   </div>
   
   <div class="form-group col-sm-6">
@@ -48,8 +48,8 @@
   </div>
   
   <div class="form-group col-sm-6">
-    <%= f.label :taxid, "Tax ID#" %><br>
-    <%= f.text_field :taxid, class: "form-control" %>
+    <%= f.label :taxid, "Tax ID Number" %><br>
+    <%= f.number_field :taxid, class: "form-control" %>
   </div> 
   
   <div class="form-group col-sm-8">
@@ -150,12 +150,12 @@
   
   <div class="form-group col-sm-6">
      <%= f.label :webaddress, "Website Address" %><br>
-    <%= f.text_field :webaddress, class: "form-control" %>
+    <%= f.url_field :webaddress, class: "form-control" %>
   </div>
   
   <div class="form-group col-sm-6">
     <%= f.label :email, "Email Address" %><br>
-    <%= f.text_field :email, class: "form-control" %> 
+    <%= f.email_field :email, class: "form-control" %> 
   </div>   
 </fieldset>
 
@@ -178,7 +178,7 @@
   </div>
   
   <div class="form-group col-sm-6">
-    <%= f.label :pequity, "% Equity Ownership" %><br>
+    <%= f.label :pequity, "\% Equity Ownership" %><br>
     <%= f.text_field :pequity, class: "form-control" %>
   </div>    
   
@@ -189,7 +189,7 @@
   
   <div class="form-group col-sm-6">
     <%= f.label :pdob, "Date of Birth" %><br>
-    <%= f.text_field :pdob, class: "form-control" %>
+    <%= f.date_field :pdob, class: "form-control" %>
   </div> 
   
   <div class="form-group col-sm-6">
@@ -213,8 +213,8 @@
   </div>  
   
   <div class="form-group col-sm-6">
-    <%= f.label :pdlicense, "Driver's License #" %><br>
-    <%= f.text_field :pdlicense, class: "form-control" %>
+    <%= f.label :pdlicense, "Driver's License Number" %><br>
+    <%= f.number_field :pdlicense, class: "form-control" %>
   </div>      
 </fieldset>
 
@@ -373,7 +373,7 @@
   
   <div class="form-group col-sm-4" style="margin-bottom: 4em">
     <%= f.label :smate, "Date" %><br>
-    <%= f.text_field :mdate, class: "form-control" %>
+    <%= f.date_field :mdate, class: "form-control" %>
   </div>    
   
   <p>CORPORATE RESOLUTION FOR CORPORATIONS AND LLC’S:</p>
@@ -386,7 +386,7 @@
   
   <div class="form-group col-sm-4">
     <%= f.label :cdate, "Date" %><br>
-    <%= f.text_field :cdate, class: "form-control" %>
+    <%= f.date_field :cdate, class: "form-control" %>
   </div>     
 </fieldset>
 
@@ -405,7 +405,7 @@
   
   <div class="form-group col-sm-4">
     <%= f.label :appdate, "Date" %><br>
-    <%= f.text_field :appdate, class: "form-control" %>
+    <%= f.date_field :appdate, class: "form-control" %>
   </div>   
 </fieldset>
 
