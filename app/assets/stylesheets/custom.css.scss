@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "compass/css3";
+@import "compass/css3/transition";
+@import "compass/css3/box-shadow";
 
 
 body {
@@ -48,7 +49,7 @@ h1 {
 
 .jumbotron {
   border: 2px solid #000;
-  box-shadow: 4px 4px 8px #4d4d4d;
+  @include box-shadow(4px 4px 8px #4d4d4d);
   background-color: #FBFBF2;
 }
 
@@ -90,6 +91,7 @@ fieldset {
   padding: 1em;
   color: #fff; 
   margin: 1em; 
+  @include transition(all 1s ease);
 }
 
 .btn-black:hover {

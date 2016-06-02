@@ -28,14 +28,18 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 240px;
+  width: 50%;
   height: 100%;
-  padding: 15px 8px;
+  padding: 15px 0;
   margin: 0;
   list-style: none;
   background: #333;
   z-index: 1; 
   overflow-y: scroll;
+}
+
+#menu ul {
+  padding: 0 20px;
 }
 
 #menu a {
@@ -44,7 +48,7 @@
   padding: 15px 0px;
   border-bottom: 1px solid rgba( 255, 255, 255, 0.05);
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 2em;
+  font-size: 1.2em;
 }
 
 #menu a:hover {
@@ -76,30 +80,63 @@
 
 /***
 * If the left class is present then transform
-* the #page element 240px to the left.
+* the #page element 50% to the left.
 */  
 .animating.left #wrapper {
-  transform: translate3d( -240px, 0, 0 );
-  -webkit-transform: translate3d( -240px, 0, 0 );
+  transform: translate3d( -50%, 0, 0 );
+  -webkit-transform: translate3d( -50%, 0, 0 );
 }
 
 /***
 * If the right class is present then transform
-* the #page element 240px to the right.
+* the #page element 50% to the right.
 */
 .animating.right #wrapper {
-  transform: translate3d( 240px, 0, 0 );
-  -webkit-transform: translate3d( 240px, 0, 0 );
+  transform: translate3d( 50%, 0, 0 );
+  -webkit-transform: translate3d( 50%, 0, 0 );
 }
 
 /***
 * If the menu-visible class is present then
-* shift the #page 240px from the right edge
+* shift the #page 50% from the right edge
 * via position: absolute to keep it in the 
 * open position. When .animating, .left and
 * .right classes are not present the CSS
 * transform does not apply to #page.
 */
 .menu-visible #wrapper {
-  right: 240px;
-} 
+  right: 50%;
+}
+
+
+// MEDIA QUERIES ################
+
+@media only screen and (min-width: 400px) {
+  #menu a {
+    font-size: 1.5em;
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  #menu {
+    width: 40%;
+
+    a {
+      font-size: 2em;
+    }
+  }
+
+  .animating.left #wrapper {
+    transform: translate3d( -40%, 0, 0 );
+    -webkit-transform: translate3d( -40%, 0, 0 );
+  }
+
+  .animating.right #wrapper {
+    transform: translate3d( 40%, 0, 0 );
+    -webkit-transform: translate3d( 40%, 0, 0 );
+  }
+
+  .menu-visible #wrapper {
+    right: 40%;
+  }
+}
